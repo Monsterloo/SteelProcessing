@@ -1,0 +1,126 @@
+/*
+ * Powered By [sp]
+ */
+
+# 1������index�����
+PUT client
+{
+    "settings" : {
+        "index" : {
+            "number_of_shards" : 5, 
+            "number_of_replicas" : 1 
+        }
+    }
+} 	
+
+# ����mapping�����
+PUT client
+{
+  "mappings": {
+    "Material": {
+      "properties": {
+	"mid":{
+          "properties": {
+            "first": {
+              "type": "text"
+            }
+          }
+        },
+	
+	,
+	"mname":{
+          "properties": {
+            "first": {
+              "type": "text"
+            }
+          }
+        },
+	
+	,
+	"mexistCount":{
+          "properties": {
+            "first": {
+              "type": "text"
+            }
+          }
+        },
+	
+	,
+	"mminCount":{
+          "properties": {
+            "first": {
+              "type": "text"
+            }
+          }
+        },
+	
+	,
+	"mcategory":{
+          "properties": {
+            "first": {
+              "type": "text"
+            }
+          }
+        },
+	
+	,
+	"mdiameter":{
+          "properties": {
+            "first": {
+              "type": "text"
+            }
+          }
+        },
+	
+	,
+	"mlength":{
+          "properties": {
+            "first": {
+              "type": "text"
+            }
+          }
+        },
+	
+	,
+	"mweight":{
+          "properties": {
+            "first": {
+              "type": "text"
+            }
+          }
+        },
+	
+	,
+	"state":{
+          "properties": {
+            "first": {
+              "type": "text"
+            }
+          }
+        },
+	
+	
+        "name": {
+          "properties": {
+            "first": {
+              "type": "text"
+            }
+          }
+        },
+        "user_id": {
+          "type": "keyword"
+        }
+      }
+    }
+  }
+}
+
+"my_type": {
+    "properties": {
+      "usercode": {
+        "type":"text",
+        "index": "not_analyzed",
+
+      }
+    }
+  }

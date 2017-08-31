@@ -1,0 +1,56 @@
+<#include "/macro.include"/>
+<#include "/java_copyright.include">
+<#assign className = table.className>   
+<#assign classNameLower = className?uncap_first>
+# 1、创建index的语句
+PUT ${moduleName}
+{
+    "settings" : {
+        "index" : {
+            "number_of_shards" : 5, 
+            "number_of_replicas" : 1 
+        }
+    }
+} 	
+
+# 创建mapping的语句
+PUT ${moduleName}
+{
+  "mappings": {
+    "${className}": {
+      "properties": {
+      <#list table.columns as column>
+	"${column.columnNameFirstLower}":{
+          "properties": {
+            "first": {
+              "type": "text"
+            }
+          }
+        },
+	
+	<#if column_has_next>,</#if>
+      </#list>
+        "name": {
+          "properties": {
+            "first": {
+              "type": "text"
+            }
+          }
+        },
+        "user_id": {
+          "type": "keyword"
+        }
+      }
+    }
+  }
+}
+
+"my_type": {
+    "properties": {
+      "usercode": {
+        "type":"text",
+        "index": "not_analyzed",
+
+      }
+    }
+  }

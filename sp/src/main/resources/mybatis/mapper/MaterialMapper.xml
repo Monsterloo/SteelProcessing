@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.sp.net.dao.impl.MaterialDaoImpl">
+	<sql id="table"> tb_material </sql>
+
+	<!-- 用于返回的bean对象 -->
+	<resultMap id="BaseResultMap" type="com.sp.net.entity.Material">
+		<result column="M_ID" property="mid" jdbcType="VARCHAR"/>
+		<result column="M_NAME" property="mname" jdbcType="VARCHAR"/>
+		<result column="M_EXIST_COUNT" property="mexistCount" jdbcType="INTEGER"/>
+		<result column="M_MIN_COUNT" property="mminCount" jdbcType="INTEGER"/>
+		<result column="M_CATEGORY" property="mcategory" jdbcType="INTEGER"/>
+		<result column="M_DIAMETER" property="mdiameter" jdbcType="DOUBLE"/>
+		<result column="M_LENGTH" property="mlength" jdbcType="DOUBLE"/>
+		<result column="M_WEIGHT" property="mweight" jdbcType="DOUBLE"/>
+		<result column="STATE" property="state" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="Base_Column_List">
+		M_ID,
+		M_NAME,
+		M_EXIST_COUNT,
+		M_MIN_COUNT,
+		M_CATEGORY,
+		M_DIAMETER,
+		M_LENGTH,
+		M_WEIGHT,
+		STATE
+	</sql>
+
+	<!-- 插入记录 -->
+	<insert id="insert" parameterType="com.sp.net.entity.Material">
+
+		<selectKey keyProperty="mid" resultType="String" order="BEFORE">  
+	        select replace(uuid(),'-','') from dual  
+	    </selectKey>
+		
+		INSERT INTO <include refid="table" /> (
+			M_ID,
+        	M_NAME ,
+        	M_EXIST_COUNT ,
+        	M_MIN_COUNT ,
+        	M_CATEGORY ,
+        	M_DIAMETER ,
+        	M_LENGTH ,
+        	M_WEIGHT ,
+        	STATE 
+        ) VALUES (
+        	#{mid,jdbcType=VARCHAR},
+			#{mname,jdbcType=VARCHAR},
+			#{mexistCount,jdbcType=INTEGER},
+			#{mminCount,jdbcType=INTEGER},
+			#{mcategory,jdbcType=INTEGER},
+			#{mdiameter,jdbcType=DOUBLE},
+			#{mlength,jdbcType=DOUBLE},
+			#{mweight,jdbcType=DOUBLE},
+			#{state,jdbcType=VARCHAR}
+        )
+	</insert>
+
+	<!-- 批量插入记录 -->
+	<insert id="batchInsert" parameterType="list">
+
+		<selectKey keyProperty="mid" resultType="String" order="BEFORE">  
+	        select replace(uuid(),'-','') from dual  
+	    </selectKey>
+
+		INSERT INTO <include refid="table" /> (
+			M_ID,
+        	M_NAME ,
+        	M_EXIST_COUNT ,
+        	M_MIN_COUNT ,
+        	M_CATEGORY ,
+        	M_DIAMETER ,
+        	M_LENGTH ,
+        	M_WEIGHT ,
+        	STATE 
+        ) VALUES 
+		<foreach collection="list" item="item" separator=",">
+			(
+			#{item.mid,jdbcType=VARCHAR},
+			#{item.mname,jdbcType=VARCHAR},
+			#{item.mexistCount,jdbcType=INTEGER},
+			#{item.mminCount,jdbcType=INTEGER},
+			#{item.mcategory,jdbcType=INTEGER},
+			#{item.mdiameter,jdbcType=DOUBLE},
+			#{item.mlength,jdbcType=DOUBLE},
+			#{item.mweight,jdbcType=DOUBLE},
+			#{item.state,jdbcType=VARCHAR}
+			)
+		</foreach>
+	</insert>
+
+	<!--更新-->
+	<update id="update" parameterType="com.sp.net.entity.Material">
+        UPDATE <include refid="table" /> SET
+			M_NAME = #{mname,jdbcType=VARCHAR},
+			M_EXIST_COUNT = #{mexistCount,jdbcType=INTEGER},
+			M_MIN_COUNT = #{mminCount,jdbcType=INTEGER},
+			M_CATEGORY = #{mcategory,jdbcType=INTEGER},
+			M_DIAMETER = #{mdiameter,jdbcType=DOUBLE},
+			M_LENGTH = #{mlength,jdbcType=DOUBLE},
+			M_WEIGHT = #{mweight,jdbcType=DOUBLE},
+			STATE = #{state,jdbcType=VARCHAR}
+         WHERE M_ID = #{mid,jdbcType=VARCHAR}
+	</update>
+
+	<!-- 只更新不为null的属性 -->
+	<update id="updateIfNotNull" parameterType="com.sp.net.entity.Material">
+		UPDATE <include refid="table" />
+		<set>
+			<if test="mname != null">
+				M_NAME =#{mname,jdbcType=VARCHAR},
+			</if>
+			<if test="mexistCount != null">
+				M_EXIST_COUNT =#{mexistCount,jdbcType=INTEGER},
+			</if>
+			<if test="mminCount != null">
+				M_MIN_COUNT =#{mminCount,jdbcType=INTEGER},
+			</if>
+			<if test="mcategory != null">
+				M_CATEGORY =#{mcategory,jdbcType=INTEGER},
+			</if>
+			<if test="mdiameter != null">
+				M_DIAMETER =#{mdiameter,jdbcType=DOUBLE},
+			</if>
+			<if test="mlength != null">
+				M_LENGTH =#{mlength,jdbcType=DOUBLE},
+			</if>
+			<if test="mweight != null">
+				M_WEIGHT =#{mweight,jdbcType=DOUBLE},
+			</if>
+			<if test="state != null">
+				STATE =#{state,jdbcType=VARCHAR},
+			</if>
+		</set>
+		WHERE M_ID = #{mid,jdbcType=VARCHAR} 
+	</update>
+	
+	<!-- 不分页查询 -->
+	<select id="listBy" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="table" />
+		<where>
+			<include refid="condition_sql" />
+		</where>
+	</select>
+	
+	<!-- 分页查询 -->
+	<select id="listPage" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="table" />
+		<where>
+			<include refid="condition_sql" />
+		</where>
+		<include refid="limit_sql" />
+	</select>
+	
+	<!-- 分页查询时计算总记录数 -->
+	<select id="listPageCount" parameterType="java.util.Map" resultType="long">
+		select count(1) from
+		<include refid="table" />
+		<where>
+			<include refid="condition_sql" />
+		</where>
+	</select>
+
+	<!-- 根据id查询 -->
+    <select id="getById" resultMap="BaseResultMap">
+		SELECT <include refid="Base_Column_List" /> 
+		FROM <include refid="table" /> 
+		WHERE M_ID = #{mid,jdbcType=VARCHAR}  
+	</select>
+
+	<!--按id主键删除-->
+	<update id="deleteById">
+        <!--DELETE FROM <include refid="table" /> WHERE M_ID = #{mid,jdbcType=VARCHAR}-->
+		UPDATE <include refid="table" /> SET STATE = 0 WHERE M_ID = #{mid,jdbcType=VARCHAR}  
+	</update>
+
+	<!-- ↑↑↑↑↑↑ 如果有新增字段、删除字段、修改字段 以上内容可用模板生成新内容后直接替换 ↑↑↑↑↑↑ -->
+	<!-- ↓↓↓↓↓↓ 以下内容是根据需求手动添加或修改的，请勿使用模板内容直接覆盖 ↓↓↓↓↓↓ -->
+
+	<sql id="condition_sql">
+		<if test="mid != null and mid !=''">
+			and M_ID = #{mid,jdbcType=VARCHAR}
+		</if>
+		<if test="mname != null and mname !=''">
+			and M_NAME = #{mname,jdbcType=VARCHAR}
+		</if>
+		<if test="mexistCount != null">
+			and M_EXIST_COUNT = #{mexistCount,jdbcType=INTEGER}
+		</if>
+		<if test="mminCount != null">
+			and M_MIN_COUNT = #{mminCount,jdbcType=INTEGER}
+		</if>
+		<if test="mcategory != null">
+			and M_CATEGORY = #{mcategory,jdbcType=INTEGER}
+		</if>
+		<if test="mdiameter != null">
+			and M_DIAMETER = #{mdiameter,jdbcType=DOUBLE}
+		</if>
+		<if test="mlength != null">
+			and M_LENGTH = #{mlength,jdbcType=DOUBLE}
+		</if>
+		<if test="mweight != null">
+			and M_WEIGHT = #{mweight,jdbcType=DOUBLE}
+		</if>
+		<if test="state != null and state !=''">
+			and STATE = #{state,jdbcType=VARCHAR}
+		</if>
+	</sql>
+
+	<sql id="limit_sql">
+		<if test="pageIndex != null and pageSize != null">
+			LIMIT #{pageIndex},#{pageSize}
+		</if>
+	</sql>
+	
+</mapper>
+

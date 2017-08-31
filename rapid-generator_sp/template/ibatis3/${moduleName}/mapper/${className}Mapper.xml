@@ -1,0 +1,162 @@
+<#include "/macro.include"/>
+<#assign className = table.className>   
+<#assign classNameFirstLower = table.classNameFirstLower>
+<#assign beanFullPath='com.sp.net.entity.${className}'>
+<#assign namespace>com.sp.net.dao.impl.${className}DaoImpl</#assign>
+<#macro mapperEl value jdbcType>${r"#{"}${value},jdbcType=${jdbcType}}</#macro>
+<#macro mapperLike value jdbcType>LIKE CONCAT('%',${r"#{"}${value},jdbcType=${jdbcType}},'%')</#macro>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="${namespace}">
+	<sql id="table"> ${table.sqlName} </sql>
+
+	<!-- 用于返回的bean对象 -->
+	<resultMap id="BaseResultMap" type="${beanFullPath}">
+		<#list table.columns as column>
+		<result column="${column.sqlName}" property="${column.columnNameFirstLower}" jdbcType="${column.jdbcSqlTypeName}"/>
+		</#list>
+	</resultMap>
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="Base_Column_List">
+		<#list table.columns as column>
+		${column.sqlName}<#if column_has_next>,</#if>
+        </#list>
+	</sql>
+
+	<!-- 插入记录 -->
+	<insert id="insert" parameterType="${beanFullPath}">
+
+		<selectKey keyProperty="${table.pkColumn.columnNameFirstLower}" resultType="String" order="BEFORE">  
+	        select replace(uuid(),'-','') from dual  
+	    </selectKey>
+		
+		INSERT INTO <include refid="table" /> (
+			${table.pkColumn},
+        <#list table.notPkColumns as column>
+        	${column.sqlName} <#if column_has_next>,</#if>
+        </#list>
+        ) VALUES (
+        <#list table.notPkColumns as column>
+		<#if column.columnNameFirstLower=='version'>
+			0<#if column_has_next>,</#if>
+		<#else>
+			<@mapperEl column.columnNameFirstLower, column.jdbcSqlTypeName/><#if column_has_next>,</#if>
+		</#if>
+        </#list>
+        )
+	</insert>
+
+	<!-- 批量插入记录 -->
+	<insert id="batchInsert" parameterType="list">
+
+		<selectKey keyProperty="${table.pkColumn.columnNameFirstLower}" resultType="String" order="BEFORE">  
+	        select replace(uuid(),'-','') from dual  
+	    </selectKey>
+
+		INSERT INTO <include refid="table" /> (
+			${table.pkColumn},
+        <#list table.notPkColumns as column>
+        	${column.sqlName} <#if column_has_next>,</#if>
+        </#list>
+        ) VALUES 
+		<foreach collection="list" item="item" separator=",">
+			(
+			<#list table.notPkColumns as column><#if column.columnNameFirstLower=='version'>0<#if column_has_next>,</#if><#else><@mapperEl 'item.'+column.columnNameFirstLower, column.jdbcSqlTypeName/><#if column_has_next>,</#if></#if>
+			</#list>)
+		</foreach>
+	</insert>
+
+	<!--更新-->
+	<update id="update" parameterType="${beanFullPath}">
+        UPDATE <include refid="table" /> SET
+			<#list table.notPkColumns as column>
+			<#if column.columnNameFirstLower=='version'>
+			VERSION = <@mapperEl column.columnNameFirstLower, column.jdbcSqlTypeName /> + 1<#if column_has_next>,</#if>
+			<#else>
+			${column.sqlName} = <@mapperEl column.columnNameFirstLower, column.jdbcSqlTypeName/><#if column_has_next>,</#if>
+			</#if>
+	        </#list>
+         WHERE ${table.pkColumn} = <@mapperEl table.pkColumn.columnNameFirstLower, table.pkColumn.jdbcSqlTypeName/>
+	</update>
+
+	<!-- 只更新不为null的属性 -->
+	<update id="updateIfNotNull" parameterType="${beanFullPath}">
+		UPDATE <include refid="table" />
+		<set>
+		<#list table.notPkColumns as column>
+			<#if column.columnNameFirstLower=='version'>
+			VERSION = <@mapperEl column.columnNameFirstLower, column.jdbcSqlTypeName /> +1<#if column_has_next>,</#if>
+			<#else>
+			<if test="${column.columnNameFirstLower} != null">
+				${column.sqlName} =<@mapperEl column.columnNameFirstLower, column.jdbcSqlTypeName/>,
+			</if>
+			</#if>
+		</#list>
+		</set>
+		WHERE ${table.pkColumn} = <@mapperEl table.pkColumn.columnNameFirstLower, table.pkColumn.jdbcSqlTypeName/>
+	</update>
+	
+	<!-- 不分页查询 -->
+	<select id="listBy" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="table" />
+		<where>
+			<include refid="condition_sql" />
+		</where>
+	</select>
+	
+	<!-- 分页查询 -->
+	<select id="listPage" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="table" />
+		<where>
+			<include refid="condition_sql" />
+		</where>
+		<include refid="limit_sql" />
+	</select>
+	
+	<!-- 分页查询时计算总记录数 -->
+	<select id="listPageCount" parameterType="java.util.Map" resultType="long">
+		select count(1) from
+		<include refid="table" />
+		<where>
+			<include refid="condition_sql" />
+		</where>
+	</select>
+
+	<!-- 根据id查询 -->
+    <select id="getById" resultMap="BaseResultMap">
+		SELECT <include refid="Base_Column_List" /> 
+		FROM <include refid="table" /> 
+		WHERE ${table.pkColumn} = <@mapperEl table.pkColumn.columnNameFirstLower, table.pkColumn.jdbcSqlTypeName/>  
+	</select>
+
+	<!--按id主键删除-->
+	<update id="deleteById">
+        <!--DELETE FROM <include refid="table" /> WHERE ${table.pkColumn} = <@mapperEl table.pkColumn.columnNameFirstLower, table.pkColumn.jdbcSqlTypeName/>-->
+		UPDATE <include refid="table" /> SET STATE = 0 WHERE ${table.pkColumn} = <@mapperEl table.pkColumn.columnNameFirstLower, table.pkColumn.jdbcSqlTypeName/>  
+	</update>
+
+	<!-- ↑↑↑↑↑↑ 如果有新增字段、删除字段、修改字段 以上内容可用模板生成新内容后直接替换 ↑↑↑↑↑↑ -->
+	<!-- ↓↓↓↓↓↓ 以下内容是根据需求手动添加或修改的，请勿使用模板内容直接覆盖 ↓↓↓↓↓↓ -->
+
+	<sql id="condition_sql">
+		<#list table.columns as column>
+		<if test="${column.columnNameFirstLower} != null<#if column.javaType=='java.lang.String'> and ${column.columnNameFirstLower} !=''</#if>">
+			and ${column.sqlName} = <@mapperEl column.columnNameFirstLower, column.jdbcSqlTypeName/>
+		</if>
+        </#list>
+	</sql>
+
+	<sql id="limit_sql">
+		
+	</sql>
+	
+</mapper>
+
