@@ -48,7 +48,7 @@ public class MaterialServiceImpl implements MaterialService<Material>{
 	@Override
 	public long update(Material material) {
 		// TODO Auto-generated method stub
-		return materialDao.update(material);
+		return materialDao.updateIfNotNull(material);
 	}
 
 	@Override

@@ -10,7 +10,7 @@
 		account
 	</comment>
 	<!--模块名-->
-	<entry key="moduleName">material</entry>
+	<entry key="moduleName">warehouseRecordial</entry>
 	
 	<entry key="basepackage">com.sp.net</entry>
 

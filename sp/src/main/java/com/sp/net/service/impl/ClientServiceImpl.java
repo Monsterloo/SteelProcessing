@@ -48,7 +48,7 @@ public class ClientServiceImpl implements ClientService<Client>{
 	@Override
 	public long update(Client client) {
 		// TODO Auto-generated method stub
-		long update = clientDao.update(client);
+		long update = clientDao.updateIfNotNull(client);
 		return update;
 	}
 

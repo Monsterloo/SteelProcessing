@@ -25,6 +25,7 @@ public abstract class BaseDaoImpl<T> extends SqlSessionDaoSupport implements Bas
 	public static final String SQL_INSERT = "insert";
 	public static final String SQL_BATCH_INSERT = "batchInsert";
 	public static final String SQL_UPDATE = "update";
+	public static final String SQL_UPDATEIFNOTNULL = "updateIfNotNull";
 	public static final String SQL_GET_BY_ID = "getById";
 	public static final String SQL_DELETE_BY_ID = "deleteById";
 	public static final String SQL_LIST_PAGE = "listPage";
@@ -83,7 +84,7 @@ public abstract class BaseDaoImpl<T> extends SqlSessionDaoSupport implements Bas
 		int result = sessionTemplate.insert(getStatement(SQL_INSERT), t);
 		return result;
 	}
-
+	
 	@Override
 	public long insert(List<T> list) {
 		// TODO Auto-generated method stub
@@ -105,6 +106,14 @@ public abstract class BaseDaoImpl<T> extends SqlSessionDaoSupport implements Bas
 		return result;
 	}
 
+	public long updateIfNotNull(T t) {
+		if (t == null)
+			throw new RuntimeException("T is null");
+		
+		int result = sessionTemplate.update(getStatement(SQL_UPDATEIFNOTNULL), t);
+		return result;
+	}
+	
 	@Override
 	public long update(List<T> list) {
 		// TODO Auto-generated method stub

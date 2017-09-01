@@ -54,7 +54,7 @@ public class AdminServiceImpl implements AdminService<Admin>{
 	@Override
 	public long update(Admin admin) {
 		// TODO Auto-generated method stub
-		return adminDao.update(admin);
+		return adminDao.updateIfNotNull(admin);
 	}
 
 	@Override

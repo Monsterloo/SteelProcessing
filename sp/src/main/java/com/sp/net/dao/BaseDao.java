@@ -39,6 +39,13 @@ public interface BaseDao<T> {
 	 * @return
 	 */
 	long update(T entity);
+	
+	/**
+	 * 更新实体对应对象(非空的字段)
+	 * @param entity
+	 * @return
+	 */
+	long updateIfNotNull(T entity);
 
 	/**
 	 * 批量更新对象.
@@ -48,7 +55,7 @@ public interface BaseDao<T> {
 	 * @return int .
 	 */
 	long update(List<T> list);
-
+	
 	/**
 	 * 根据ID查找记录.
 	 * 
