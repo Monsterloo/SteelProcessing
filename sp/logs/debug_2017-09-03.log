@@ -1,0 +1,16 @@
+2017-09-03 21:08:51 [ main:0 ] - [ INFO ] Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+ 2017-09-03 21:08:51 [ main:19 ] - [ INFO ] Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@12b0404f, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@769e7ee8, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@5276e6b0, org.springframework.test.context.support.DirtiesContextTestExecutionListener@71b1176b, org.springframework.test.context.transaction.TransactionalTestExecutionListener@6193932a, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@647fd8ce]
+ 2017-09-03 21:08:51 [ main:107 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-common.xml]
+ 2017-09-03 21:08:51 [ main:504 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-db.xml]
+ 2017-09-03 21:08:51 [ main:529 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-mybatis.xml]
+ 2017-09-03 21:08:51 [ main:547 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-dao.xml]
+ 2017-09-03 21:08:51 [ main:592 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-tx.xml]
+ 2017-09-03 21:08:52 [ main:681 ] - [ INFO ] Refreshing org.springframework.context.support.GenericApplicationContext@3c407114: startup date [Sun Sep 03 21:08:52 CST 2017]; root of context hierarchy
+ 2017-09-03 21:08:52 [ main:940 ] - [ WARN ] No MyBatis mapper was found in '[com.sp.net.dao.impl]' package. Please check your configuration.
+ 2017-09-03 21:08:53 [ main:2393 ] - [ INFO ] {dataSource-1} inited
+ 2017-09-03 21:08:53 [ main:2417 ] - [ DEBUG ] ==>  Preparing: SELECT A_id, A_account, A_pwd, A_role, A_dept, A_name, A_contact, STATE FROM tb_admin WHERE A_id = ? 
+ 2017-09-03 21:08:53 [ main:2437 ] - [ DEBUG ] ==> Parameters: 1(String)
+ 2017-09-03 21:08:53 [ main:2590 ] - [ DEBUG ] <==      Total: 1
+ 2017-09-03 21:08:53 [ Thread-0:2611 ] - [ INFO ] Closing org.springframework.context.support.GenericApplicationContext@3c407114: startup date [Sun Sep 03 21:08:52 CST 2017]; root of context hierarchy
+ 2017-09-03 21:08:53 [ Thread-0:2625 ] - [ INFO ] {dataSource-1} closed
+ 

@@ -1,3 +1,7 @@
 /apache-maven-3.3.9/
+/.metadata/
+/.recommenders/
+/RemoteSystemsTempFiles/
+/Servers/
 
 /rapid-generator_sp/generator-output/

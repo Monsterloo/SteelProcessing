@@ -24,13 +24,13 @@ public class MaterialTest {
 	@Test
 	public void insert(){
 		Material m = new Material();
-		m.setMname("tset1");
-		m.setMcategory(1);
-		m.setMminCount(123);
-		m.setMexistCount(321);
-		m.setMdiameter((double) 100);
-		m.setMlength((double) 10);
-		m.setMweight((double) 101);
+		m.setMname("测试材料3");
+		m.setMcategory(0);
+		m.setMminCount(88);
+		m.setMexistCount(8889);
+		m.setMdiameter((double) 888);
+		m.setMlength((double) 88);
+		m.setMweight((double) 8);
 		m.setState("1");
 		materialSerivce.insert(m);
 	}
@@ -43,6 +43,7 @@ public class MaterialTest {
 	@Test
 	public void getById(){
 		Material m = (Material) materialSerivce.getById("f3cad0698d6311e7b5cec85b76aeb963");
+		System.out.println(m);
 	}
 	
 	@Test

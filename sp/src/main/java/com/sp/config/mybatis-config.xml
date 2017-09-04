@@ -16,6 +16,7 @@
 		<mapper resource="mybatis/mapper/ClientMapper.xml" />
 		<mapper resource="mybatis/mapper/MaterialMapper.xml" />
 		<mapper resource="mybatis/mapper/WarehouseRecordMapper.xml" />
+		<mapper resource="mybatis/mapper/ProductMapper.xml" />
 	</mappers>
 
 </configuration>  
