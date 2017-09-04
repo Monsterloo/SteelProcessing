@@ -32,6 +32,11 @@ public class Product implements Serializable{
 	 * 单价
 	 */
 	private Double price;
+	
+	/**
+	 * 钢筋类型
+	 */
+	private Integer productType;
 
 	/**
 	 * 材料主键
@@ -41,7 +46,7 @@ public class Product implements Serializable{
 	/**
 	 * 材料数量
 	 */
-	private java.lang.Integer materialCount;
+	private Integer materialCount;
 
 	/**
 	 * 状态
@@ -106,7 +111,20 @@ public class Product implements Serializable{
 	public Double getPrice() {
 		return this.price;
 	}
-
+	
+	/**
+	 * 钢筋类型
+	 */
+	public Integer getProductType() {
+		return productType;
+	}
+	/**
+	 * 钢筋类型
+	 */
+	public void setProductType(Integer productType) {
+		this.productType = productType;
+	}
+	
 	/**
 	 * 材料主键
 	 */
@@ -129,7 +147,7 @@ public class Product implements Serializable{
 	/**
 	 * 材料数量
 	 */
-	public java.lang.Integer getMaterialCount() {
+	public Integer getMaterialCount() {
 		return this.materialCount;
 	}
 

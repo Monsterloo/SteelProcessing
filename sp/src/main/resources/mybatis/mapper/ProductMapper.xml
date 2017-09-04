@@ -10,6 +10,7 @@
 		<result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR"/>
 		<result column="IMAGE_URL" property="imageUrl" jdbcType="VARCHAR"/>
 		<result column="PRICE" property="price" jdbcType="DOUBLE"/>
+		<result column="PRODUCT_TYPE" property="productType" jdbcType="INTEGER"/>
 		<result column="M_ID" property="mid" jdbcType="VARCHAR"/>
 		<result column="MATERIAL_COUNT" property="materialCount" jdbcType="INTEGER"/>
 		<result column="STATE" property="state" jdbcType="VARCHAR"/>
@@ -21,6 +22,7 @@
 		PRODUCT_NAME,
 		IMAGE_URL,
 		PRICE,
+		PRODUCT_TYPE,
 		M_ID,
 		MATERIAL_COUNT,
 		STATE
@@ -38,6 +40,7 @@
         	PRODUCT_NAME ,
         	IMAGE_URL ,
         	PRICE ,
+        	PRODUCT_TYPE ,
         	M_ID ,
         	MATERIAL_COUNT ,
         	STATE 
@@ -46,6 +49,7 @@
 			#{productName,jdbcType=VARCHAR},
 			#{imageUrl,jdbcType=VARCHAR},
 			#{price,jdbcType=DOUBLE},
+			#{productType,jdbcType=INTEGER},
 			#{mid,jdbcType=VARCHAR},
 			#{materialCount,jdbcType=INTEGER},
 			#{state,jdbcType=VARCHAR}
@@ -64,6 +68,7 @@
         	PRODUCT_NAME ,
         	IMAGE_URL ,
         	PRICE ,
+        	PRODUCT_TYPE ,
         	M_ID ,
         	MATERIAL_COUNT ,
         	STATE 
@@ -74,6 +79,7 @@
 			#{item.productName,jdbcType=VARCHAR},
 			#{item.imageUrl,jdbcType=VARCHAR},
 			#{item.price,jdbcType=DOUBLE},
+			#{item.productType,jdbcType=INTEGER},
 			#{item.mid,jdbcType=VARCHAR},
 			#{item.materialCount,jdbcType=INTEGER},
 			#{item.state,jdbcType=VARCHAR}
@@ -87,6 +93,7 @@
 			PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
 			IMAGE_URL = #{imageUrl,jdbcType=VARCHAR},
 			PRICE = #{price,jdbcType=DOUBLE},
+			PRODUCT_TYPE = #{productType,jdbcType=INTEGER},
 			M_ID = #{mid,jdbcType=VARCHAR},
 			MATERIAL_COUNT = #{materialCount,jdbcType=INTEGER},
 			STATE = #{state,jdbcType=VARCHAR}
@@ -105,6 +112,9 @@
 			</if>
 			<if test="price != null">
 				PRICE =#{price,jdbcType=DOUBLE},
+			</if>
+			<if test="productType != null">
+				PRODUCT_TYPE =#{productType,jdbcType=INTEGER},
 			</if>
 			<if test="mid != null">
 				M_ID =#{mid,jdbcType=VARCHAR},
@@ -180,6 +190,9 @@
 		<if test="price != null">
 			and PRICE = #{price,jdbcType=DOUBLE}
 		</if>
+		<if test="productType != null and productType !=''">
+				PRODUCT_TYPE =#{productType,jdbcType=INTEGER},
+			</if>
 		<if test="mid != null and mid !=''">
 			and M_ID = #{mid,jdbcType=VARCHAR}
 		</if>

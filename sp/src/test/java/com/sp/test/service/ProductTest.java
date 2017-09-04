@@ -35,7 +35,8 @@ public class ProductTest {
 		Product product = new Product();
 		product.setMid("05840891914211e7a3ecc85b76aeb963");
 		product.setMaterialCount(3);
-		product.setPrice(233.0);
+		product.setPrice(2322223.0);
+		product.setProductType(2);
 		product.setProductName("成品测试3");
 		product.setImageUrl("www.jq22.com");
 		productService.insert(product);

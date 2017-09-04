@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50636
 File Encoding         : 65001
 
-Date: 2017-09-04 16:10:01
+Date: 2017-09-04 16:46:07
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -109,6 +109,7 @@ CREATE TABLE `tb_product` (
   `PRODUCT_NAME` varchar(50) DEFAULT NULL COMMENT '成品名称',
   `IMAGE_URL` varchar(255) DEFAULT NULL COMMENT '图片地址',
   `PRICE` double(20,0) DEFAULT NULL COMMENT '单价',
+  `PRODUCT_TYPE` int(2) DEFAULT NULL COMMENT '钢筋类型',
   `M_ID` varchar(32) DEFAULT NULL COMMENT '材料主键',
   `MATERIAL_COUNT` int(10) DEFAULT NULL COMMENT '材料数量',
   `STATE` varchar(2) DEFAULT '1' COMMENT '状态',
@@ -120,11 +121,12 @@ CREATE TABLE `tb_product` (
 -- ----------------------------
 -- Records of tb_product
 -- ----------------------------
-INSERT INTO `tb_product` VALUES ('0394c2c6912511e7a3ecc85b76aeb963', '成品1比5', 'www.qq.com', '88', '940a0242914111e7a3ecc85b76aeb963', '5', '1');
-INSERT INTO `tb_product` VALUES ('330fc8b9914211e7a3ecc85b76aeb963', '成品测试3', 'www.jq22.com', '233', '05840891914211e7a3ecc85b76aeb963', '3', '1');
-INSERT INTO `tb_product` VALUES ('b42da9ff914111e7a3ecc85b76aeb963', '成品测试3', 'www.github.com', '199', 'f3cad0698d6311e7b5cec85b76aeb963', '3', '1');
-INSERT INTO `tb_product` VALUES ('c38226ba914111e7a3ecc85b76aeb963', '成品测试2', 'www.google.com', '123', 'f3cad0698d6311e7b5cec85b76aeb963', '3', '1');
-INSERT INTO `tb_product` VALUES ('da44a3ce912411e7a3ecc85b76aeb963', '测试成品', 'www.baidu.com', '111', '940a0242914111e7a3ecc85b76aeb963', '10', '1');
+INSERT INTO `tb_product` VALUES ('0394c2c6912511e7a3ecc85b76aeb963', '成品1比5', 'www.qq.com', '88', '1', '940a0242914111e7a3ecc85b76aeb963', '5', '1');
+INSERT INTO `tb_product` VALUES ('330fc8b9914211e7a3ecc85b76aeb963', '成品测试3', 'www.jq22.com', '233', '3', '05840891914211e7a3ecc85b76aeb963', '3', '1');
+INSERT INTO `tb_product` VALUES ('b42da9ff914111e7a3ecc85b76aeb963', '成品测试3', 'www.github.com', '199', '3', 'f3cad0698d6311e7b5cec85b76aeb963', '3', '1');
+INSERT INTO `tb_product` VALUES ('c38226ba914111e7a3ecc85b76aeb963', '成品测试2', 'www.google.com', '123', '2', 'f3cad0698d6311e7b5cec85b76aeb963', '3', '1');
+INSERT INTO `tb_product` VALUES ('d9d410cd914c11e7a3ecc85b76aeb963', '成品测试3-2', 'www.jq2222.com', '200', '2', '05840891914211e7a3ecc85b76aeb963', '3', '1');
+INSERT INTO `tb_product` VALUES ('da44a3ce912411e7a3ecc85b76aeb963', '测试成品', 'www.baidu.com', '111', '1', '940a0242914111e7a3ecc85b76aeb963', '10', '1');
 
 -- ----------------------------
 -- Table structure for tb_warehouse_record
