@@ -32,7 +32,7 @@
 	<insert id="insert" parameterType="com.sp.net.entity.WarehouseRecord">
 
 		<selectKey keyProperty="wid" resultType="String" order="BEFORE">  
-	        select replace(uuid(),'-','') from dual  
+	        select uuid() from dual  
 	    </selectKey>
 		
 		INSERT INTO <include refid="table" /> (
@@ -60,7 +60,7 @@
 	<insert id="batchInsert" parameterType="list">
 
 		<selectKey keyProperty="wid" resultType="String" order="BEFORE">  
-	        select replace(uuid(),'-','') from dual  
+	        select uuid() from dual  
 	    </selectKey>
 
 		INSERT INTO <include refid="table" /> (

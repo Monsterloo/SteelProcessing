@@ -12,7 +12,7 @@ import com.sp.net.entity.Material;
 import com.sp.net.entity.page.PageBean;
 import com.sp.net.entity.page.PageParam;
 
-public interface MaterialService<Material> extends BaseService<Material>{
+public interface MaterialService extends BaseService<Material>{
 	
 	public long batchDelete(List<String> mIds);
 }

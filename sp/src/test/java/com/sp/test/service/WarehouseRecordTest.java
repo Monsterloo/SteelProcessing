@@ -27,7 +27,7 @@ public class WarehouseRecordTest {
 	WarehouseRecordDao warehouseRecordDao;
 
 	@Autowired
-	WarehouseRecordService<WarehouseRecord> warehouseRecordService;
+	WarehouseRecordService warehouseRecordService;
 	
 	@Autowired
 	MaterialService materialService;
@@ -43,7 +43,7 @@ public class WarehouseRecordTest {
 	public void purchaseMaterial(){
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("mid", "f3cad0698d6311e7b5cec85b76aeb963");
-		paramMap.put("purchaseCount", 88888);
+		paramMap.put("purchaseCount", 123456);
 		long purchaseMaterial = warehouseRecordService.purchaseMaterial(paramMap);
 		System.out.println(purchaseMaterial);
 		/*Material material = (Material) materialService.getById("f3cad0698d6311e7b5cec85b76aeb963");

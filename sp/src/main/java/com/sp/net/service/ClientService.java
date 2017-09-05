@@ -11,7 +11,7 @@ import com.sp.net.entity.Client;
 import com.sp.net.entity.page.PageBean;
 import com.sp.net.entity.page.PageParam;
 
-public interface ClientService<Client> extends BaseService<Client>{
+public interface ClientService extends BaseService<Client>{
 	
 	public long batchDelete(List<String> cIds);
 

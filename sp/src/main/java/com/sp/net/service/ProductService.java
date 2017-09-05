@@ -7,6 +7,6 @@ package com.sp.net.service;
 
 import com.sp.net.entity.Product;
 
-public interface ProductService<Product> extends BaseService<Product>{
+public interface ProductService extends BaseService<Product>{
 
 }

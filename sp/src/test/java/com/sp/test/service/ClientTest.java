@@ -42,7 +42,7 @@ public class ClientTest {
 	
 	@Test
 	public void getBy(){
-		Client clientById = (Client) clientService.getById("3ea284418c6e11e7b5cec85b76aeb963");
+		Client clientById = clientService.getById("3ea284418c6e11e7b5cec85b76aeb963");
 		System.out.println(clientById);
 	}
 	

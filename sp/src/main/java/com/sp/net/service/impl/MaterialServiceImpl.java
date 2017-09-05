@@ -20,7 +20,7 @@ import com.sp.net.service.MaterialService;
 
 @Component("materialService")
 @Transactional
-public class MaterialServiceImpl implements MaterialService<Material>{
+public class MaterialServiceImpl implements MaterialService{
 	
 	@Autowired
 	MaterialDao materialDao;
