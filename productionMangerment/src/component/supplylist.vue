@@ -6,13 +6,13 @@
                 <template scope="scope">
                     <el-form label-position="left" inline class="demo-table-expand">
                         <el-form-item label="材料直径">
-                            <span>{{ scope.row.companycontact}}</span>
+                            <span>{{ scope.row.dim}}</span>
                         </el-form-item>
                         <el-form-item label="材料重量">
-                            <span>{{ scope.row.ownername}}</span>
+                            <span>{{ scope.row.weight}}</span>
                         </el-form-item>
                         <el-form-item label="材料长度">
-                            <span>{{ scope.row.companyaddress}}</span>
+                            <span>{{ scope.row.length}}</span>
                         </el-form-item>
                         
                     </el-form>
@@ -168,6 +168,21 @@
                         <el-input v-model="newtable.name" placeholder="材料名称"></el-input>
                     </div>
                 </el-form-item>
+                 <el-form-item label="材料长度" class="fontcolor" >
+                    <div class="forminput">
+                        <el-input v-model="newtable.length" placeholder="材料长度"></el-input>
+                    </div>
+                </el-form-item>
+                 <el-form-item label="材料直径" class="fontcolor" >
+                    <div class="forminput">
+                        <el-input v-model="newtable.dim" placeholder="材料直径"></el-input>
+                    </div>
+                </el-form-item>
+                 <el-form-item label="材料重量" class="fontcolor" >
+                    <div class="forminput">
+                        <el-input v-model="newtable.weight" placeholder="材料重量"></el-input>
+                    </div>
+                </el-form-item>
                 <el-form-item label="材料入库数量" class="fontcolor">
                     <div class="forminput">
                         <el-input-number v-model="newtable.amount" :min="0"></el-input-number>
@@ -225,12 +240,18 @@ export default {
                 limit: 0,
                 name: '',
                 order: 0,
+                weight:0,
+                length:0,
+                dim:0,
             }],/*库存管理*/
             newtable: {
                 class: '',
                 amount: 0,
                 limit: 0,
-                name: ''
+                name: '',
+                weight:0,
+                length:0,
+                dim:0,
             },
             options: [{
                 value: '原材料',
@@ -283,6 +304,9 @@ export default {
                         amount: Number(this.newtable.amount),
                         limit:Number(this.newtable.limit),
                         order:0,
+                        dim:Number(this.newtable.dim),
+                        weight:Number(this.newtable.weight),
+                        length:Number(this.newtable.length),
                     }
                    
                     this.$http.post(this.servicerurl+'/material', newin, {

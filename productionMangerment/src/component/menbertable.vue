@@ -37,16 +37,9 @@
                 </template>
             </el-table-column>
         </el-table>
-        <!-- <el-pagination
-                layout="prev, pager, next"
-                :total="1000" class="pagination">
-              </el-pagination> -->
-        <!-- <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-size="20" layout="total, prev, pager, next" :total="count" class="pagination">
-                </el-pagination> -->
         <el-pagination v-bind:current-Page="pageIndex" v-bind:page-size="pageSize" :total="total" layout="total,sizes,prev,pager,next,jumper" v-bind:page-sizes="pageSizes" v-on:size-change="sizeChange" v-on:current-change="pageIndexChange" class="pagination">
-    
         </el-pagination>
-    
+
         <el-dialog title="修改会员信息" v-model="dialogFormVisible">
             <el-form :model="selectTable" :rules="rules" ref="ruleForm">
                 <el-form-item label="公司编号" label-width="100px">
@@ -56,7 +49,9 @@
                     <el-input v-model="selectTable.companyname" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="详细地址" label-width="100px" prop="companyaddress">
-                    <el-input v-model="selectTable.companyaddress" placeholder="请输入地址" style="width: 100%;"></el-input>
+                    <v-distpicker @selected="onSelected"></v-distpicker>
+                    <br>
+                    <el-input v-model="selectTable.companyaddress2" placeholder="请输入详细地址" style="width: 100%;"></el-input>
                 </el-form-item>
                 <el-form-item label="联系电话" label-width="100px" prop="companycontact">
                     <el-input v-model="selectTable.companycontact"></el-input>
@@ -70,7 +65,7 @@
                 <el-button type="primary" @click="updatemenber('ruleForm')">确 定</el-button>
             </div>
         </el-dialog>
-    
+
         <el-dialog title="提示" v-model="dialogVisible" size="tiny">
             <span>确认删除吗？</span>
             <span slot="footer" class="dialog-footer">
@@ -84,10 +79,10 @@
 <script>
 var STORAGE_KEY = 'menberList';
 var orderStorage = {
-    save: function (data) {
+    save: function(data) {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
     },
-    fetch: function () {
+    fetch: function() {
         return JSON.parse(localStorage.getItem(STORAGE_KEY) || []);
     }
 };
@@ -108,9 +103,11 @@ export default {
             loading: false,
             selectTable: [{
                 name: '',
-                address: '',
-                contact: '',
-                ownername: ''
+                companyaddress: '',
+                companycontact: '',
+                ownername: '',
+                companyaddress1:'',
+                companyaddress2:'',
             }],
             dialogFormVisible: false,
             dialogVisible: false,
@@ -143,70 +140,78 @@ export default {
             }
         }
     },
-    mounted: function () {
+    mounted: function() {
         this.loading = true;
-        this.$http.get(this.servicerurl+'/menber', {pageIndex: this.pageIndex,
-                    pageSize: this.pageSize}, {
-            headers: {},
-            emulateJSON: true
-        }).then(function (response) {
-            orderStorage.save(response.data);
-            this.tableData = orderStorage.fetch();
-           
-            this.loading = false;
-             //this.total=this.filtermatchdata.length;
-            console.log(response.data)
-        }, function (response) {
-            console.log(response)
-        })
+        this.$http.get(this.servicerurl + '/menber', {
+            pageIndex: this.pageIndex,
+            pageSize: this.pageSize
+        }, {
+                headers: {},
+                emulateJSON: true
+            }).then(function(response) {
+                orderStorage.save(response.data);
+                this.tableData = orderStorage.fetch();
+
+                this.loading = false;
+                //this.total=this.filtermatchdata.length;
+                console.log(response.data)
+            }, function(response) {
+                console.log(response)
+            })
 
     },
     watch: {
         tableData: {
             handler() {
                 orderStorage.save(this.tableData);
-                this.total=this.filtermatchdata.length;
+                this.total = this.filtermatchdata.length;
             },
             deep: true
         }
     },
     computed: {
-        filtermatchdata: function () {
+        filtermatchdata: function() {
             let matchdata = this.searchFilter('id', this.seachbyId, this.tableData);
             return matchdata;
         },
 
     },
     methods: {
-        handleDelete: function ($index, row) {
+        onSelected: function(data) {
+            this.selectTable.companyaddress1 = data.province.value + data.city.value + data.area.value
+            console.log(this.selectTable.companyaddress1)
+        },
+        handleDelete: function($index, row) {
             this.selectTable = row;
             this.dialogVisible = true;
 
         },
-        confirmdelete: function () {
+        confirmdelete: function() {
             var id1 = this.selectTable.id;
             //resource
-            var resource = this.$resource(this.servicerurl+'/menber/{id}');
+            var resource = this.$resource(this.servicerurl + '/menber/{id}');
             resource.delete({ id: id1 }).then(response => {
                 // success callback
-                this.$http.get(this.servicerurl+'/menber', {pageIndex: this.pageIndex,
-                    pageSize: this.pageSize}, {
-                    headers: {},
-                    emulateJSON: true
-                }).then(function (response) {
-                    //get again
-                    orderStorage.save(response.data);
-                    this.tableData = response.data;
-                    this.dialogVisible = false;
-                    this.$message({
-                        showClose: true,
-                        message: '删除成功',
-                        type: 'success'
+                this.$http.get(this.servicerurl + '/menber', {
+                    pageIndex: this.pageIndex,
+                    pageSize: this.pageSize
+                }, {
+                        headers: {},
+                        emulateJSON: true
+                    }).then(function(response) {
+                        //get again
+                        orderStorage.save(response.data);
+                        this.tableData = response.data;
+                        this.dialogVisible = false;
+                        this.$message({
+                            showClose: true,
+                            message: '删除成功',
+                            type: 'success'
+                        })
+                        console.log(response.data);
+                    }, function(response) {
+                        console.log(response)
                     })
-                    console.log(response.data);
-                }, function (response) {
-                    console.log(response)
-                })
                 console.log(id1);
                 console.log(response.data);
             }, response => {
@@ -214,14 +219,14 @@ export default {
                 console.log(id1);
                 console.log(response);
                 this.$message({
-                        showClose: true,
-                        message: '删除失败',
-                        type: 'error'
-                    })
+                    showClose: true,
+                    message: '删除失败',
+                    type: 'error'
+                })
             })
 
         },
-        searchFilter: function (prop, key, arr) {
+        searchFilter: function(prop, key, arr) {
             if (!key) {
                 return arr;
             }
@@ -236,62 +241,67 @@ export default {
             }
             return arr;
         },
-        addOrder: function () {
+        addOrder: function() {
             this.$router.push({ path: '/menber/add' })
         },
-        sizeChange: function (pageSize) {
+        sizeChange: function(pageSize) {
             this.pageSize = pageSize;
             this.fetchData();
         },
-        pageIndexChange: function (pageIndex) {
+        pageIndexChange: function(pageIndex) {
             this.pageIndex = pageIndex;
             this.fetchData();
         },
-        fetchData:function(){
-         this.loading = true;
-        this.$http.get(this.servicerurl+'/menber', {pageIndex: this.pageIndex,
-                    pageSize: this.pageSize}, {
-            headers: {},
-            emulateJSON: true
-        }).then(function (response) {
-            orderStorage.save(response.data);
-            this.tableData = orderStorage.fetch();
-            this.loading = false;
-            console.log(response.data)
-        }, function (response) {
-            console.log(response)
-        })
+        fetchData: function() {
+            this.loading = true;
+            this.$http.get(this.servicerurl + '/menber', {
+                pageIndex: this.pageIndex,
+                pageSize: this.pageSize
+            }, {
+                    headers: {},
+                    emulateJSON: true
+                }).then(function(response) {
+                    orderStorage.save(response.data);
+                    this.tableData = orderStorage.fetch();
+                    this.loading = false;
+                    console.log(response.data)
+                }, function(response) {
+                    console.log(response)
+                })
         },
-        handleEdit: function ($index, row) {
+        handleEdit: function($index, row) {
             this.selectTable = row;
             this.dialogFormVisible = true;
         },
-        updatemenber: function (formName, row) {
+        updatemenber: function(formName, row) {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
+                    this.selectTable.companyaddress=this.selectTable.companyaddress1+this.selectTable.companyaddress2;
                     this.dialogFormVisible = false;
-                    this.$http.put(this.servicerurl+'/menber' + '/' + this.selectTable.id, this.selectTable, {
+                    this.$http.put(this.servicerurl + '/menber' + '/' + this.selectTable.id, this.selectTable, {
                         headers: {},
                         emulateJSON: true
-                    }).then(function (response) {
+                    }).then(function(response) {
                         //getagain,save in total_localstorage
-                        this.$http.get(this.servicerurl+'/menber', {pageIndex: this.pageIndex,
-                    pageSize: this.pageSize}, {
-                            headers: {},
-                            emulateJSON: true
-                        }).then(function (response) {
-                            console.log(response.data);
-                            // localStorage.setItem('orderList',JSON.stringify(response.data)); 
-                            orderStorage.save(response.data);
-
-                            this.$message({
-                                showClose: true,
-                                message: '更新成功',
-                                type: 'success'
+                        this.$http.get(this.servicerurl + '/menber', {
+                            pageIndex: this.pageIndex,
+                            pageSize: this.pageSize
+                        }, {
+                                headers: {},
+                                emulateJSON: true
+                            }).then(function(response) {
+                                console.log(response.data);
+                                // localStorage.setItem('orderList',JSON.stringify(response.data)); 
+                                orderStorage.save(response.data);
+                                console.log(this.selectTable.companyaddress)
+                                this.$message({
+                                    showClose: true,
+                                    message: '更新成功',
+                                    type: 'success'
+                                })
                             })
-                        })
                         console.log(response.data);
-                    }, function (response) {
+                    }, function(response) {
                         console.log(response);
                     })
                 } else {

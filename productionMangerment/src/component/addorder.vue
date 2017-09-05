@@ -2,18 +2,31 @@
   <div>
     <el-form class="form food_form" :rules="rules" ref="ruleForm" :model="orderdetail" :inline="true">
       <el-form-item label="工 程 名 字" class="fontcolor temipt" prop="workName">
-  
+
         <el-input v-model="orderdetail.workName" placeholder="工 程 名 字" required=true class="forminput"></el-input>
-  
+
       </el-form-item>
       <el-form-item label="公 司 名 字" class="fontcolor temipt" prop="companyName">
+        <el-select v-model="orderdetail.companyName" placeholder="请选择" filterable>
+          <el-option v-for="item in options4" :key="item.value" :label="item.label" :value="item.value">
+          </el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="钢 筋 直 径" class="fontcolor temipt" prop="dim">
         <div class="forminput">
-          <el-input v-model="orderdetail.companyName" placeholder="公 司 名 字"></el-input>
+          <!-- <el-input v-model="orderdetail.dim" placeholder="钢 筋 直 径" ></el-input> 远程联动-->
+          <el-select v-model="orderdetail.dim" placeholder="请选择" >
+            <el-option v-for="item in optionsDim" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+          </el-select>
         </div>
       </el-form-item>
       <el-form-item label="钢 筋 简 图" class="fontcolor temipt">
-        <el-select v-model="value" placeholder="请选择">
-          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+        <!-- pic等于图片的地址 -->
+        <el-select v-model="orderdetail.pic" placeholder="请选择" @change="changemethod">
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" >
+            <!-- 显示图片 -->
+            <!-- <img class="avatar" :src="xx" style="height:36px"> -->
           </el-option>
         </el-select>
       </el-form-item>
@@ -33,7 +46,7 @@
         </el-date-picker>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="dialogFormVisible = true" style="margin-bottom: 10px;">添加规格</el-button>
+        <el-button type="primary" @click="dialogFormVisible = true" style="margin-bottom: 10px;">添加材料</el-button>
         <el-table :data="orderdetail.specs" style="margin-bottom: 20px; width:800px">
           <el-table-column label="名称">
             <template scope="scope">
@@ -71,10 +84,10 @@
         <el-button type="primary" @click="onSubmit('ruleForm')">立即创建</el-button>
         <el-button @click="cancelAdd">取消</el-button>
       </el-form-item>
-  
+
     </el-form>
-  
-    <el-dialog title="添加规格" v-model="dialogFormVisible">
+
+    <el-dialog title="添加材料" v-model="dialogFormVisible">
       <el-form :model="specsForm">
         <el-form-item label="名称">
           <el-input v-model="specsForm.matrialname" auto-complete="off"></el-input>
@@ -97,31 +110,45 @@
         <el-button type="primary" @click="addspecs">确 定</el-button>
       </div>
     </el-dialog>
-  
+
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
+     options4:[],
+      optionsDim: [{
+        value: 0.4,
+        label: 0.4 + 'cm'
+      }, {
+        value: 0.5,
+        label: 0.5 + 'cm'
+      }],
       /*test*/
       options: [{
         value: '选项1',
-        label: '黄金糕'
+        label: '黄金糕',
+       
       }, {
         value: '选项2',
-        label: '双皮奶'
+        label: '双皮奶',
+       
       }, {
         value: '选项3',
-        label: '蚵仔煎'
+        label: '蚵仔煎',
+        
       }, {
         value: '选项4',
-        label: '龙须面'
+        label: '龙须面',
+       
       }, {
         value: '选项5',
-        label: '北京烤鸭'
+        label: '北京烤鸭',
+        
       }],
       value: '',
+
       dialogFormVisible: false,
       specsForm: {
         matrialname: '',
@@ -138,6 +165,7 @@ export default {
         price: '',
         date1: '',
         totalPrice: '',
+        dim: 0,
         specs: [{
           matrialname: '',
           diameter: 0,
@@ -172,85 +200,118 @@ export default {
         price: [{
           required: true, message: '请输入单价', trigger: 'blur'
         }],
+        dim: [{
+          required: true, message: '请输入直径', trigger: 'blur'
+        }],
+
         date1: [{ required: true, message: '请选择到期时间', trigger: 'change' }]
       }
     }
   },
+  mounted(){
+    //fetchcompany
+    this.$http.get(this.servicerurl + '/menber', {
+        headers: {},
+        emulateJSON: true
+      }).then(function(response) {
+        let opttemp=[{label:'',value:''}];
+        for(var i=0;i<response.data.length;i++){
+         opttemp[i]={label:response.data[i].companyname,value:response.data[i].companyname}
+       }
+       this.options4=opttemp
+        console.log(this.options4);
+      }, function(response) {
+        console.log(response)
+      })
+
+      //fetchpicture
+      this.$http(this.servicerurl+'',{
+        headers: {},
+        emulateJSON: true
+      }).then(function(response){
+        let opttemp=[{label:'',value:''}];
+        for(var i=0;i<response.data.length;i++){
+          //获取图片路径
+         opttemp[i]={label:response.data[i].src,value:response.data[i].src}
+       }
+      //  this.options=opttemp
+      },function(response){
+        console.log(response)
+      })
+    
+  },
   computed: {
-    totalPrice: function () {
+    totalPrice: function() {
       this.orderdetail.totalPrice = Number(this.orderdetail.account) * Number(this.orderdetail.price);
       return this.orderdetail.totalPrice.toString();
-    }
+    },
+    
+
   },
   methods: {
-    handleDelete(index){
-				this.orderdetail.specs.splice(index, 1);
-			},
-    addspecs: function () {
+   changemethod:function(){
+     console.log(this.orderdetail.pic)
+    //  图片显示
+//     let path=this.$refs.select.selectedLabel
+// this.$refs.select.$el.children[0].children[1].setAttribute('style','background:url('+ path +') no-repeat;color:#fff');
+   },
+    handleDelete(index) {
+      this.orderdetail.specs.splice(index, 1);
+    },
+    addspecs: function() {
       //缺货提醒
       this.$notify.warning({
-          title: '警告',
-          message: '材料库存不足，请及时补充',
-          offset: 100
-        });
+        title: '警告',
+        message: '材料库存不足，请及时补充',
+        offset: 100
+      });
       //查库存记录是否足够
-      let url=""
-      this.$http.get(url+'?matrialname='+this.specsForm.name+'&diameter='+this.specsForm.diameter+'&=length'+this.specsForm.length,{
-                    headers: {},
-                    emulateJSON: true
-                }).then(function (response) {
-                   console.log(response.data);
-                   if (response.body != null & response.body.length > 0) {
-                   if(this.specsForm.amout>response.data[0].amount){
-                    
-                    
-                   }
-            
-           
-                }
-                 else {
-                    // alert('请输入正确的用户名和密码！！！');
-   
-         
-                   
-                   
-                    
-                }
-                }, function (response) {
-                    console.log(response)
-                })
-               
-      let objtemp={};
-       objtemp.matrialname=this.specsForm.matrialname,
-        objtemp.diameter=this.specsForm.diameter,
-        objtemp.amount=this.specsForm.amount,
-        objtemp.weight=this.specsForm.weight,
-        objtemp.length=this.specsForm.length,
-      this.orderdetail.specs.push(objtemp);
+      let url = ""
+      this.$http.get(url + '?matrialname=' + this.specsForm.name + '&diameter=' + this.specsForm.diameter + '&=length' + this.specsForm.length, {
+        headers: {},
+        emulateJSON: true
+      }).then(function(response) {
+        console.log(response.data);
+        if (response.body != null & response.body.length > 0) {
+          if (this.specsForm.amout > response.data[0].amount) {
+          }
+        }
+
+      }, function(response) {
+        console.log(response)
+      })
+
+      let objtemp = {};
+      objtemp.matrialname = this.specsForm.matrialname,
+        objtemp.diameter = this.specsForm.diameter,
+        objtemp.amount = this.specsForm.amount,
+        objtemp.weight = this.specsForm.weight,
+        objtemp.length = this.specsForm.length,
+        this.orderdetail.specs.push(objtemp);
       console.log(this.orderdetail.specs)
 
       this.dialogFormVisible = false;
 
     },
-    onSubmit: function (formName) {
+    onSubmit: function(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.$http.post(servicerurl+'/order', this.orderdetail, {
+          this.$http.post(servicerurl + '/order', this.orderdetail, {
             headers: {},
             emulateJSON: true
-          }).then(function (response) {
+          }).then(function(response) {
             //getagain,save in total_localstorage
-            this.$http.get(servicerurl+'/order', {}, {
+            this.$http.get(servicerurl + '/order', {}, {
               headers: {},
               emulateJSON: true
-            }).then(function (response) {
+            }).then(function(response) {
               console.log(response.data);
               localStorage.setItem('orderList', JSON.stringify(response.data));
 
               this.$router.push({ path: '/order/listMangerment' })
             })
             console.log(response.data);
-          }, function (response) {
+          }, function(response) {
             console.log(response);
           })
         } else {
@@ -259,7 +320,7 @@ export default {
         }
       });
     },
-    cancelAdd: function () {
+    cancelAdd: function() {
       this.$router.push({ path: '/order/listMangerment' })
     }
   }

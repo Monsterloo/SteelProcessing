@@ -93,7 +93,7 @@
             <el-dialog title="提示" v-model="disvisibity2" size="tiny">
                 <span>确认出库完成</span>
                 <span slot="footer" class="dialog-footer">
-                    <el-button @click="dialogVisible = false">取 消</el-button>
+                    <el-button @click="dialogVisible2 = false">取 消</el-button>
                     <el-button type="primary" @click="confirmoutorder">确 定</el-button>
                 </span>
             </el-dialog>
@@ -113,6 +113,7 @@ export default {
             orderData: [],
             selectTable: [],
             disvisibity1: false,
+            disvisibity2: false,
         }
     },
     mounted: function () {

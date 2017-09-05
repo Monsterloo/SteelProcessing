@@ -9,6 +9,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'app',
   data () {
@@ -17,7 +18,7 @@ export default {
     }
   },
   mounted:function(){
-    this.$http.get(servicerurl+'/people',{},{
+    this.$http.get(this.servicerurl+'/people',{},{
       headers:{},
       emulateJSON:true
     }).then(function(response){

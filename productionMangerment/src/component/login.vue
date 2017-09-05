@@ -45,18 +45,17 @@ export default {
                  password:this.form.password
              }
             console.log(this.form.password);
-           this.$http.get(this.servicerurl+'/user?name='+this.form.name+'&password='+this.form.password).then((response) => {
-             //this.$http.post(this.servicerurl+'/user',loginparam).then((response)=>{
+            this.$http.get(this.servicerurl+'/user?name='+this.form.name+'&password='+this.form.password).then((response) => {
+           //this.$http.post(this.servicerurl+'/user',loginparam).then((response)=>{
              const self=this;
                 //注意这里是个难点，Vuex与Vue-Resource结合使用。 
                 if (response.body != null & response.body.length > 0) {
                 //localStorage.setItem('st_username',self.form.name);
-                   
                  this.$message({
-          showClose: true,
-          message: '登录成功',
-          type: 'success'
-        })
+                 showClose: true,
+                 message: '登录成功',
+                 type: 'success'
+                 })
                 self.form=response.data;
                 localStorage.setItem('st_admin',JSON.stringify(self.form));
                     this.name = ''
@@ -67,10 +66,10 @@ export default {
                     // alert('请输入正确的用户名和密码！！！');
                     
                  this.$message({
-          showClose: true,
-          message: '请输入正确的用户名和密码',
-          type: 'error'
-        })
+                 showClose: true,
+                 message: '请输入正确的用户名和密码',
+                type: 'error'
+                 })
                     this.name = ''
                     this.password = ''
                     this.access=0
