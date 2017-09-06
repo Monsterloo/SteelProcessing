@@ -2,9 +2,7 @@
   <div>
     <el-form class="form food_form" :rules="rules" ref="ruleForm" :model="orderdetail" :inline="true">
       <el-form-item label="工 程 名 字" class="fontcolor temipt" prop="workName">
-
         <el-input v-model="orderdetail.workName" placeholder="工 程 名 字" required=true class="forminput"></el-input>
-
       </el-form-item>
       <el-form-item label="公 司 名 字" class="fontcolor temipt" prop="companyName">
         <el-select v-model="orderdetail.companyName" placeholder="请选择" filterable>
@@ -14,174 +12,205 @@
       </el-form-item>
       <el-form-item label="钢 筋 直 径" class="fontcolor temipt" prop="dim">
         <div class="forminput">
-          <!-- <el-input v-model="orderdetail.dim" placeholder="钢 筋 直 径" ></el-input> 远程联动-->
-          <el-select v-model="orderdetail.dim" placeholder="请选择" >
+          <el-select v-model="orderdetail.dim" placeholder="请选择">
             <el-option v-for="item in optionsDim" :key="item.value" :label="item.label" :value="item.value">
             </el-option>
           </el-select>
         </div>
       </el-form-item>
-      <el-form-item label="钢 筋 简 图" class="fontcolor temipt">
-        <!-- pic等于图片的地址 -->
-        <el-select v-model="orderdetail.pic" placeholder="请选择" @change="changemethod">
-          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" >
-            <!-- 显示图片 -->
-            <!-- <img class="avatar" :src="xx" style="height:36px"> -->
+      <el-form-item label="钢 筋 简 图" class="fontcolor temipt" prop="picid">
+        <el-select v-model="orderdetail.picid" placeholder="请选择" @change="changeSelection">
+          <el-option v-for="item in pics" :key="item.id" :label="item.id" :value="item.id">
+            <img class="avatar" :src="item.src" style="height:36px">
           </el-option>
         </el-select>
+        <img class="avatar" :src='orderdetail.picsrc' style="height:36px">
       </el-form-item>
-      <el-form-item label="数 量" class="fontcolor temipt" prop="account1">
-        <el-input-number v-model="orderdetail.account" :min="0"></el-input-number>
+      <el-form-item label="数 量" class="fontcolor temipt" prop="amount">
+        <el-input-number v-model="orderdetail.amount" :min="0"></el-input-number>
       </el-form-item>
       <el-form-item label="单 价" class="fontcolor temipt " prop="price">
         <div class="forminput pricewidth">
           <el-input v-model="orderdetail.price"></el-input>
         </div>
       </el-form-item>
-      <el-form-item label="总 价" class="fontcolor temipt">
-        <p>{{totalPrice}}</p>
-      </el-form-item>
+
       <el-form-item label="到 期 日" class="fontcolor temipt" prop="date2" required>
         <el-date-picker v-model="orderdetail.date1" align="right" type="date" placeholder="选择日期" :picker-options="pickerOptions0">
         </el-date-picker>
       </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="dialogFormVisible = true" style="margin-bottom: 10px;">添加材料</el-button>
-        <el-table :data="orderdetail.specs" style="margin-bottom: 20px; width:800px">
-          <el-table-column label="名称">
-            <template scope="scope">
-              <span style="margin-left: 10px;">{{ scope.row.matrialname }}</span>
-            </template>
-          </el-table-column>
-          <el-table-column label="直径">
-            <template scope="scope">
-              <span style="margin-left: 10px;">{{ scope.row.diameter}}</span>
-            </template>
-          </el-table-column>
-          <el-table-column label="数量">
-            <template scope="scope">
-              <span style="margin-left: 10px;">{{ scope.row.amount}}</span>
-            </template>
-          </el-table-column>
-          <el-table-column label="长度">
-            <template scope="scope">
-              <span style="margin-left: 10px;">{{ scope.row.length}}</span>
-            </template>
-          </el-table-column>
-          <el-table-column label="重量">
-            <template scope="scope">
-              <span style="margin-left: 10px;">{{ scope.row.weight}}</span>
-            </template>
-          </el-table-column>
-          <el-table-column label="操作">
-            <template scope="scope">
-              <el-button size="small" type="danger" @click="handleDelete(scope.$index)">删除</el-button>
-            </template>
-          </el-table-column>
-        </el-table>
+      <el-form-item label="部 件 长 度" class="fontcolor temipt" required >
+        <div v-if="varNum==1">
+          <span class="length_input">A</span>
+          <el-input style="width:70px" v-model="orderdetail.speclength.A" @blur="blurmethod" prop='speclength'></el-input>
+        </div>
+        <div v-if="varNum==2">
+          <span class="length_input">A</span>
+          <el-input style="width:70px" v-model="orderdetail.speclength.A"></el-input>
+          <span class="length_input">B</span>
+          <el-input style="width:70px" v-model="orderdetail.speclength.B" @blur="blurmethod" prop='speclength'></el-input>
+        </div>
+        <div v-if="varNum==3">
+          <span class="length_input">A</span>
+          <el-input style="width:70px" v-model="orderdetail.speclength.A"></el-input>
+          <span class="length_input">B</span>
+          <el-input style="width:70px" v-model="orderdetail.speclength.B"></el-input>
+          <span class="length_input">C</span>
+          <el-input style="width:70px" v-model="orderdetail.speclength.C" @blur="blurmethod" prop='speclength'></el-input>
+        </div>
+        <div v-if="varNum==4">
+          <span class="length_input">A</span>
+          <el-input style="width:70px" v-model="orderdetail.speclength.A"></el-input>
+          <span class="length_input">B</span>
+          <el-input style="width:70px" v-model="orderdetail.speclength.B"></el-input>
+          <span class="length_input">C</span>
+          <el-input style="width:70px" v-model="orderdetail.speclength.C"></el-input>
+          <span class="length_input">D</span>
+          <el-input style="width:70px" v-model="orderdetail.speclength.D" @blur="blurmethod" prop='speclength'></el-input>
+        </div>
+      </el-form-item>
+      <el-form-item label="总 长 度" class="fontcolor temipt"><!--cm-->
+        <p>{{orderdetail.totalLength}}cm</p>
+      </el-form-item>
+      <el-form-item label="总 重 量" class="fontcolor temipt">
+        <p>{{orderdetail.weight}}kg</p>
+      </el-form-item>
+      <el-form-item label="总 价" class="fontcolor temipt">
+        <p>¥{{totalPrice}}</p>
       </el-form-item>
       <el-form-item label-width="80px" class="btnblock">
         <el-button type="primary" @click="onSubmit('ruleForm')">立即创建</el-button>
         <el-button @click="cancelAdd">取消</el-button>
       </el-form-item>
-
     </el-form>
-
-    <el-dialog title="添加材料" v-model="dialogFormVisible">
-      <el-form :model="specsForm">
-        <el-form-item label="名称">
-          <el-input v-model="specsForm.matrialname" auto-complete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="直径">
-          <el-input-number v-model="specsForm.diameter" :min="0" :max="100"></el-input-number>
-        </el-form-item>
-        <el-form-item label="数量">
-          <el-input-number v-model="specsForm.amount" :min="0" :max="10000"></el-input-number>
-        </el-form-item>
-        <el-form-item label="长度">
-          <el-input-number v-model="specsForm.length" :min="0" :max="10000"></el-input-number>
-        </el-form-item>
-        <el-form-item label="重量">
-          <el-input-number v-model="specsForm.weight" :min="0" :max="10000"></el-input-number>
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="addspecs">确 定</el-button>
-      </div>
-    </el-dialog>
-
   </div>
 </template>
 <script>
+
 export default {
   data() {
     return {
-     options4:[],
+      options4: [],
       optionsDim: [{
-        value: 0.4,
-        label: 0.4 + 'cm'
+        value: 0.261,/*mm*/
+        label: 'ø6.5'
       }, {
-        value: 0.5,
-        label: 0.5 + 'cm'
+        value: 0.425,
+        label: 'ø8.3'
+      }, {
+        value: 0.617,
+        label: 'ø10'
+      }, {
+        value: 0.888,
+        label: 'ø12'
+      }, {
+        value: 1.21,
+        label: 'ø14'
+      }, {
+        value: 1.58,
+        label: 'ø16'
+      }, {
+        value: 2,
+        label: 'ø18'
+      }, {
+        value: 2.47,
+        label: 'ø20'
+      }, {
+        value: 3,
+        label: 'ø22'
+      }, {
+        value: 3.85,
+        label: 'ø25'
+      }, {
+        value: 4.83,
+        label: 'ø28'
+      }, {
+        value: 6.32,
+        label: 'ø32'
+      }, {
+        value: 0.395,
+        label: 'ø8'
+      }, {
+        value: 2.98,
+        label: 'ø22.'
       }],
-      /*test*/
-      options: [{
-        value: '选项1',
-        label: '黄金糕',
-       
-      }, {
-        value: '选项2',
-        label: '双皮奶',
-       
-      }, {
-        value: '选项3',
-        label: '蚵仔煎',
-        
-      }, {
-        value: '选项4',
-        label: '龙须面',
-       
-      }, {
-        value: '选项5',
-        label: '北京烤鸭',
-        
-      }],
-      value: '',
-
-      dialogFormVisible: false,
-      specsForm: {
-        matrialname: '',
-        diameter: 0,
-        amount: 0,
-        weight: 0,
-        length: 0,
+      /*pics*/
+      picsrcroot: '../assetes/addimg',
+      pics: [{
+        src: require('../assets/addimg/000010.jpg'),
+        id: '000010-3',
       },
+      {
+        src: require('../assets/addimg/000011.jpg'),
+        id: '000011-3'
+      },
+      {
+        src: require('../assets/addimg/000012.jpg'),
+        id: '000012-4'
+      },
+      {
+        src: require('../assets/addimg/000013.jpg'),
+        id: '000013-4'
+      },
+      {
+        src: require('../assets/addimg/000020.jpg'),
+        id: '000020-1'
+      },
+      {
+        src: require('../assets/addimg/000030.jpg'),
+        id: '000030-3'
+      },
+
+      {
+        src: require('../assets/addimg/000021.jpg'),
+        id: '000021-2'
+      },
+      {
+        src: require('../assets/addimg/000031.jpg'),
+        id: '000031-1'
+      },
+      {
+        src: require('../assets/addimg/000032.jpg'),
+        id: '000032-1'
+      },
+      {
+        src: require('../assets/addimg/000035.jpg'),
+        id: '000035-2'
+      },
+      {
+        src: require('../assets/addimg/000040.jpg'),
+        id: '000040-2'
+      },
+      {
+        src: require('../assets/addimg/000041.jpg'),
+        id: '000041-3'
+      },
+      ],
+      varNum: 0,
+      value: '',
       orderdetail: {
         workName: '',
         companyName: '',
-        pic: '',
-        account: '',
+        picid: '',
+        picsrc: '',
+        amount: '',
         price: '',
         date1: '',
         totalPrice: '',
         dim: 0,
-        specs: [{
-          matrialname: '',
-          diameter: 0,
-          amount: 0,
-          weight: 0,
-          length: 0,
-        }
-        ],
+        weight: 0,
+        speclength:[{
+          A:0,
+          B:0,
+          C:0,
+          D:0
+        }],
       },
       date2: '',
       account1: '',
-      // workName:'',
       pickerOptions0: {
         disabledDate(time) {
           return time.getTime() < Date.now() - 8.64e7;
-
         },
       },
 
@@ -194,109 +223,146 @@ export default {
           { required: true, message: '请输入公司名称', trigger: 'blur' },
           { min: 3, max: 25, message: '长度少于25 个字符', trigger: 'blur' }
         ],
-        account: [
+        amount: [
           { required: true, message: '请输入数量', trigger: 'blur' }
         ],
         price: [{
           required: true, message: '请输入单价', trigger: 'blur'
+        },{
+          validator: (rule, value, callback) => {
+                            if (/^[+]{0,1}(\d+)$|^[+]{0,1}(\d+\.\d+)$/.test(value) == false) {
+                              // if(Number(value).isNAN()==true){
+                                callback(new Error("请输入正确的数字"));
+                            } else {
+                                callback();
+                            }
+                        },
+                        trigger: 'blur'
         }],
         dim: [{
-          required: true, message: '请输入直径', trigger: 'blur'
+          required: true, message: '请选择直径', trigger: 'blur'
         }],
-
-        date1: [{ required: true, message: '请选择到期时间', trigger: 'change' }]
+        picid: [{
+          required: true, message: '请选择图片', trigger: 'blur'
+        }],
+        date1: [{ required: true, message: '请选择到期时间', trigger: 'change' }],
+        speclength:[{required: true, message: '请输入各部件长度', trigger: 'change'}]
       }
     }
   },
-  mounted(){
+  mounted() {
     //fetchcompany
     this.$http.get(this.servicerurl + '/menber', {
-        headers: {},
-        emulateJSON: true
-      }).then(function(response) {
-        let opttemp=[{label:'',value:''}];
-        for(var i=0;i<response.data.length;i++){
-         opttemp[i]={label:response.data[i].companyname,value:response.data[i].companyname}
-       }
-       this.options4=opttemp
-        console.log(this.options4);
-      }, function(response) {
-        console.log(response)
-      })
+      headers: {},
+      emulateJSON: true
+    }).then(function(response) {
+      let opttemp = [{ label: '', value: '' }];
+      for (var i = 0; i < response.data.length; i++) {
+        opttemp[i] = { label: response.data[i].companyname, value: response.data[i].companyname }
+      }
+      this.options4 = opttemp
+      console.log(this.options4);
+    }, function(response) {
+      console.log(response)
+    })
 
-      //fetchpicture
-      this.$http(this.servicerurl+'',{
-        headers: {},
-        emulateJSON: true
-      }).then(function(response){
-        let opttemp=[{label:'',value:''}];
-        for(var i=0;i<response.data.length;i++){
-          //获取图片路径
-         opttemp[i]={label:response.data[i].src,value:response.data[i].src}
-       }
-      //  this.options=opttemp
-      },function(response){
-        console.log(response)
-      })
+    //fetchtotalLength
+    this.$http.get(this.servicerurl+'/xxx',{
+      headers: {},
+      emulateJSON: true
+    }).then(function(response) {
+     
+      this.orderdetail.totalLength=response.data[0];
+      console.log(this.options4);
+    }, function(response) {
+      console.log(response)
+    })
+
     
   },
+
   computed: {
     totalPrice: function() {
-      this.orderdetail.totalPrice = Number(this.orderdetail.account) * Number(this.orderdetail.price);
+      this.orderdetail.totalPrice = Number(this.orderdetail.amount) * Number(this.orderdetail.price);
       return this.orderdetail.totalPrice.toString();
     },
-    
+    // totalLength:function(){
+    //   //传直径系数与部件长度到后端
+    //   //apiurl要更改
+    //   this.$http.get(this.servicerurl+'/xxx',{id:this.orderdetail.picid,dim:this.orderdetail.dim},{
+    //     headers: {},
+    //   emulateJSON: true
+    //   }).then(function(response){
+    //      return response.data[0];
+    //       console.log(response.data[0])
+    //   },function(response){
+    //     console.log(response)
+    //   })
+    // }
 
   },
   methods: {
-   changemethod:function(){
-     console.log(this.orderdetail.pic)
-    //  图片显示
-//     let path=this.$refs.select.selectedLabel
-// this.$refs.select.$el.children[0].children[1].setAttribute('style','background:url('+ path +') no-repeat;color:#fff');
-   },
-    handleDelete(index) {
-      this.orderdetail.specs.splice(index, 1);
+    changeSelection: function() {
+      this.orderdetail.picsrc = require('../assets/addimg/' + this.orderdetail.picid.split('-')[0] + '.jpg')
+      this.varNum = this.orderdetail.picid.split('-')[1]
     },
-    addspecs: function() {
-      //缺货提醒
-      this.$notify.warning({
-        title: '警告',
-        message: '材料库存不足，请及时补充',
-        offset: 100
-      });
-      //查库存记录是否足够
-      let url = ""
-      this.$http.get(url + '?matrialname=' + this.specsForm.name + '&diameter=' + this.specsForm.diameter + '&=length' + this.specsForm.length, {
+  blurmethod:function(){
+    console.log(this.orderdetail.speclength.A);
+    console.log(this.orderdetail.speclength);
+ //传直径系数与部件长度到后端
+    //   //apiurl要更改
+      this.$http.post(this.servicerurl+'/xxx',{id:this.orderdetail.picid,speclength:this.orderdetail.speclength},{
         headers: {},
-        emulateJSON: true
-      }).then(function(response) {
-        console.log(response.data);
-        if (response.body != null & response.body.length > 0) {
-          if (this.specsForm.amout > response.data[0].amount) {
-          }
-        }
-
-      }, function(response) {
+      emulateJSON: true
+      }).then(function(response){
+         
+          console.log(response.data)
+      },function(response){
         console.log(response)
       })
 
-      let objtemp = {};
-      objtemp.matrialname = this.specsForm.matrialname,
-        objtemp.diameter = this.specsForm.diameter,
-        objtemp.amount = this.specsForm.amount,
-        objtemp.weight = this.specsForm.weight,
-        objtemp.length = this.specsForm.length,
-        this.orderdetail.specs.push(objtemp);
-      console.log(this.orderdetail.specs)
+},
+    // addspecs: function() {
+    //   //缺货提醒
+    //   this.$notify.warning({
+    //     title: '警告',
+    //     message: '材料库存不足，请及时补充',
+    //     offset: 100
+    //   });
+    //   //查库存记录是否足够
+    //   let url = ""
+    //   this.$http.get(url + '?matrialname=' + this.specsForm.name + '&diameter=' + this.specsForm.diameter + '&=length' + this.specsForm.length, {
+    //     headers: {},
+    //     emulateJSON: true
+    //   }).then(function(response) {
+    //     console.log(response.data);
+    //     if (response.body != null & response.body.length > 0) {
+    //       if (this.specsForm.amout > response.data[0].amount) {
+    //       }
+    //     }
 
-      this.dialogFormVisible = false;
+    //   }, function(response) {
+    //     console.log(response)
+    //   })
 
-    },
+    //   let objtemp = {};
+    //   objtemp.matrialname = this.specsForm.matrialname,
+    //     objtemp.diameter = this.specsForm.diameter,
+    //     objtemp.amount = this.specsForm.amount,
+    //     objtemp.weight = this.specsForm.weight,
+    //     objtemp.length = this.specsForm.length,
+    //     this.orderdetail.specs.push(objtemp);
+    //   console.log(this.orderdetail.specs)
+
+    //   this.dialogFormVisible = false;
+
+    // },
     onSubmit: function(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.$http.post(servicerurl + '/order', this.orderdetail, {
+          this.orderdetail.totalPrice=this.totalPrice;
+          this.orderdetail.totalLength=this.totalLength;
+          this.$http.post(this.servicerurl + '/order', this.orderdetail, {
             headers: {},
             emulateJSON: true
           }).then(function(response) {
@@ -371,5 +437,9 @@ export default {
   padding: 10px;
   border-radius: 15px;
   margin-top: 40px;
+}
+
+.length_input {
+  display: inline;
 }
 </style>
