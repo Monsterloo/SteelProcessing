@@ -23,11 +23,11 @@
                 </div>
             </el-form-item>
     
-            <el-form-item l class="fontcolor" prop='name'>
-                <el-button type="primary" class="btnp" @click="handleEdit">修改密码</el-button>
+            <el-form-item  class="fontcolor" prop='name'>
+                <el-button type="primary" class="btnp" @click="handleEdit">修改</el-button>
             </el-form-item>
         </el-form>
-        <el-dialog title="修改密码" v-model="dialogVisible" size="tiny">
+        <el-dialog title="修改" v-model="dialogVisible" size="tiny">
             <el-form :model="admininfo" :rules="rules" ref="ruleForm">
                 <el-form-item prop='password'>
                     <el-input v-model="admininfo.password" type='password' class="inputp" placeholder="请输入密码"></el-input>
@@ -35,6 +35,7 @@
                 <el-form-item prop='password1'>
                     <el-input v-model="admininfo.password1" type='password' class="inputp" placeholder="请再次输入密码"></el-input>    
                 </el-form-item>
+              
                 <el-button type="primary" class="btnp" @click="confirmmodify('ruleForm')">修改密码</el-button>
                 <el-button class="btnp" @click="dialogVisible=false">取消</el-button>
             </el-form>
@@ -96,7 +97,8 @@ export default {
             admininfo: {
                 name: "",
                 password: "",
-                access: 1
+                access: 1,
+             
             }
         }
     },

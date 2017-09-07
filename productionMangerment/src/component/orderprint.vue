@@ -31,29 +31,7 @@
                 <el-form-item label="单价">
                     <span>{{ tableData2.price}}</span>
                 </el-form-item>
-                <el-table :data="tableData2.specs" style="width: 100%" class="tabelprint">
-                    <el-table-column label="材料名称">
-                        <template scope="scope">
-                            {{scope.row.matrialname}}
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="材料直径">
-                        <template scope="scope">
-                            {{scope.row.diameter}}
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="材料长度">
-                        <template scope="scope">
-                            {{scope.row.length}}
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="材料重量">
-                        <template scope="scope">
-                            {{scope.row.weight}}
-                        </template>
-                    </el-table-column>
-                </el-table>
-
+               
             </el-form>
             <el-button @click="print" class="not-print" type="primary" style="margin:10px">确定打印</el-button>
             <el-button @click="back" class="not-print"  style="margin:10px">返回</el-button>
@@ -88,7 +66,7 @@ export default {
         this.tableData2 = JSON.parse(localStorage.getItem('printTemp') || []);
         this.tableData2.specs = test;
         console.log(this.tableData2)
-        console.log(this.tableData2.specs);
+        // console.log(this.tableData2.specs);
     },
     methods: {
         print: function() {

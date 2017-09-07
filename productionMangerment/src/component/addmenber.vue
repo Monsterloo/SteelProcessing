@@ -12,9 +12,11 @@
         <el-input v-model="menbertail.companycontact" placeholder="联 系 方 式"></el-input>
       </div>
     </el-form-item>
-        <el-form-item label="公 司 地 址" class="fontcolor" prop="companyaddress">
+        <el-form-item label="公 司 地 址" class="fontcolor" prop="companyaddress2">
       <div class="forminput">
-        <el-input v-model="menbertail.companyaddress" placeholder="公 司 地 址"></el-input>
+        <v-distpicker @selected="onSelected"></v-distpicker>
+         <br>
+        <el-input v-model="menbertail.companyaddress2" placeholder="公 司 地 址"></el-input>
       </div>
     </el-form-item>
          <el-form-item label="法 人 姓 名" class="fontcolor" prop="ownername">
@@ -37,14 +39,16 @@ export default {
         companyname: '',
         companycontact: '',
         companyaddress: '',
-        ownername: ''
+        ownername: '',
+        companyaddress1:'',
+        companyaddress2: '',
       },
       rules: {
         companyname: [
                     { required: true, message: '请输入公司名称', trigger: 'blur' },
                     { min: 3, max: 25, message: '长度少于25 个字符', trigger: 'blur' }
                 ],
-                companyaddress: [{ required: true, message: '请输入公司地址', trigger: 'blur' },
+                companyaddress2: [{ required: true, message: '请输入公司详细地址', trigger: 'blur' },
                 { min: 3, max: 25, message: '长度少于25 个字符', trigger: 'blur' }],
                 ownername: [{ required: true, message: '请输入公司地址', trigger: 'blur' }],
                 companycontact: [
@@ -66,9 +70,14 @@ export default {
   },
 
   methods: {
+     onSelected: function(data) {
+            this.menbertail.companyaddress1 = data.province.value + data.city.value + data.area.value
+            console.log(this.menbertail.companyaddress1)
+        },
     onSubmit: function (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
+          this.menbertail.companyaddress=this.menbertail.companyaddress1+this.menbertail.companyaddress2;
           this.$http.post(this.servicerurl+'/menber', this.menbertail, {
             headers: {},
             emulateJSON: true

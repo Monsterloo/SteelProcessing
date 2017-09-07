@@ -13,7 +13,7 @@
          <!-- <el-menu-item index="/system">系 统 管 理</el-menu-item>  -->
          <el-submenu index="/system" v-show="disablemode">
         <template slot="title"><i class="el-icon-setting"></i>系 统 管 理</template>
-         <el-menu-item index="/system/addadmin">添 加 管 理 员</el-menu-item>
+         <!-- <el-menu-item index="/system/addadmin">添 加 管 理 员</el-menu-item> -->
     <el-menu-item index="/system/adminMangerment">管 理 员 管 理</el-menu-item>
     <el-menu-item index="/system/mypage">我 的 设 置</el-menu-item>
         </el-submenu>      

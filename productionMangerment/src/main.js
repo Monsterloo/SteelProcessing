@@ -3,19 +3,29 @@ import App from './App.vue'
 import VueRouter from "vue-router";
 import echarts from 'echarts';
 import VueResource from "vue-resource"
-import {Table,TableColumn,Menu,Submenu,MenuItem,MenuItemGroup,Icon,Col,Row,Form,FormItem,Button,Input,Dropdown,
+import {
+  Table, TableColumn, Menu, Submenu, MenuItem, MenuItemGroup, Icon, Col, Row, Form, FormItem, Button, Input, Dropdown,
   DropdownMenu,
-  DropdownItem,DatePicker,InputNumber,Select,Pagination,Card,
-  Option,Message, Breadcrumb,
-  BreadcrumbItem,Loading,Dialog, Switch, Tabs,
-  TabPane,Tag,Badge,Notification} from 'element-ui'
+  DropdownItem, DatePicker, InputNumber, Select, Pagination, Card,
+  Option, Message, Breadcrumb,
+  BreadcrumbItem, Loading, Dialog, Switch, Tabs,
+  TabPane, Tag, Badge, Notification, Steps,
+  Step,
+} from 'element-ui';
+import VDistpicker from 'v-distpicker'
+import VueLazyload from 'vue-lazyload'
+
 
 //debug
-Vue.config.debug=true;
+Vue.config.debug = true;
 
 //引用
 // Vue.use(echarts);
-
+Vue.use(VueLazyload, {
+  lazyComponent: true
+});
+Vue.use(Step);
+Vue.use(Steps);
 Vue.use(Badge);
 Vue.use(Tag);
 Vue.use(Tabs);
@@ -47,17 +57,19 @@ Vue.use(DropdownItem);
 Vue.use(DropdownMenu);
 Vue.use(Dropdown);
 Vue.use(DatePicker);
-Vue.use( InputNumber);
+Vue.use(InputNumber);
 Vue.use(Select);
+
+Vue.component('v-distpicker', VDistpicker)
 
 Vue.prototype.$message = Message
 Vue.prototype.$notify = Notification
-Vue.prototype.servicerurl='http://localhost:3000'
- 　//router
-import login from'./component/login.vue'
+Vue.prototype.servicerurl = 'http://localhost:3000'
+//router
+import login from './component/login.vue'
 import vuetable from './component/vue-table.vue'
 import vuehome from './component/common/vuehome.vue'
-import vueTopNav from'./component/vue-topNav.vue'
+import vueTopNav from './component/vue-topNav.vue'
 import orderTable from './component/orderTable.vue'
 import addorder from './component/addorder.vue'
 import modifyorder from './component/modifyorder.vue'
@@ -66,159 +78,160 @@ import incomecard from './component/incomecard.vue'
 import menbertable from './component/menbertable.vue'
 import addmenber from './component/addmenber.vue'
 import modifymenber from './component/menbermodify.vue'
-import addadmin from './component/addadmin.vue'
+// import addadmin from './component/addadmin.vue'
 import adminlist from './component/adminlist.vue'
 import mypage from './component/modifypwd.vue'
 import supply from './component/supplylist.vue'
 import outstock from './component/outstock.vue'
+import print from './component/orderprint.vue'
 
-const router=new VueRouter({
-  mode:'history',
-  base:__dirname,
-  routes:[
-      {
-            path: '/',
-             meta:{
-        requiAuth:true,
-      },
-            redirect: '/index'
-        },
-   {
-     path:'/login',
-     component:login
-   },
+const router = new VueRouter({
+  mode: 'history',
+  base: __dirname,
+  routes: [
     {
-      path:'/index',
-      meta:{
-        requiAuth:true,
+      path: '/',
+      meta: {
+        requiAuth: true,
       },
-      component:vuehome,
-     
+      redirect: '/index'
     },
     {
-      path:'/order/:id',
-       meta:{
-        requiAuth:true,
+      path: '/login',
+      component: login
+    },
+    {
+      path: '/print',
+      component:print
+    },
+    {
+      path: '/index',
+      meta: {
+        requiAuth: true,
+      },
+      component: vuehome,
 
-      }, 
-      component:vuehome,
-    
-      children:[
+    },
+    {
+      path: '/order/:id',
+      meta: {
+        requiAuth: true,
+
+      },
+      component: vuehome,
+
+      children: [
         {
-          path:'/order/listMangerment',
-          component:orderTable,
-           name:'订单管理-订单列表'
+          path: '/order/listMangerment',
+          component: orderTable,
+          name: '订单管理-订单列表'
         },
         {
-          path:'/order/add',
-          component:addorder,
-          name:'订单管理-添加订单'
+          path: '/order/add',
+          component: addorder,
+          name: '订单管理-添加订单'
         },
         {
-          path:'/order/modify',
-          component:modifyorder,
-          name:'订单管理-修改订单',
+          path: '/order/modify',
+          component: modifyorder,
+          name: '订单管理-修改订单',
         },
         {
-          path:'/order/sale',
-          component:salechart,
-          name:'订单管理-客户销售分析'
+          path: '/order/sale',
+          component: salechart,
+          name: '订单管理-客户销售分析'
         },
         {
-          path:'/order/income',
-          component:incomecard,
-          name:'订单管理-客户应收查询'
+          path: '/order/income',
+          component: incomecard,
+          name: '订单管理-客户应收查询'
         }
-      ]    
+      ]
     },
     {
-      path:'/menber',
-       meta:{
-        requiAuth:true,
+      path: '/menber',
+      meta: {
+        requiAuth: true,
       },
-      children:[
+      children: [
         {
-          path:'',
-          component:menbertable,
-         name:'会员管理'
+          path: '',
+          component: menbertable,
+          name: '会员管理'
         },
         {
-          path:'/menber/add',
-          component:addmenber,
-          name:'会员管理-添加会员'
+          path: '/menber/add',
+          component: addmenber,
+          name: '会员管理-添加会员'
         },
         {
-          path:'/menber/modify',
-          component:modifymenber,
-          name:'会员管理-修改会员'
+          path: '/menber/modify',
+          component: modifymenber,
+          name: '会员管理-修改会员'
         }
       ],
-      component:vuehome
+      component: vuehome
     },
     {
-      path:'/product/:id',
-       meta:{
-        requiAuth:true,
+      path: '/product/:id',
+      meta: {
+        requiAuth: true,
       },
-      children:[
-    {
-      path:"/product/in",
-      component:supply,
-      name:'库存管理-入库管理'
-    },
-     {
-      path:"/product/out",
-      component:outstock,
-      name:'库存管理-出库管理'
-    }
-      ],
-      component:vuehome,
-    },
-     {
-      path:'/system/:id',
-       meta:{
-        requiAuth:true,
-      },
-      children:[
-       { path:'/system/addadmin',
-        component:addadmin,
-        name:'管理员管理-添加管理员'
-      },
+      children: [
         {
-          path:'/system/adminMangerment',
-          component:adminlist,
-          name:'管理员管理-管理员列表'
+          path: "/product/in",
+          component: supply,
+          name: '库存管理-入库管理'
         },
-         {
-          path:'/system/mypage',
-          component:mypage,
-          name:'管理员管理-我的设置'
+        {
+          path: "/product/out",
+          component: outstock,
+          name: '库存管理-出库管理'
+        }
+      ],
+      component: vuehome,
+    },
+    {
+      path: '/system/:id',
+      meta: {
+        requiAuth: true,
+      },
+      children: [
+        {
+          path: '/system/adminMangerment',
+          component: adminlist,
+          name: '管理员管理-管理员列表'
+        },
+        {
+          path: '/system/mypage',
+          component: mypage,
+          name: '管理员管理-我的设置'
         },
       ],
-      component:vuehome,
+      component: vuehome,
     },
-   
+
   ]
 })
 
-router.beforeEach((to,from,next)=>{
-  if(to.meta.requiAuth){
-    if(localStorage.getItem('st_admin')!=null){
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiAuth) {
+    if (localStorage.getItem('st_admin') != null) {
       next()
     }
-    else if(localStorage.getItem('st_admin')==null) { 
-           Message({
-          showClose: true,
-          message: '请先登录！',
-          type: 'warning'
-        })
-             next({
-                 path: '/login',
-                query: {redirect: to.fullPath}  // 将跳转的路由path作为参数，登录成功后跳转到该路由
-            })
+    else if (localStorage.getItem('st_admin') == null) {
+      Message({
+        showClose: true,
+        message: '请先登录！',
+        type: 'warning'
+      })
+      next({
+        path: '/login',
+        query: { redirect: to.fullPath }  // 将跳转的路由path作为参数，登录成功后跳转到该路由
+      })
+    }
   }
-  }
-  else{
+  else {
     next();
   }
 
@@ -227,7 +240,7 @@ router.beforeEach((to,from,next)=>{
 
 
 
-const aapp=new Vue({
-  router:router,
+const aapp = new Vue({
+  router: router,
   render: h => h(App)
 }).$mount(app)
