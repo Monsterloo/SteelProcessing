@@ -10,7 +10,7 @@
           </el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="钢 筋 直 径" class="fontcolor temipt" prop="dim">
+      <el-form-item label="钢 筋 直 径" class="fontcolor temipt" required>
         <div class="forminput">
           <el-select v-model="orderdetail.dim" placeholder="请选择">
             <el-option v-for="item in optionsDim" :key="item.value" :label="item.label" :value="item.value">
@@ -26,9 +26,7 @@
         </el-select>
         <img class="avatar" :src='orderdetail.picsrc' style="height:36px">
       </el-form-item>
-      <el-form-item label="数 量" class="fontcolor temipt" prop="amount">
-        <el-input-number v-model="orderdetail.amount" :min="0"></el-input-number>
-      </el-form-item>
+     
       <el-form-item label="单 价" class="fontcolor temipt " prop="price">
         <div class="forminput pricewidth">
           <el-input v-model="orderdetail.price"></el-input>
@@ -39,38 +37,43 @@
         <el-date-picker v-model="orderdetail.date1" align="right" type="date" placeholder="选择日期" :picker-options="pickerOptions0">
         </el-date-picker>
       </el-form-item>
-      <el-form-item label="部 件 长 度" class="fontcolor temipt" required >
+      <el-form-item label="部 件 长 度" class="fontcolor temipt" required>
         <div v-if="varNum==1">
           <span class="length_input">A</span>
-          <el-input style="width:70px" v-model="orderdetail.speclength.A" @blur="blurmethod" prop='speclength'></el-input>
+          <el-input style="width:70px" v-model="orderdetail.speclength.A"  @blur="blurmethod"></el-input>
         </div>
         <div v-if="varNum==2">
           <span class="length_input">A</span>
-          <el-input style="width:70px" v-model="orderdetail.speclength.A"></el-input>
+          <el-input style="width:70px" v-model="orderdetail.speclength.A" @blur="blurmethod"></el-input>
           <span class="length_input">B</span>
-          <el-input style="width:70px" v-model="orderdetail.speclength.B" @blur="blurmethod" prop='speclength'></el-input>
+          <el-input style="width:70px" v-model="orderdetail.speclength.B"  @blur="blurmethod"></el-input>
         </div>
         <div v-if="varNum==3">
           <span class="length_input">A</span>
-          <el-input style="width:70px" v-model="orderdetail.speclength.A"></el-input>
+          <el-input style="width:70px" v-model="orderdetail.speclength.A" @blur="blurmethod"></el-input>
           <span class="length_input">B</span>
-          <el-input style="width:70px" v-model="orderdetail.speclength.B"></el-input>
+          <el-input style="width:70px" v-model="orderdetail.speclength.B" @blur="blurmethod"></el-input>
           <span class="length_input">C</span>
-          <el-input style="width:70px" v-model="orderdetail.speclength.C" @blur="blurmethod" prop='speclength'></el-input>
+          <el-input style="width:70px" v-model="orderdetail.speclength.C" @blur="blurmethod"></el-input>
         </div>
         <div v-if="varNum==4">
           <span class="length_input">A</span>
-          <el-input style="width:70px" v-model="orderdetail.speclength.A"></el-input>
+          <el-input style="width:70px" v-model="orderdetail.speclength.A" @blur="blurmethod"></el-input>
           <span class="length_input">B</span>
-          <el-input style="width:70px" v-model="orderdetail.speclength.B"></el-input>
+          <el-input style="width:70px" v-model="orderdetail.speclength.B" @blur="blurmethod"></el-input>
           <span class="length_input">C</span>
-          <el-input style="width:70px" v-model="orderdetail.speclength.C"></el-input>
+          <el-input style="width:70px" v-model="orderdetail.speclength.C" @blur="blurmethod"></el-input>
           <span class="length_input">D</span>
-          <el-input style="width:70px" v-model="orderdetail.speclength.D" @blur="blurmethod" prop='speclength'></el-input>
+          <el-input style="width:70px" v-model="orderdetail.speclength.D"  @blur="blurmethod"></el-input>
         </div>
       </el-form-item>
-      <el-form-item label="总 长 度" class="fontcolor temipt"><!--cm-->
-        <p>{{orderdetail.totalLength}}cm</p>
+       <el-form-item label="数 量" class="fontcolor temipt" required>
+        <el-input-number v-model="orderdetail.amount" :min="0"></el-input-number>
+      </el-form-item>
+      <el-form-item label="总 长 度" class="fontcolor temipt">
+        <!--cm-->
+         <p>{{totalLength}}cm</p> 
+        <!-- <p v-bind="totalLength">cm</p> -->
       </el-form-item>
       <el-form-item label="总 重 量" class="fontcolor temipt">
         <p>{{orderdetail.weight}}kg</p>
@@ -92,7 +95,7 @@ export default {
     return {
       options4: [],
       optionsDim: [{
-        value: 0.261,/*mm*/
+        value: 0.261,/*cm*/
         label: 'ø6.5'
       }, {
         value: 0.425,
@@ -186,6 +189,8 @@ export default {
         id: '000041-3'
       },
       ],
+      
+     
       varNum: 0,
       value: '',
       orderdetail: {
@@ -193,17 +198,17 @@ export default {
         companyName: '',
         picid: '',
         picsrc: '',
-        amount: '',
+        amount:0,
         price: '',
         date1: '',
         totalPrice: '',
-        dim: 0,
+        dim:0,
         weight: 0,
-        speclength:[{
-          A:0,
-          B:0,
-          C:0,
-          D:0
+        speclength: [{
+          A: 0,
+          B: 0,
+          C: 0,
+          D: 0
         }],
       },
       date2: '',
@@ -228,28 +233,27 @@ export default {
         ],
         price: [{
           required: true, message: '请输入单价', trigger: 'blur'
-        },{
+        }, {
           validator: (rule, value, callback) => {
-                            if (/^[+]{0,1}(\d+)$|^[+]{0,1}(\d+\.\d+)$/.test(value) == false) {
-                              // if(Number(value).isNAN()==true){
-                                callback(new Error("请输入正确的数字"));
-                            } else {
-                                callback();
-                            }
-                        },
-                        trigger: 'blur'
+            if (/^[+]{0,1}(\d+)$|^[+]{0,1}(\d+\.\d+)$/.test(value) == false) {
+              // if(Number(value).isNAN()==true){
+              callback(new Error("请输入正确的数字"));
+            } else {
+              callback();
+            }
+          },
+          trigger: 'blur'
         }],
-        dim: [{
-          required: true, message: '请选择直径', trigger: 'blur'
-        }],
+        dim:[{ required: true, message: '请选择直径', trigger: 'blur'}],
         picid: [{
           required: true, message: '请选择图片', trigger: 'blur'
         }],
         date1: [{ required: true, message: '请选择到期时间', trigger: 'change' }],
-        speclength:[{required: true, message: '请输入各部件长度', trigger: 'change'}]
+        speclength: [{ required: true, message: '请输入各部件长度', trigger: 'change' }]
       }
     }
   },
+ 
   mounted() {
     //fetchcompany
     this.$http.get(this.servicerurl + '/menber', {
@@ -266,19 +270,9 @@ export default {
       console.log(response)
     })
 
-    //fetchtotalLength
-    this.$http.get(this.servicerurl+'/xxx',{
-      headers: {},
-      emulateJSON: true
-    }).then(function(response) {
-     
-      this.orderdetail.totalLength=response.data[0];
-      console.log(this.options4);
-    }, function(response) {
-      console.log(response)
-    })
 
-    
+
+
   },
 
   computed: {
@@ -286,82 +280,166 @@ export default {
       this.orderdetail.totalPrice = Number(this.orderdetail.amount) * Number(this.orderdetail.price);
       return this.orderdetail.totalPrice.toString();
     },
-    // totalLength:function(){
-    //   //传直径系数与部件长度到后端
-    //   //apiurl要更改
-    //   this.$http.get(this.servicerurl+'/xxx',{id:this.orderdetail.picid,dim:this.orderdetail.dim},{
-    //     headers: {},
-    //   emulateJSON: true
-    //   }).then(function(response){
-    //      return response.data[0];
-    //       console.log(response.data[0])
-    //   },function(response){
-    //     console.log(response)
-    //   })
-    // }
+    totalLength:function(){
+      console.log(this.orderdetail.picid);
+      let id = this.orderdetail.picid.split('-')[0];
+      let speclength = this.orderdetail.speclength
+      let A = Number(speclength.A);
+      let B = Number(speclength.B);
+      let C = Number(speclength.C);
+      let D = Number(speclength.D);
+      console.log(id)
+      let formulaList = [{
+        id: "000010",
+        formula: (A + B + C) * 2
+      },
+      {
+        id: "000011",
+        formula: (A + (B + C) / 2) * 2 + 10
+      },
+      {
+        id: "000012",
+        formula: A + B + C + D + 12
+      },
+      {
+        id: "000013",
+        formula: A + B + C + D + 10
+      },
+      {
+        id: "000020",
+        formula: A
+      },
+      {
+        id: "000021",
+        formula: (A + B) / 2
+      },
+      {
+        id: "000030",
+        formula: A + B + C
+      },
+      {
+        id: "000031",
+        formula: A + 10
+      },
+      {
+        id: "000032",
+        formula: A + 14
+      },
+      {
+        id: "000035",
+        formula: (A + B) / 2 + 14
+      },
+      {
+        id: "000040",
+        formula: A + B
+      },
+      {
+        id: "000041",
+        formula: A + B + C
+      },
+      ]
+      if (this.orderdetail.amount == 0) {
+        this.$notify({
+          title: '警告',
+          message: '请输入数量',
+          type: 'warning'
+        });
+      }
+      for (var i = 0; i < formulaList.length; i++) {
+        if (id == formulaList[i].id) {
+          console.log(formulaList[i].formula)
+          this.orderdetail.totalLength = Number(formulaList[i].formula)* Number(this.orderdetail.amount);
+          console.log(this.orderdetail.totalLength);
+          return this.orderdetail.totalLength;
+        }
+      }
+    }
 
   },
   methods: {
+    blurmethod:function(){
+    console.log(this.orderdetail.picid);
+      let id = this.orderdetail.picid.split('-')[0];
+      let speclength = this.orderdetail.speclength
+      let A = Number(speclength.A);
+      let B = Number(speclength.B);
+      let C = Number(speclength.C);
+      let D = Number(speclength.D);
+      console.log(id)
+      let formulaList = [{
+        id: "000010",
+        formula: (A + B + C) * 2
+      },
+      {
+        id: "000011",
+        formula: (A + (B + C) / 2) * 2 + 10
+      },
+      {
+        id: "000012",
+        formula: A + B + C + D + 12
+      },
+      {
+        id: "000013",
+        formula: A + B + C + D + 10
+      },
+      {
+        id: "000020",
+        formula: A
+      },
+      {
+        id: "000021",
+        formula: (A + B) / 2
+      },
+      {
+        id: "000030",
+        formula: A + B + C
+      },
+      {
+        id: "000031",
+        formula: A + 10
+      },
+      {
+        id: "000032",
+        formula: A + 14
+      },
+      {
+        id: "000035",
+        formula: (A + B) / 2 + 14
+      },
+      {
+        id: "000040",
+        formula: A + B
+      },
+      {
+        id: "000041",
+        formula: A + B + C
+      },
+      ]
+      if (this.orderdetail.amount == 0) {
+        this.$notify({
+          title: '警告',
+          message: '请输入数量',
+          type: 'warning'
+        });
+      }
+      for (var i = 0; i < formulaList.length; i++) {
+        if (id == formulaList[i].id) {
+          console.log(formulaList[i].formula)
+          this.orderdetail.totalLength = Number(formulaList[i].formula)* Number(this.orderdetail.amount);
+          console.log(this.orderdetail.totalLength);
+          return this.orderdetail.totalLength;
+        }
+      }
+    },
     changeSelection: function() {
       this.orderdetail.picsrc = require('../assets/addimg/' + this.orderdetail.picid.split('-')[0] + '.jpg')
       this.varNum = this.orderdetail.picid.split('-')[1]
     },
-  blurmethod:function(){
-    console.log(this.orderdetail.speclength.A);
-    console.log(this.orderdetail.speclength);
- //传直径系数与部件长度到后端
-    //   //apiurl要更改
-      this.$http.post(this.servicerurl+'/xxx',{id:this.orderdetail.picid,speclength:this.orderdetail.speclength},{
-        headers: {},
-      emulateJSON: true
-      }).then(function(response){
-         
-          console.log(response.data)
-      },function(response){
-        console.log(response)
-      })
-
-},
-    // addspecs: function() {
-    //   //缺货提醒
-    //   this.$notify.warning({
-    //     title: '警告',
-    //     message: '材料库存不足，请及时补充',
-    //     offset: 100
-    //   });
-    //   //查库存记录是否足够
-    //   let url = ""
-    //   this.$http.get(url + '?matrialname=' + this.specsForm.name + '&diameter=' + this.specsForm.diameter + '&=length' + this.specsForm.length, {
-    //     headers: {},
-    //     emulateJSON: true
-    //   }).then(function(response) {
-    //     console.log(response.data);
-    //     if (response.body != null & response.body.length > 0) {
-    //       if (this.specsForm.amout > response.data[0].amount) {
-    //       }
-    //     }
-
-    //   }, function(response) {
-    //     console.log(response)
-    //   })
-
-    //   let objtemp = {};
-    //   objtemp.matrialname = this.specsForm.matrialname,
-    //     objtemp.diameter = this.specsForm.diameter,
-    //     objtemp.amount = this.specsForm.amount,
-    //     objtemp.weight = this.specsForm.weight,
-    //     objtemp.length = this.specsForm.length,
-    //     this.orderdetail.specs.push(objtemp);
-    //   console.log(this.orderdetail.specs)
-
-    //   this.dialogFormVisible = false;
-
-    // },
     onSubmit: function(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.orderdetail.totalPrice=this.totalPrice;
-          this.orderdetail.totalLength=this.totalLength;
+          this.orderdetail.totalPrice = this.totalPrice;
+          this.orderdetail.totalLength = this.totalLength;
           this.$http.post(this.servicerurl + '/order', this.orderdetail, {
             headers: {},
             emulateJSON: true
@@ -386,6 +464,7 @@ export default {
         }
       });
     },
+     
     cancelAdd: function() {
       this.$router.push({ path: '/order/listMangerment' })
     }
