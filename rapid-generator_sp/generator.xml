@@ -10,7 +10,7 @@
 		account
 	</comment>
 	<!--模块名-->
-	<entry key="moduleName">order</entry>
+	<entry key="moduleName">steelShape</entry>
 	
 	<entry key="basepackage">com.sp.net</entry>
 

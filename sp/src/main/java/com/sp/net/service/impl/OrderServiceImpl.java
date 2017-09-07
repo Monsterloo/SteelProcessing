@@ -19,6 +19,7 @@ import com.sp.net.service.AdminService;
 import com.sp.net.service.ClientService;
 import com.sp.net.service.OrderService;
 import com.sp.net.service.ProductService;
+import com.sp.net.service.SteelShapeService;
 
 @Component("orderService")
 @Transactional
@@ -31,7 +32,7 @@ public class OrderServiceImpl implements OrderService{
 	private ClientService clientService;
 	
 	@Autowired
-	private ProductService productService;
+	private SteelShapeService steelShapeService;
 	
 	@Autowired
 	private AdminService adminService;
@@ -41,10 +42,10 @@ public class OrderServiceImpl implements OrderService{
 		// TODO Auto-generated method stub
 		Order order = orderDao.getById(id);
 		String cId = order.getCid();
-		String pId = order.getPid();
+		String sId = order.getSid();
 		String aId = order.getAid();
 		order.setClient(clientService.getById(cId));
-		order.setProduct(productService.getById(pId));
+		order.setSteelShape(steelShapeService.getById(sId));
 		order.setAdmin(adminService.getById(aId));
 		return order;
 	}

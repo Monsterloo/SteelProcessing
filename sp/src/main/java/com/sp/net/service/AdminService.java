@@ -13,6 +13,8 @@ public interface AdminService extends BaseService<Admin>{
 	
 	public long modifyPwd(String aId, String newPwd);
 	
+	public Admin login(Map<String, Object> paramMap);
+	
 	//public long batchInsert(List<Admin> remitRequest);
 	
 	public long batchDelete(List<String> aIds);

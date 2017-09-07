@@ -16,12 +16,19 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.alibaba.fastjson.JSONObject;
 import com.sp.net.entity.page.PageParam;
 import com.sp.net.utils.string.StringUtil;
 
 public class BaseController extends HttpServlet{
+	
+	protected HttpServletRequest request;
+
+    protected HttpServletResponse response;
+
+    protected HttpSession session;
 
 	private static final String UTF_8 = "utf-8";
 
@@ -43,6 +50,16 @@ public class BaseController extends HttpServlet{
 		this.pageNum = pageNum;
 	}
 	
+	@ModelAttribute
+	public void setReqAndRes(HttpServletRequest request, HttpServletResponse response){
+	
+       this.request = request;
+
+       this.response = response;
+
+       this.session = request.getSession();
+	
+	}
 	
 	/**
 	 * 增加获取字符串参数方法
@@ -159,13 +176,30 @@ public class BaseController extends HttpServlet{
 		}
 	}
 	
+	public void outPrintResult(HttpServletResponse response,String returnStr) {
+		try {
+			response.setContentType("text/plain; charset=utf-8");
+			response.setHeader("Access-Control-Allow-Origin", "*");
+			response.getWriter().print(returnStr);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			try {
+				response.getWriter().close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
 	/**
 	 * 取得当前request
 	 * 
 	 * @return
 	 */
 	public HttpServletRequest getHttpRequest() {
-		return getHttpRequest();
+		return request;
 	}
 
 	/**
@@ -174,7 +208,7 @@ public class BaseController extends HttpServlet{
 	 * @return HttpSession
 	 */
 	public HttpSession getHttpSession() {
-		return getHttpSession();
+		return session;
 	}
 	
 	/**
@@ -183,7 +217,7 @@ public class BaseController extends HttpServlet{
 	 * @return
 	 */
 	public HttpServletResponse getHttpResponse() {
-		return getHttpResponse();
+		return response;
 	}
 
 	/**
@@ -192,7 +226,7 @@ public class BaseController extends HttpServlet{
 	 * @return
 	 */
 	public Map<String, Object> getSessionMap() {
-		return getSessionMap();
+		return (Map<String, Object>) session.getAttributeNames();
 	}
 	
 	// ///////////////////////////////////////////////////////////////
@@ -391,7 +425,7 @@ public class BaseController extends HttpServlet{
      * @param response
      * @param data
      */
-    protected void   renderMapToJson(HttpServletResponse response, Map<String, Object> data){
+    protected void renderMapToJson(HttpServletResponse response, Map<String, Object> data){
          String   jsonResponse = JSONObject.toJSONString(data);
         renderJson(response, jsonResponse);
     }

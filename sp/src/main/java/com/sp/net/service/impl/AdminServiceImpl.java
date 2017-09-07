@@ -64,6 +64,16 @@ public class AdminServiceImpl implements AdminService{
 	}
 	
 	@Override
+	public Admin login(Map<String, Object> paramMap) {
+		// TODO Auto-generated method stub
+		Admin result = adminDao.getBy(paramMap);
+		if(result != null){
+			return result;
+		}
+		return null;
+	}
+	
+	@Override
 	public long modifyPwd(String aId, String newPwd) {
 		// TODO Auto-generated method stub
 		Admin admin = adminDao.getById(aId);

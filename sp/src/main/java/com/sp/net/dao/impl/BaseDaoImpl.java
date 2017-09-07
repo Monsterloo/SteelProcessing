@@ -102,7 +102,6 @@ public abstract class BaseDaoImpl<T> extends SqlSessionDaoSupport implements Bas
 			throw new RuntimeException("t is null");
 
 		int result = sessionTemplate.update(getStatement(SQL_UPDATE), t);
-
 		return result;
 	}
 

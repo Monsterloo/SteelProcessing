@@ -9,12 +9,15 @@
 		<result column="O_ID" property="oid" jdbcType="VARCHAR"/>
 		<result column="PROJECT_NAME" property="projectName" jdbcType="VARCHAR"/>
 		<result column="C_ID" property="cid" jdbcType="VARCHAR"/>
-		<result column="P_ID" property="pid" jdbcType="VARCHAR"/>
+		<result column="S_ID" property="sid" jdbcType="VARCHAR"/>
 		<result column="A_ID" property="aid" jdbcType="VARCHAR"/>
+		<result column="PRICE" property="price" jdbcType="DOUBLE"/>
 		<result column="COUNT" property="count" jdbcType="INTEGER"/>
 		<result column="DIAMETER" property="diameter" jdbcType="DOUBLE"/>
-		<result column="PRICE" property="price" jdbcType="DOUBLE"/>
 		<result column="DUE_DATE" property="dueDate" jdbcType="TIMESTAMP"/>
+		<result column="TOTAL_LENGTH" property="totalLength" jdbcType="DOUBLE"/>
+		<result column="TOTAL_WEIGHT" property="totalWeight" jdbcType="DOUBLE"/>
+		<result column="TOTAL_PRICE" property="totalPrice" jdbcType="DOUBLE"/>
 		<result column="CREATETIME" property="createtime" jdbcType="TIMESTAMP"/>
 		<result column="MODIFYTIME" property="modifytime" jdbcType="TIMESTAMP"/>
 		<result column="ORDER_STATE" property="orderState" jdbcType="VARCHAR"/>
@@ -26,12 +29,15 @@
 		O_ID,
 		PROJECT_NAME,
 		C_ID,
-		P_ID,
+		S_ID,
 		A_ID,
+		PRICE,
 		COUNT,
 		DIAMETER,
-		PRICE,
 		DUE_DATE,
+		TOTAL_LENGTH,
+		TOTAL_WEIGHT,
+		TOTAL_PRICE,
 		CREATETIME,
 		MODIFYTIME,
 		ORDER_STATE,
@@ -42,19 +48,22 @@
 	<insert id="insert" parameterType="com.sp.net.entity.Order">
 
 		<selectKey keyProperty="oid" resultType="String" order="BEFORE">  
-	        select uuid() from dual 
+	        select uuid() from dual  
 	    </selectKey>
 		
 		INSERT INTO <include refid="table" /> (
 			O_ID,
         	PROJECT_NAME ,
         	C_ID ,
-        	P_ID ,
+        	S_ID ,
         	A_ID ,
+        	PRICE ,
         	COUNT ,
         	DIAMETER ,
-        	PRICE ,
         	DUE_DATE ,
+        	TOTAL_LENGTH ,
+        	TOTAL_WEIGHT ,
+        	TOTAL_PRICE ,
         	CREATETIME ,
         	MODIFYTIME ,
         	ORDER_STATE ,
@@ -63,12 +72,15 @@
         	#{oid,jdbcType=VARCHAR},
 			#{projectName,jdbcType=VARCHAR},
 			#{cid,jdbcType=VARCHAR},
-			#{pid,jdbcType=VARCHAR},
+			#{sid,jdbcType=VARCHAR},
 			#{aid,jdbcType=VARCHAR},
+			#{price,jdbcType=DOUBLE},
 			#{count,jdbcType=INTEGER},
 			#{diameter,jdbcType=DOUBLE},
-			#{price,jdbcType=DOUBLE},
 			#{dueDate,jdbcType=TIMESTAMP},
+			#{totalLength,jdbcType=DOUBLE},
+			#{totalWeight,jdbcType=DOUBLE},
+			#{totalPrice,jdbcType=DOUBLE},
 			#{createtime,jdbcType=TIMESTAMP},
 			#{modifytime,jdbcType=TIMESTAMP},
 			#{orderState,jdbcType=VARCHAR},
@@ -80,19 +92,22 @@
 	<insert id="batchInsert" parameterType="list">
 
 		<selectKey keyProperty="oid" resultType="String" order="BEFORE">  
-	        select uuid() from dual 
+	        select uuid() from dual  
 	    </selectKey>
 
 		INSERT INTO <include refid="table" /> (
 			O_ID,
         	PROJECT_NAME ,
         	C_ID ,
-        	P_ID ,
+        	S_ID ,
         	A_ID ,
+        	PRICE ,
         	COUNT ,
         	DIAMETER ,
-        	PRICE ,
         	DUE_DATE ,
+        	TOTAL_LENGTH ,
+        	TOTAL_WEIGHT ,
+        	TOTAL_PRICE ,
         	CREATETIME ,
         	MODIFYTIME ,
         	ORDER_STATE ,
@@ -103,12 +118,15 @@
 			#{item.oid,jdbcType=VARCHAR},
 			#{item.projectName,jdbcType=VARCHAR},
 			#{item.cid,jdbcType=VARCHAR},
-			#{item.pid,jdbcType=VARCHAR},
+			#{item.sid,jdbcType=VARCHAR},
 			#{item.aid,jdbcType=VARCHAR},
+			#{item.price,jdbcType=DOUBLE},
 			#{item.count,jdbcType=INTEGER},
 			#{item.diameter,jdbcType=DOUBLE},
-			#{item.price,jdbcType=DOUBLE},
 			#{item.dueDate,jdbcType=TIMESTAMP},
+			#{item.totalLength,jdbcType=DOUBLE},
+			#{item.totalWeight,jdbcType=DOUBLE},
+			#{item.totalPrice,jdbcType=DOUBLE},
 			#{item.createtime,jdbcType=TIMESTAMP},
 			#{item.modifytime,jdbcType=TIMESTAMP},
 			#{item.orderState,jdbcType=VARCHAR},
@@ -122,12 +140,15 @@
         UPDATE <include refid="table" /> SET
 			PROJECT_NAME = #{projectName,jdbcType=VARCHAR},
 			C_ID = #{cid,jdbcType=VARCHAR},
-			P_ID = #{pid,jdbcType=VARCHAR},
+			S_ID = #{sid,jdbcType=VARCHAR},
 			A_ID = #{aid,jdbcType=VARCHAR},
+			PRICE = #{price,jdbcType=DOUBLE},
 			COUNT = #{count,jdbcType=INTEGER},
 			DIAMETER = #{diameter,jdbcType=DOUBLE},
-			PRICE = #{price,jdbcType=DOUBLE},
 			DUE_DATE = #{dueDate,jdbcType=TIMESTAMP},
+			TOTAL_LENGTH = #{totalLength,jdbcType=DOUBLE},
+			TOTAL_WEIGHT = #{totalWeight,jdbcType=DOUBLE},
+			TOTAL_PRICE = #{totalPrice,jdbcType=DOUBLE},
 			CREATETIME = #{createtime,jdbcType=TIMESTAMP},
 			MODIFYTIME = #{modifytime,jdbcType=TIMESTAMP},
 			ORDER_STATE = #{orderState,jdbcType=VARCHAR},
@@ -145,11 +166,14 @@
 			<if test="cid != null">
 				C_ID =#{cid,jdbcType=VARCHAR},
 			</if>
-			<if test="pid != null">
-				P_ID =#{pid,jdbcType=VARCHAR},
+			<if test="sid != null">
+				S_ID =#{sid,jdbcType=VARCHAR},
 			</if>
 			<if test="aid != null">
 				A_ID =#{aid,jdbcType=VARCHAR},
+			</if>
+			<if test="price != null">
+				PRICE =#{price,jdbcType=DOUBLE},
 			</if>
 			<if test="count != null">
 				COUNT =#{count,jdbcType=INTEGER},
@@ -157,11 +181,17 @@
 			<if test="diameter != null">
 				DIAMETER =#{diameter,jdbcType=DOUBLE},
 			</if>
-			<if test="price != null">
-				PRICE =#{price,jdbcType=DOUBLE},
-			</if>
 			<if test="dueDate != null">
 				DUE_DATE =#{dueDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="totalLength != null">
+				TOTAL_LENGTH =#{totalLength,jdbcType=DOUBLE},
+			</if>
+			<if test="totalWeight != null">
+				TOTAL_WEIGHT =#{totalWeight,jdbcType=DOUBLE},
+			</if>
+			<if test="totalPrice != null">
+				TOTAL_PRICE =#{totalPrice,jdbcType=DOUBLE},
 			</if>
 			<if test="createtime != null">
 				CREATETIME =#{createtime,jdbcType=TIMESTAMP},
@@ -237,11 +267,14 @@
 		<if test="cid != null and cid !=''">
 			and C_ID = #{cid,jdbcType=VARCHAR}
 		</if>
-		<if test="pid != null and pid !=''">
-			and P_ID = #{pid,jdbcType=VARCHAR}
+		<if test="sid != null and sid !=''">
+			and S_ID = #{sid,jdbcType=VARCHAR}
 		</if>
 		<if test="aid != null and aid !=''">
 			and A_ID = #{aid,jdbcType=VARCHAR}
+		</if>
+		<if test="price != null">
+			and PRICE = #{price,jdbcType=DOUBLE}
 		</if>
 		<if test="count != null">
 			and COUNT = #{count,jdbcType=INTEGER}
@@ -249,11 +282,17 @@
 		<if test="diameter != null">
 			and DIAMETER = #{diameter,jdbcType=DOUBLE}
 		</if>
-		<if test="price != null">
-			and PRICE = #{price,jdbcType=DOUBLE}
-		</if>
 		<if test="dueDate != null">
 			and DUE_DATE = #{dueDate,jdbcType=TIMESTAMP}
+		</if>
+		<if test="totalLength != null">
+			and TOTAL_LENGTH = #{totalLength,jdbcType=DOUBLE}
+		</if>
+		<if test="totalWeight != null">
+			and TOTAL_WEIGHT = #{totalWeight,jdbcType=DOUBLE}
+		</if>
+		<if test="totalPrice != null">
+			and TOTAL_PRICE = #{totalPrice,jdbcType=DOUBLE}
 		</if>
 		<if test="createtime != null">
 			and CREATETIME = #{createtime,jdbcType=TIMESTAMP}

@@ -1,24 +1,24 @@
 <template>
   <div>
     <el-form class="form food_form" :rules="rules" ref="ruleForm" :model="orderdetail" :inline="true">
-      <el-form-item label="工 程 名 字" class="fontcolor temipt" prop="workName">
-        <el-input v-model="orderdetail.workName" placeholder="工 程 名 字" required=true class="forminput"></el-input>
+      <el-form-item label="工 程 名 字" class="fontcolor temipt" prop="workname">
+        <el-input v-model="orderdetail.workname" placeholder="工 程 名 字" required=true class="forminput"></el-input>
       </el-form-item>
-      <el-form-item label="公 司 名 字" class="fontcolor temipt" prop="companyName">
-        <el-select v-model="orderdetail.companyName" placeholder="请选择" filterable>
+      <el-form-item label="公 司 名 字" class="fontcolor temipt" required>
+        <el-select v-model="companystring" placeholder="请选择" filterable @change="changemethod">
           <el-option v-for="item in options4" :key="item.value" :label="item.label" :value="item.value">
           </el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="钢 筋 直 径" class="fontcolor temipt" required>
-        <div class="forminput">
+       
           <el-select v-model="orderdetail.dim" placeholder="请选择">
             <el-option v-for="item in optionsDim" :key="item.value" :label="item.label" :value="item.value">
             </el-option>
           </el-select>
-        </div>
+  
       </el-form-item>
-      <el-form-item label="钢 筋 简 图" class="fontcolor temipt" prop="picid">
+      <el-form-item label="钢 筋 简 图" class="fontcolor temipt" prop="picid" >
         <el-select v-model="orderdetail.picid" placeholder="请选择" @change="changeSelection">
           <el-option v-for="item in pics" :key="item.id" :label="item.id" :value="item.id">
             <img class="avatar" :src="item.src" style="height:36px">
@@ -26,7 +26,7 @@
         </el-select>
         <img class="avatar" :src='orderdetail.picsrc' style="height:36px">
       </el-form-item>
-     
+
       <el-form-item label="单 价" class="fontcolor temipt " prop="price">
         <div class="forminput pricewidth">
           <el-input v-model="orderdetail.price"></el-input>
@@ -40,40 +40,40 @@
       <el-form-item label="部 件 长 度" class="fontcolor temipt" required>
         <div v-if="varNum==1">
           <span class="length_input">A</span>
-          <el-input style="width:70px" v-model="orderdetail.speclength.A"  @blur="blurmethod"></el-input>
+          <el-input style="width:70px" v-model="orderdetail.A" ></el-input>
         </div>
         <div v-if="varNum==2">
           <span class="length_input">A</span>
-          <el-input style="width:70px" v-model="orderdetail.speclength.A" @blur="blurmethod"></el-input>
+          <el-input style="width:70px" v-model="orderdetail.A" ></el-input>
           <span class="length_input">B</span>
-          <el-input style="width:70px" v-model="orderdetail.speclength.B"  @blur="blurmethod"></el-input>
+          <el-input style="width:70px" v-model="orderdetail.B" ></el-input>
         </div>
         <div v-if="varNum==3">
           <span class="length_input">A</span>
-          <el-input style="width:70px" v-model="orderdetail.speclength.A" @blur="blurmethod"></el-input>
+          <el-input style="width:70px" v-model="orderdetail.A" ></el-input>
           <span class="length_input">B</span>
-          <el-input style="width:70px" v-model="orderdetail.speclength.B" @blur="blurmethod"></el-input>
+          <el-input style="width:70px" v-model="orderdetail.B" ></el-input>
           <span class="length_input">C</span>
-          <el-input style="width:70px" v-model="orderdetail.speclength.C" @blur="blurmethod"></el-input>
+          <el-input style="width:70px" v-model="orderdetail.C" ></el-input>
         </div>
         <div v-if="varNum==4">
           <span class="length_input">A</span>
-          <el-input style="width:70px" v-model="orderdetail.speclength.A" @blur="blurmethod"></el-input>
+          <el-input style="width:70px" v-model="orderdetail.A" ></el-input>
           <span class="length_input">B</span>
-          <el-input style="width:70px" v-model="orderdetail.speclength.B" @blur="blurmethod"></el-input>
+          <el-input style="width:70px" v-model="orderdetail.B" ></el-input>
           <span class="length_input">C</span>
-          <el-input style="width:70px" v-model="orderdetail.speclength.C" @blur="blurmethod"></el-input>
+          <el-input style="width:70px" v-model="orderdetail.C" ></el-input>
           <span class="length_input">D</span>
-          <el-input style="width:70px" v-model="orderdetail.speclength.D"  @blur="blurmethod"></el-input>
+          <el-input style="width:70px" v-model="orderdetail.D" ></el-input>
         </div>
       </el-form-item>
-       <el-form-item label="数 量" class="fontcolor temipt" required>
+      <el-form-item label="数 量" class="fontcolor temipt" required>
         <el-input-number v-model="orderdetail.amount" :min="0"></el-input-number>
       </el-form-item>
       <el-form-item label="总 长 度" class="fontcolor temipt">
         <!--cm-->
-         <p>{{totalLength}}cm</p> 
-        <!-- <p v-bind="totalLength">cm</p> -->
+        <p>{{ totalLength }}cm</p>
+       
       </el-form-item>
       <el-form-item label="总 重 量" class="fontcolor temipt">
         <p>{{orderdetail.weight}}kg</p>
@@ -89,7 +89,6 @@
   </div>
 </template>
 <script>
-
 export default {
   data() {
     return {
@@ -189,27 +188,27 @@ export default {
         id: '000041-3'
       },
       ],
-      
-     
+
+
       varNum: 0,
       value: '',
+      companystring:'',
       orderdetail: {
-        workName: '',
-        companyName: '',
+        workname: '',
+        companyid:'',
+        companyname: '',
         picid: '',
         picsrc: '',
-        amount:0,
+        amount: 0,
         price: '',
         date1: '',
         totalPrice: '',
-        dim:0,
+        dim: 0,
         weight: 0,
-        speclength: [{
           A: 0,
           B: 0,
           C: 0,
           D: 0
-        }],
       },
       date2: '',
       account1: '',
@@ -220,11 +219,11 @@ export default {
       },
 
       rules: {
-        workName: [
+        workname: [
           { required: true, message: '请输入工程名称', trigger: 'blur' },
           { min: 3, max: 25, message: '长度少于25 个字符', trigger: 'blur' }
         ],
-        companyName: [
+        companyname: [
           { required: true, message: '请输入公司名称', trigger: 'blur' },
           { min: 3, max: 25, message: '长度少于25 个字符', trigger: 'blur' }
         ],
@@ -244,12 +243,12 @@ export default {
           },
           trigger: 'blur'
         }],
-        dim:[{ required: true, message: '请选择直径', trigger: 'blur'}],
+        dim: [{ required: true, message: '请选择直径', trigger: 'blur' }],
         picid: [{
           required: true, message: '请选择图片', trigger: 'blur'
         }],
         date1: [{ required: true, message: '请选择到期时间', trigger: 'change' }],
-        speclength: [{ required: true, message: '请输入各部件长度', trigger: 'change' }]
+        // speclength: [{ required: true, message: '请输入各部件长度', trigger: 'change' }]
       }
     }
   },
@@ -262,7 +261,7 @@ export default {
     }).then(function(response) {
       let opttemp = [{ label: '', value: '' }];
       for (var i = 0; i < response.data.length; i++) {
-        opttemp[i] = { label: response.data[i].companyname, value: response.data[i].companyname }
+        opttemp[i] = { label: response.data[i].companyname, value: response.data[i].companyname+"|"+response.data[i].id }
       }
       this.options4 = opttemp
       console.log(this.options4);
@@ -270,7 +269,7 @@ export default {
       console.log(response)
     })
 
-
+ 
 
 
   },
@@ -280,10 +279,11 @@ export default {
       this.orderdetail.totalPrice = Number(this.orderdetail.amount) * Number(this.orderdetail.price);
       return this.orderdetail.totalPrice.toString();
     },
-    totalLength:function(){
+
+    totalLength: function() {
       console.log(this.orderdetail.picid);
       let id = this.orderdetail.picid.split('-')[0];
-      let speclength = this.orderdetail.speclength
+      let speclength = this.orderdetail
       let A = Number(speclength.A);
       let B = Number(speclength.B);
       let C = Number(speclength.C);
@@ -338,13 +338,6 @@ export default {
         formula: A + B + C
       },
       ]
-      if (this.orderdetail.amount == 0) {
-        this.$notify({
-          title: '警告',
-          message: '请输入数量',
-          type: 'warning'
-        });
-      }
       for (var i = 0; i < formulaList.length; i++) {
         if (id == formulaList[i].id) {
           console.log(formulaList[i].formula)
@@ -354,98 +347,33 @@ export default {
         }
       }
     }
-
   },
   methods: {
-    blurmethod:function(){
-    console.log(this.orderdetail.picid);
-      let id = this.orderdetail.picid.split('-')[0];
-      let speclength = this.orderdetail.speclength
-      let A = Number(speclength.A);
-      let B = Number(speclength.B);
-      let C = Number(speclength.C);
-      let D = Number(speclength.D);
-      console.log(id)
-      let formulaList = [{
-        id: "000010",
-        formula: (A + B + C) * 2
-      },
-      {
-        id: "000011",
-        formula: (A + (B + C) / 2) * 2 + 10
-      },
-      {
-        id: "000012",
-        formula: A + B + C + D + 12
-      },
-      {
-        id: "000013",
-        formula: A + B + C + D + 10
-      },
-      {
-        id: "000020",
-        formula: A
-      },
-      {
-        id: "000021",
-        formula: (A + B) / 2
-      },
-      {
-        id: "000030",
-        formula: A + B + C
-      },
-      {
-        id: "000031",
-        formula: A + 10
-      },
-      {
-        id: "000032",
-        formula: A + 14
-      },
-      {
-        id: "000035",
-        formula: (A + B) / 2 + 14
-      },
-      {
-        id: "000040",
-        formula: A + B
-      },
-      {
-        id: "000041",
-        formula: A + B + C
-      },
-      ]
-      if (this.orderdetail.amount == 0) {
-        this.$notify({
-          title: '警告',
-          message: '请输入数量',
-          type: 'warning'
-        });
-      }
-      for (var i = 0; i < formulaList.length; i++) {
-        if (id == formulaList[i].id) {
-          console.log(formulaList[i].formula)
-          this.orderdetail.totalLength = Number(formulaList[i].formula)* Number(this.orderdetail.amount);
-          console.log(this.orderdetail.totalLength);
-          return this.orderdetail.totalLength;
-        }
-      }
+    changemethod:function(){
+      let value=this.companystring
+       let id=value.split("|")[1];
+       let name=value.split("|")[0];
+      this.orderdetail.companyid=id
+      this.orderdetail.companyname=name
+    
     },
     changeSelection: function() {
       this.orderdetail.picsrc = require('../assets/addimg/' + this.orderdetail.picid.split('-')[0] + '.jpg')
       this.varNum = this.orderdetail.picid.split('-')[1]
     },
     onSubmit: function(formName) {
+
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.orderdetail.totalPrice = this.totalPrice;
           this.orderdetail.totalLength = this.totalLength;
+         
           this.$http.post(this.servicerurl + '/order', this.orderdetail, {
             headers: {},
             emulateJSON: true
           }).then(function(response) {
             //getagain,save in total_localstorage
-            this.$http.get(servicerurl + '/order', {}, {
+            this.$http.get(this.servicerurl + '/order', {}, {
               headers: {},
               emulateJSON: true
             }).then(function(response) {
@@ -464,7 +392,7 @@ export default {
         }
       });
     },
-     
+
     cancelAdd: function() {
       this.$router.push({ path: '/order/listMangerment' })
     }

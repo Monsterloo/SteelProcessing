@@ -27,7 +27,7 @@ public class OrderTest {
 		Order order = new Order();
 		order.setProjectName("测试项目111111");
 		order.setCid("3ea284418c6e11e7b5cec85b76aeb963");
-		order.setPid("da44a3ce912411e7a3ecc85b76aeb963");
+		order.setSid("000010");
 		order.setAid("64c7f5eb87e311e7b5cec85b76aeb963");
 		order.setCount(3);
 		order.setDiameter(10.0);

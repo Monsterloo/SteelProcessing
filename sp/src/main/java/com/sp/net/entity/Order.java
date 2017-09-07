@@ -30,19 +30,14 @@ public class Order implements Serializable{
 	private String cid;
 
 	/**
-	 * 产品主键
+	 * 钢筋图主键
 	 */
-	private String pid;
-	
+	private String sid;
+
 	/**
 	 * 管理员主键
 	 */
 	private String aid;
-
-	/**
-	 * 数量
-	 */
-	private Integer count;
 
 	/**
 	 * 单价
@@ -50,9 +45,34 @@ public class Order implements Serializable{
 	private Double price;
 
 	/**
+	 * 数量
+	 */
+	private Integer count;
+
+	/**
+	 * 钢筋直径
+	 */
+	private Double diameter;
+
+	/**
 	 * 到期日期
 	 */
 	private Date dueDate;
+
+	/**
+	 * 总长度
+	 */
+	private Double totalLength;
+
+	/**
+	 * totalWeight
+	 */
+	private Double totalWeight;
+
+	/**
+	 * totalPrice
+	 */
+	private Double totalPrice;
 
 	/**
 	 * 创建时间
@@ -74,21 +94,16 @@ public class Order implements Serializable{
 	 */
 	private String state;
 
-	/**
-	 * 钢筋直径
-	 */
-	private Double diameter;
-
 	//columns END
+	
+	//操作人
+	private Admin admin;
 	
 	//公司
 	private Client client;
 	
-	//材料
-	private Product product;
-	
-	//管理员
-	private Admin admin;
+	//钢筋简图
+	private SteelShape steelShape;
 
 	/**
 	 * 订单ID
@@ -130,22 +145,22 @@ public class Order implements Serializable{
 	}
 
 	/**
-	 * 产品主键
+	 * 钢筋图主键
 	 */
-	public void setPid(String pid) {
-		this.pid = pid;
+	public void setSid(String sid) {
+		this.sid = sid;
 	}
 	/**
-	 * 产品主键
+	 * 钢筋图主键
 	 */
-	public String getPid() {
-		return this.pid;
+	public String getSid() {
+		return this.sid;
 	}
-	
+
 	/**
 	 * 管理员主键
 	 */
-	public void setAid(java.lang.String aid) {
+	public void setAid(String aid) {
 		this.aid = aid;
 	}
 	/**
@@ -153,19 +168,6 @@ public class Order implements Serializable{
 	 */
 	public String getAid() {
 		return this.aid;
-	}
-
-	/**
-	 * 数量
-	 */
-	public void setCount(Integer count) {
-		this.count = count;
-	}
-	/**
-	 * 数量
-	 */
-	public Integer getCount() {
-		return this.count;
 	}
 
 	/**
@@ -182,6 +184,32 @@ public class Order implements Serializable{
 	}
 
 	/**
+	 * 数量
+	 */
+	public void setCount(Integer count) {
+		this.count = count;
+	}
+	/**
+	 * 数量
+	 */
+	public Integer getCount() {
+		return this.count;
+	}
+
+	/**
+	 * 钢筋直径
+	 */
+	public void setDiameter(Double diameter) {
+		this.diameter = diameter;
+	}
+	/**
+	 * 钢筋直径
+	 */
+	public Double getDiameter() {
+		return this.diameter;
+	}
+
+	/**
 	 * 到期日期
 	 */
 	public void setDueDate(Date dueDate) {
@@ -192,6 +220,45 @@ public class Order implements Serializable{
 	 */
 	public Date getDueDate() {
 		return this.dueDate;
+	}
+
+	/**
+	 * 总长度
+	 */
+	public void setTotalLength(Double totalLength) {
+		this.totalLength = totalLength;
+	}
+	/**
+	 * 总长度
+	 */
+	public Double getTotalLength() {
+		return this.totalLength;
+	}
+
+	/**
+	 * totalWeight
+	 */
+	public void setTotalWeight(Double totalWeight) {
+		this.totalWeight = totalWeight;
+	}
+	/**
+	 * totalWeight
+	 */
+	public Double getTotalWeight() {
+		return this.totalWeight;
+	}
+
+	/**
+	 * totalPrice
+	 */
+	public void setTotalPrice(Double totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+	/**
+	 * totalPrice
+	 */
+	public Double getTotalPrice() {
+		return this.totalPrice;
 	}
 
 	/**
@@ -245,20 +312,14 @@ public class Order implements Serializable{
 	public String getState() {
 		return this.state;
 	}
-
-	/**
-	 * 钢筋直径
-	 */
-	public void setDiameter(Double diameter) {
-		this.diameter = diameter;
-	}
-	/**
-	 * 钢筋直径
-	 */
-	public Double getDiameter() {
-		return this.diameter;
-	}
 	
+	//操作人
+	public Admin getAdmin() {
+		return admin;
+	}
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
+	}
 	//公司
 	public Client getClient() {
 		return client;
@@ -266,22 +327,15 @@ public class Order implements Serializable{
 	public void setClient(Client client) {
 		this.client = client;
 	}
+	//钢筋简图
+	public SteelShape getSteelShape() {
+		return steelShape;
+	}
+	public void setSteelShape(SteelShape steelShape) {
+		this.steelShape = steelShape;
+	}
+
 	
-	//钢筋
-	public Product getProduct() {
-		return product;
-	}
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-	
-	//管理员
-	public Admin getAdmin() {
-		return admin;
-	}
-	public void setAdmin(Admin admin) {
-		this.admin = admin;
-	}
-	
+
 
 }
