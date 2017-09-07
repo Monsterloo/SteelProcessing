@@ -11,7 +11,7 @@
                         <el-form-item label="工程名称">
                             <span>{{ scope.row.workname}}</span>
                         </el-form-item>
-                        <el-form-item label="产品直接">
+                        <el-form-item label="直径规格">
                             <span>{{ scope.row.dim}}</span>
                         </el-form-item>
                         <el-form-item label="总价">
@@ -23,6 +23,12 @@
                         <el-form-item label="单价">
                             <span>{{ scope.row.price}}</span>
                         </el-form-item>
+                        <el-form-item label="总长度">
+                            <span>{{ scope.row.totalLength}}</span>
+                        </el-form-item>
+                        <el-form-item label="总重量">
+                            <span>{{ scope.row.weight}}</span>
+                        </el-form-item>
                         <el-form-item label="简图">
                             <span class="imgstyle">
                                 <lazy-component @show="handler">
@@ -31,30 +37,8 @@
                             </span>
                         </el-form-item>
                         <el-form-item>
-                            <el-table :data="scope.row.specs">
-                                <el-table-column label="材料名称" width="100">
-                                    <template scope="scope">
-                                         <span>{{ scope.row.matrialname}}</span> 
-                                    </template>
-                                </el-table-column>
-                                 <el-table-column label="材料直径" width="100">
-                                    <template scope="scope">
-                                         <span>{{ scope.row.diameter}}</span> 
-                                    </template>
-                                </el-table-column>
-                                 <el-table-column label="材料长度" width="100">
-                                    <template scope="scope">
-                                         <span>{{ scope.row.length}}</span> 
-                                    </template>
-                                </el-table-column>
-                                <el-table-column label="材料重量" width="100">
-                                    <template scope="scope">
-                                         <span>{{ scope.row.weight}}</span> 
-                                    </template>
-                                </el-table-column>
-                            </el-table>
+
                         </el-form-item>
-                     
 
                     </el-form>
                 </template>
@@ -158,10 +142,14 @@ export default {
             headers: {},
             emulateJSON: true
         }).then(function(response) {
-
             orderStorage.save(response.data);
             this.tableData = orderStorage.fetch();
             console.log(response.data)
+            for (var i = 0; i < response.data.length; i++) {
+                // 拼接路径
+                // response.data[i].pic=require('../assets/addimg/' + response.data[i].picid.split('-')[0] + '.jpg')
+                console.log(response.data[i].pic);
+            }
         }, function(response) {
             console.log(response)
         })
