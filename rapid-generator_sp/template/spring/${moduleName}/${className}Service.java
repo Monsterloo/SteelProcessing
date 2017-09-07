@@ -7,6 +7,6 @@ package com.sp.net.service;
 
 import com.sp.net.entity.${className};
 
-public interface ${className}Service<${className}> extends BaseService<${className}>{
+public interface ${className}Service extends BaseService<${className}>{
 
 }

@@ -24,13 +24,13 @@ import com.sp.net.utils.DateUtil;
 
 @Component("warehouseRecordService")
 @Transactional
-public class WarehouseRecordServiceImpl implements WarehouseRecordService<WarehouseRecord>{
+public class WarehouseRecordServiceImpl implements WarehouseRecordService{
 	
 	@Autowired
 	WarehouseRecordDao warehouseRecordDao;
 	
 	@Autowired
-	MaterialService<Material> materialService;
+	MaterialService materialService;
 
 	@Override
 	public WarehouseRecord getById(String id) {

@@ -28,7 +28,7 @@ public class AdminTest {
 	
 	@Test
 	public void getBy(){
-		Admin admin = (Admin) adminService.getById("1");
+		Admin admin = adminService.getById("1");
 		System.out.println(admin);
 		/*List<Admin> listBy = adminDao.listBy(null);
 		for(Admin admin : listBy){
@@ -44,7 +44,7 @@ public class AdminTest {
 	
 	@Test
 	public void update(){
-		Admin admin = (Admin) adminService.getById("1");
+		Admin admin = adminService.getById("1");
 		admin.setAname("winna");
 		admin.setAcontact("13600000000");
 		long updateAdmin = adminService.update(admin);

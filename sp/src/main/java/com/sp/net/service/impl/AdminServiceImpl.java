@@ -16,7 +16,7 @@ import com.sp.net.service.AdminService;
 
 @Component("adminService")
 @Transactional
-public class AdminServiceImpl implements AdminService<Admin>{
+public class AdminServiceImpl implements AdminService{
 	
 	@Autowired
 	AdminDao adminDao;

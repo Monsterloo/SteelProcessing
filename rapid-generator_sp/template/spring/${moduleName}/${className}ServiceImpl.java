@@ -11,6 +11,6 @@ import com.sp.net.service.${className}Service;
 
 @Component("${classNameLower}Service")
 @Transactional
-public class ${className}ServiceImpl implements ${className}Service<${className}>{
+public class ${className}ServiceImpl implements ${className}Service{
 	
 }

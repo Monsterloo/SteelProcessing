@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.sp.net.dao.impl.OrderDaoImpl">
+	<sql id="table"> tb_order </sql>
+
+	<!-- 用于返回的bean对象 -->
+	<resultMap id="BaseResultMap" type="com.sp.net.entity.Order">
+		<result column="O_ID" property="oid" jdbcType="VARCHAR"/>
+		<result column="PROJECT_NAME" property="projectName" jdbcType="VARCHAR"/>
+		<result column="C_ID" property="cid" jdbcType="VARCHAR"/>
+		<result column="P_ID" property="pid" jdbcType="VARCHAR"/>
+		<result column="A_ID" property="aid" jdbcType="VARCHAR"/>
+		<result column="COUNT" property="count" jdbcType="INTEGER"/>
+		<result column="DIAMETER" property="diameter" jdbcType="DOUBLE"/>
+		<result column="PRICE" property="price" jdbcType="DOUBLE"/>
+		<result column="DUE_DATE" property="dueDate" jdbcType="TIMESTAMP"/>
+		<result column="CREATETIME" property="createtime" jdbcType="TIMESTAMP"/>
+		<result column="MODIFYTIME" property="modifytime" jdbcType="TIMESTAMP"/>
+		<result column="ORDER_STATE" property="orderState" jdbcType="VARCHAR"/>
+		<result column="STATE" property="state" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="Base_Column_List">
+		O_ID,
+		PROJECT_NAME,
+		C_ID,
+		P_ID,
+		A_ID,
+		COUNT,
+		DIAMETER,
+		PRICE,
+		DUE_DATE,
+		CREATETIME,
+		MODIFYTIME,
+		ORDER_STATE,
+		STATE
+	</sql>
+
+	<!-- 插入记录 -->
+	<insert id="insert" parameterType="com.sp.net.entity.Order">
+
+		<selectKey keyProperty="oid" resultType="String" order="BEFORE">  
+	        select uuid() from dual 
+	    </selectKey>
+		
+		INSERT INTO <include refid="table" /> (
+			O_ID,
+        	PROJECT_NAME ,
+        	C_ID ,
+        	P_ID ,
+        	A_ID ,
+        	COUNT ,
+        	DIAMETER ,
+        	PRICE ,
+        	DUE_DATE ,
+        	CREATETIME ,
+        	MODIFYTIME ,
+        	ORDER_STATE ,
+        	STATE 
+        ) VALUES (
+        	#{oid,jdbcType=VARCHAR},
+			#{projectName,jdbcType=VARCHAR},
+			#{cid,jdbcType=VARCHAR},
+			#{pid,jdbcType=VARCHAR},
+			#{aid,jdbcType=VARCHAR},
+			#{count,jdbcType=INTEGER},
+			#{diameter,jdbcType=DOUBLE},
+			#{price,jdbcType=DOUBLE},
+			#{dueDate,jdbcType=TIMESTAMP},
+			#{createtime,jdbcType=TIMESTAMP},
+			#{modifytime,jdbcType=TIMESTAMP},
+			#{orderState,jdbcType=VARCHAR},
+			#{state,jdbcType=VARCHAR}
+        )
+	</insert>
+
+	<!-- 批量插入记录 -->
+	<insert id="batchInsert" parameterType="list">
+
+		<selectKey keyProperty="oid" resultType="String" order="BEFORE">  
+	        select uuid() from dual 
+	    </selectKey>
+
+		INSERT INTO <include refid="table" /> (
+			O_ID,
+        	PROJECT_NAME ,
+        	C_ID ,
+        	P_ID ,
+        	A_ID ,
+        	COUNT ,
+        	DIAMETER ,
+        	PRICE ,
+        	DUE_DATE ,
+        	CREATETIME ,
+        	MODIFYTIME ,
+        	ORDER_STATE ,
+        	STATE 
+        ) VALUES 
+		<foreach collection="list" item="item" separator=",">
+			(
+			#{item.oid,jdbcType=VARCHAR},
+			#{item.projectName,jdbcType=VARCHAR},
+			#{item.cid,jdbcType=VARCHAR},
+			#{item.pid,jdbcType=VARCHAR},
+			#{item.aid,jdbcType=VARCHAR},
+			#{item.count,jdbcType=INTEGER},
+			#{item.diameter,jdbcType=DOUBLE},
+			#{item.price,jdbcType=DOUBLE},
+			#{item.dueDate,jdbcType=TIMESTAMP},
+			#{item.createtime,jdbcType=TIMESTAMP},
+			#{item.modifytime,jdbcType=TIMESTAMP},
+			#{item.orderState,jdbcType=VARCHAR},
+			#{item.state,jdbcType=VARCHAR}
+			)
+		</foreach>
+	</insert>
+
+	<!--更新-->
+	<update id="update" parameterType="com.sp.net.entity.Order">
+        UPDATE <include refid="table" /> SET
+			PROJECT_NAME = #{projectName,jdbcType=VARCHAR},
+			C_ID = #{cid,jdbcType=VARCHAR},
+			P_ID = #{pid,jdbcType=VARCHAR},
+			A_ID = #{aid,jdbcType=VARCHAR},
+			COUNT = #{count,jdbcType=INTEGER},
+			DIAMETER = #{diameter,jdbcType=DOUBLE},
+			PRICE = #{price,jdbcType=DOUBLE},
+			DUE_DATE = #{dueDate,jdbcType=TIMESTAMP},
+			CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+			MODIFYTIME = #{modifytime,jdbcType=TIMESTAMP},
+			ORDER_STATE = #{orderState,jdbcType=VARCHAR},
+			STATE = #{state,jdbcType=VARCHAR}
+         WHERE O_ID = #{oid,jdbcType=VARCHAR}
+	</update>
+
+	<!-- 只更新不为null的属性 -->
+	<update id="updateIfNotNull" parameterType="com.sp.net.entity.Order">
+		UPDATE <include refid="table" />
+		<set>
+			<if test="projectName != null">
+				PROJECT_NAME =#{projectName,jdbcType=VARCHAR},
+			</if>
+			<if test="cid != null">
+				C_ID =#{cid,jdbcType=VARCHAR},
+			</if>
+			<if test="pid != null">
+				P_ID =#{pid,jdbcType=VARCHAR},
+			</if>
+			<if test="aid != null">
+				A_ID =#{aid,jdbcType=VARCHAR},
+			</if>
+			<if test="count != null">
+				COUNT =#{count,jdbcType=INTEGER},
+			</if>
+			<if test="diameter != null">
+				DIAMETER =#{diameter,jdbcType=DOUBLE},
+			</if>
+			<if test="price != null">
+				PRICE =#{price,jdbcType=DOUBLE},
+			</if>
+			<if test="dueDate != null">
+				DUE_DATE =#{dueDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createtime != null">
+				CREATETIME =#{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifytime != null">
+				MODIFYTIME =#{modifytime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="orderState != null">
+				ORDER_STATE =#{orderState,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				STATE =#{state,jdbcType=VARCHAR},
+			</if>
+		</set>
+		WHERE O_ID = #{oid,jdbcType=VARCHAR}
+	</update>
+	
+	<!-- 不分页查询 -->
+	<select id="listBy" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="table" />
+		<where>
+			<include refid="condition_sql" />
+		</where>
+	</select>
+	
+	<!-- 分页查询 -->
+	<select id="listPage" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="table" />
+		<where>
+			<include refid="condition_sql" />
+		</where>
+		<include refid="limit_sql" />
+	</select>
+	
+	<!-- 分页查询时计算总记录数 -->
+	<select id="listPageCount" parameterType="java.util.Map" resultType="long">
+		select count(1) from
+		<include refid="table" />
+		<where>
+			<include refid="condition_sql" />
+		</where>
+	</select>
+
+	<!-- 根据id查询 -->
+    <select id="getById" resultMap="BaseResultMap">
+		SELECT <include refid="Base_Column_List" /> 
+		FROM <include refid="table" /> 
+		WHERE O_ID = #{oid,jdbcType=VARCHAR}  
+	</select>
+
+	<!--按id主键删除-->
+	<update id="deleteById">
+        <!--DELETE FROM <include refid="table" /> WHERE O_ID = #{oid,jdbcType=VARCHAR}-->
+		UPDATE <include refid="table" /> SET STATE = 0 WHERE O_ID = #{oid,jdbcType=VARCHAR}  
+	</update>
+
+	<!-- ↑↑↑↑↑↑ 如果有新增字段、删除字段、修改字段 以上内容可用模板生成新内容后直接替换 ↑↑↑↑↑↑ -->
+	<!-- ↓↓↓↓↓↓ 以下内容是根据需求手动添加或修改的，请勿使用模板内容直接覆盖 ↓↓↓↓↓↓ -->
+
+	<sql id="condition_sql">
+		<if test="oid != null and oid !=''">
+			and O_ID = #{oid,jdbcType=VARCHAR}
+		</if>
+		<if test="projectName != null and projectName !=''">
+			and PROJECT_NAME = #{projectName,jdbcType=VARCHAR}
+		</if>
+		<if test="cid != null and cid !=''">
+			and C_ID = #{cid,jdbcType=VARCHAR}
+		</if>
+		<if test="pid != null and pid !=''">
+			and P_ID = #{pid,jdbcType=VARCHAR}
+		</if>
+		<if test="aid != null and aid !=''">
+			and A_ID = #{aid,jdbcType=VARCHAR}
+		</if>
+		<if test="count != null">
+			and COUNT = #{count,jdbcType=INTEGER}
+		</if>
+		<if test="diameter != null">
+			and DIAMETER = #{diameter,jdbcType=DOUBLE}
+		</if>
+		<if test="price != null">
+			and PRICE = #{price,jdbcType=DOUBLE}
+		</if>
+		<if test="dueDate != null">
+			and DUE_DATE = #{dueDate,jdbcType=TIMESTAMP}
+		</if>
+		<if test="createtime != null">
+			and CREATETIME = #{createtime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="modifytime != null">
+			and MODIFYTIME = #{modifytime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="orderState != null and orderState !=''">
+			and ORDER_STATE = #{orderState,jdbcType=VARCHAR}
+		</if>
+		<if test="state != null and state !=''">
+			and STATE = #{state,jdbcType=VARCHAR}
+		</if>
+	</sql>
+
+	<sql id="limit_sql">
+		<if test="pageIndex != null and pageSize != null">
+			LIMIT #{pageIndex},#{pageSize}
+		</if>
+	</sql>
+	
+</mapper>
+

@@ -9,7 +9,7 @@ import java.util.Map;
 
 import com.sp.net.entity.WarehouseRecord;
 
-public interface WarehouseRecordService<WarehouseRecord> extends BaseService<WarehouseRecord>{
+public interface WarehouseRecordService extends BaseService<WarehouseRecord>{
 
 	public long purchaseMaterial(Map<String, Object> paramMap);
 	

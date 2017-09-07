@@ -32,7 +32,6 @@
                     <span>{{ tableData2.price}}</span>
                 </el-form-item>
                
-
             </el-form>
             <el-button @click="print" class="not-print" type="primary" style="margin:10px">确定打印</el-button>
             <el-button @click="back" class="not-print"  style="margin:10px">返回</el-button>

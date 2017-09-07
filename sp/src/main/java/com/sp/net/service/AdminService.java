@@ -7,7 +7,7 @@ import com.sp.net.entity.Admin;
 import com.sp.net.entity.page.PageBean;
 import com.sp.net.entity.page.PageParam;
 
-public interface AdminService<Admin> extends BaseService<Admin>{
+public interface AdminService extends BaseService<Admin>{
 
 	public Admin findByAccount(String aAcount);
 	

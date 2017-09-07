@@ -21,7 +21,7 @@ import com.sp.net.service.ProductService;
 
 @Component("productService")
 @Transactional
-public class ProductServiceImpl implements ProductService<Product>{
+public class ProductServiceImpl implements ProductService{
 
 	@Autowired
 	ProductDao productDao;

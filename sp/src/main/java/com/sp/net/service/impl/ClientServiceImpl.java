@@ -19,7 +19,7 @@ import com.sp.net.service.ClientService;
 
 @Component("clientService")
 @Transactional
-public class ClientServiceImpl implements ClientService<Client>{
+public class ClientServiceImpl implements ClientService{
 	
 	@Autowired
 	ClientDao clientDao;
