@@ -5,6 +5,7 @@
 
 package com.sp.net.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +18,7 @@ import com.sp.net.entity.Material;
 import com.sp.net.entity.page.PageBean;
 import com.sp.net.entity.page.PageParam;
 import com.sp.net.service.MaterialService;
+import com.sp.net.service.WarehouseRecordService;
 
 @Component("materialService")
 @Transactional
@@ -24,6 +26,9 @@ public class MaterialServiceImpl implements MaterialService{
 	
 	@Autowired
 	MaterialDao materialDao;
+	
+	@Autowired
+	WarehouseRecordService warehouseRecordService;
 
 	@Override
 	public Material getById(String mId) {
@@ -56,6 +61,23 @@ public class MaterialServiceImpl implements MaterialService{
 		// TODO Auto-generated method stub
 		return materialDao.deleteById(mId);
 	}
+	
+	@Override
+	public long purchase(Material material) {
+		// TODO Auto-generated method stub
+		Material m = getById(material.getMid());
+		m.setMexistCount(m.getMexistCount() + material.getMexistCount());
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("mid", m.getMid());
+		paramMap.put("purchaseCount", material.getMexistCount());
+		long purchaseMaterial = warehouseRecordService.purchaseMaterial(paramMap);
+		if(purchaseMaterial > 0){
+			return update(m);
+		}else {
+			return 0;
+		}
+		
+	}
 
 	@Override
 	public long batchDelete(List<String> mIds) {
@@ -66,5 +88,5 @@ public class MaterialServiceImpl implements MaterialService{
 		}
 		return count;
 	}
-	
+
 }

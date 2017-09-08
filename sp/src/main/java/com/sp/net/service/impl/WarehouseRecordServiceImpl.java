@@ -6,7 +6,6 @@
 package com.sp.net.service.impl;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,6 @@ import com.sp.net.entity.page.PageBean;
 import com.sp.net.entity.page.PageParam;
 import com.sp.net.service.MaterialService;
 import com.sp.net.service.WarehouseRecordService;
-import com.sp.net.utils.DateUtil;
 
 @Component("warehouseRecordService")
 @Transactional
@@ -93,7 +91,7 @@ public class WarehouseRecordServiceImpl implements WarehouseRecordService{
 		// TODO Auto-generated method stub
 		WarehouseRecord record = new WarehouseRecord();
 		record.setWid(wId);
-		record.setPurchaseState("0");
+		record.setPurchaseState("1");
 		record.setModifytime(new Date());
 		return this.update(record);
 	}

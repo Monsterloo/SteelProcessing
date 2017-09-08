@@ -50,7 +50,8 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     noInfo: true,
-    port:8081 //访问端口
+    port: 8081
+    
   },
   performance: {
     hints: false

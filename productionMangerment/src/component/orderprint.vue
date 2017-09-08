@@ -1,20 +1,20 @@
 <template>
     <div class="clear">
         <el-card class="box-card">
-            <el-form v-model="tableData2" :inline="true">
-                <el-form-item label="订单编号" >
+            <el-form v-model="tableData2" >
+                <el-form-item label="订单编号" style="color:#0085ef!important">
                     <span style="margin-left: 10px;">{{ tableData2.id }}</span>
                 </el-form-item>
-                <el-form-item label="工程名称">
+                <el-form-item label="工程名称" style="color:#0085ef!important">
                     <span>{{ tableData2.workname}}</span>
                 </el-form-item>
-                <el-form-item label="公司名称">
+                <el-form-item label="公司名称" style="color:#0085ef!important">
                     <span> {{ tableData2.companyname}}</span>
                 </el-form-item>
-                <el-form-item label="到期日">
+                <el-form-item label="到期日" style="color:#0085ef!important">
                     <span>{{ tableData2.targettime}}</span>
                 </el-form-item>
-                <el-form-item label="产品直径">
+                <el-form-item label="产品直径" style="color:#0085ef!important">
                     <span>{{ tableData2.dim}}</span>
                 </el-form-item>
                 <el-form-item label="简图">
@@ -22,16 +22,20 @@
                         <img v-bind:src="tableData2.pic" alt="" srcset="" width="150">
                     </span>
                 </el-form-item>
-                <el-form-item label="总价">
+                <el-form-item label="总价" style="color:#0085ef!important">
                     <span>{{ tableData2.amount*tableData2.price}}</span>
                 </el-form-item>
-                <el-form-item label="数量">
+                <el-form-item label="数量" style="color:#0085ef!important">
                     <span>{{ tableData2.amount}}</span>
                 </el-form-item>
-                <el-form-item label="单价">
+                  <el-form-item label="重量" style="color:#0085ef!important">
+                    <span>{{ tableData2.weight}}</span>
+                </el-form-item>
+                <el-form-item label="单价" style="color:#0085ef!important">
                     <span>{{ tableData2.price}}</span>
                 </el-form-item>
                
+
             </el-form>
             <el-button @click="print" class="not-print" type="primary" style="margin:10px">确定打印</el-button>
             <el-button @click="back" class="not-print"  style="margin:10px">返回</el-button>
@@ -52,21 +56,12 @@ export default {
         }
     },
     mounted: function() {
-        let test = [{
-            matrialname: 'aaaa',
-            diameter: 1,
-            length: 1,
-            weight: 1
-        },{
-            matrialname: 'aaaa',
-            diameter: 1,
-            length: 1,
-            weight: 1}]
+       
 
         this.tableData2 = JSON.parse(localStorage.getItem('printTemp') || []);
-        this.tableData2.specs = test;
+        
         console.log(this.tableData2)
-        // console.log(this.tableData2.specs);
+      
     },
     methods: {
         print: function() {

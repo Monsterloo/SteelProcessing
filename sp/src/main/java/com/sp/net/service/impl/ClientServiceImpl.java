@@ -41,6 +41,7 @@ public class ClientServiceImpl implements ClientService{
 	@Override
 	public long insert(Client client) {
 		// TODO Auto-generated method stub
+		client.setState("1");
 		long insert = clientDao.insert(client);
 		return insert;
 	}

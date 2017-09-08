@@ -7,9 +7,9 @@ import java.util.Map;
 
 public enum WarehouseStateEnum {
 	
-	IS_WAREHOUSED("已入库",0),
+	IS_NOT_WAREHOUSED("未入库",0),
 	
-	IS_NOT_WAREHOUSED("未入库",1);
+	IS_WAREHOUSED("已入库",1);
 
 	/**
 	 * 枚举值

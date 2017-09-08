@@ -11,14 +11,14 @@
         </el-select>
       </el-form-item>
       <el-form-item label="钢 筋 直 径" class="fontcolor temipt" required>
-       
-          <el-select v-model="orderdetail.dim" placeholder="请选择">
-            <el-option v-for="item in optionsDim" :key="item.value" :label="item.label" :value="item.value">
-            </el-option>
-          </el-select>
-  
+
+        <el-select v-model="orderdetail.dim" placeholder="请选择">
+          <el-option v-for="item in optionsDim" :key="item.value" :label="item.label" :value="item.value">
+          </el-option>
+        </el-select>
+
       </el-form-item>
-      <el-form-item label="钢 筋 简 图" class="fontcolor temipt" prop="picid" >
+      <el-form-item label="钢 筋 简 图" class="fontcolor temipt" prop="picid">
         <el-select v-model="orderdetail.picid" placeholder="请选择" @change="changeSelection">
           <el-option v-for="item in pics" :key="item.id" :label="item.id" :value="item.id">
             <img class="avatar" :src="item.src" style="height:36px">
@@ -34,37 +34,37 @@
       </el-form-item>
 
       <el-form-item label="到 期 日" class="fontcolor temipt" prop="date2" required>
-        <el-date-picker v-model="orderdetail.date1" align="right" type="date" placeholder="选择日期" :picker-options="pickerOptions0">
+        <el-date-picker v-model="targettime" type="datetime" placeholder="选择日期时间" :picker-options="pickerOptions0" @change="changdate">
         </el-date-picker>
       </el-form-item>
       <el-form-item label="部 件 长 度" class="fontcolor temipt" required>
         <div v-if="varNum==1">
           <span class="length_input">A</span>
-          <el-input style="width:70px" v-model="orderdetail.A" ></el-input>
+          <el-input style="width:70px" v-model="orderdetail.A"></el-input>
         </div>
         <div v-if="varNum==2">
           <span class="length_input">A</span>
-          <el-input style="width:70px" v-model="orderdetail.A" ></el-input>
+          <el-input style="width:70px" v-model="orderdetail.A"></el-input>
           <span class="length_input">B</span>
-          <el-input style="width:70px" v-model="orderdetail.B" ></el-input>
+          <el-input style="width:70px" v-model="orderdetail.B"></el-input>
         </div>
         <div v-if="varNum==3">
           <span class="length_input">A</span>
-          <el-input style="width:70px" v-model="orderdetail.A" ></el-input>
+          <el-input style="width:70px" v-model="orderdetail.A"></el-input>
           <span class="length_input">B</span>
-          <el-input style="width:70px" v-model="orderdetail.B" ></el-input>
+          <el-input style="width:70px" v-model="orderdetail.B"></el-input>
           <span class="length_input">C</span>
-          <el-input style="width:70px" v-model="orderdetail.C" ></el-input>
+          <el-input style="width:70px" v-model="orderdetail.C"></el-input>
         </div>
         <div v-if="varNum==4">
           <span class="length_input">A</span>
-          <el-input style="width:70px" v-model="orderdetail.A" ></el-input>
+          <el-input style="width:70px" v-model="orderdetail.A"></el-input>
           <span class="length_input">B</span>
-          <el-input style="width:70px" v-model="orderdetail.B" ></el-input>
+          <el-input style="width:70px" v-model="orderdetail.B"></el-input>
           <span class="length_input">C</span>
-          <el-input style="width:70px" v-model="orderdetail.C" ></el-input>
+          <el-input style="width:70px" v-model="orderdetail.C"></el-input>
           <span class="length_input">D</span>
-          <el-input style="width:70px" v-model="orderdetail.D" ></el-input>
+          <el-input style="width:70px" v-model="orderdetail.D"></el-input>
         </div>
       </el-form-item>
       <el-form-item label="数 量" class="fontcolor temipt" required>
@@ -73,7 +73,7 @@
       <el-form-item label="总 长 度" class="fontcolor temipt">
         <!--cm-->
         <p>{{ totalLength }}cm</p>
-       
+
       </el-form-item>
       <el-form-item label="总 重 量" class="fontcolor temipt">
         <p>{{orderdetail.weight}}kg</p>
@@ -89,6 +89,21 @@
   </div>
 </template>
 <script>
+function formatDateTime(inputTime) {
+  var date = new Date(inputTime);
+  var y = date.getFullYear();
+  var m = date.getMonth() + 1;
+  m = m < 10 ? ('0' + m) : m;
+  var d = date.getDate();
+  d = d < 10 ? ('0' + d) : d;
+  var h = date.getHours();
+  h = h < 10 ? ('0' + h) : h;
+  var minute = date.getMinutes();
+  var second = date.getSeconds();
+  minute = minute < 10 ? ('0' + minute) : minute;
+  second = second < 10 ? ('0' + second) : second;
+  return y + '-' + m + '-' + d + ' ' + h + ':' + minute + ':' + second;
+}
 export default {
   data() {
     return {
@@ -192,24 +207,25 @@ export default {
 
       varNum: 0,
       value: '',
-      companystring:'',
+      companystring: '',
       orderdetail: {
         workname: '',
-        companyid:'',
+        companyid: '',
         companyname: '',
         picid: '',
         picsrc: '',
         amount: 0,
         price: '',
-        date1: '',
         totalPrice: '',
+        // targettime:"new Date()",
         dim: 0,
         weight: 0,
-          A: 0,
-          B: 0,
-          C: 0,
-          D: 0
+        A: 0,
+        B: 0,
+        C: 0,
+        D: 0
       },
+      targettime: '',
       date2: '',
       account1: '',
       pickerOptions0: {
@@ -247,12 +263,12 @@ export default {
         picid: [{
           required: true, message: '请选择图片', trigger: 'blur'
         }],
-        date1: [{ required: true, message: '请选择到期时间', trigger: 'change' }],
+        targettime: [{ required: true, message: '请选择到期时间', trigger: 'change' }],
         // speclength: [{ required: true, message: '请输入各部件长度', trigger: 'change' }]
       }
     }
   },
- 
+
   mounted() {
     //fetchcompany
     this.$http.get(this.servicerurl + '/menber', {
@@ -261,7 +277,7 @@ export default {
     }).then(function(response) {
       let opttemp = [{ label: '', value: '' }];
       for (var i = 0; i < response.data.length; i++) {
-        opttemp[i] = { label: response.data[i].companyname, value: response.data[i].companyname+"|"+response.data[i].id }
+        opttemp[i] = { label: response.data[i].companyname, value: response.data[i].companyname + "|" + response.data[i].id }
       }
       this.options4 = opttemp
       console.log(this.options4);
@@ -269,12 +285,12 @@ export default {
       console.log(response)
     })
 
- 
 
 
   },
 
   computed: {
+
     totalPrice: function() {
       this.orderdetail.totalPrice = Number(this.orderdetail.amount) * Number(this.orderdetail.price);
       return this.orderdetail.totalPrice.toString();
@@ -341,7 +357,7 @@ export default {
       for (var i = 0; i < formulaList.length; i++) {
         if (id == formulaList[i].id) {
           console.log(formulaList[i].formula)
-          this.orderdetail.totalLength = Number(formulaList[i].formula)* Number(this.orderdetail.amount);
+          this.orderdetail.totalLength = Number(formulaList[i].formula) * Number(this.orderdetail.amount);
           console.log(this.orderdetail.totalLength);
           return this.orderdetail.totalLength;
         }
@@ -349,13 +365,18 @@ export default {
     }
   },
   methods: {
-    changemethod:function(){
-      let value=this.companystring
-       let id=value.split("|")[1];
-       let name=value.split("|")[0];
-      this.orderdetail.companyid=id
-      this.orderdetail.companyname=name
-    
+    changdate: function() { 
+      var timestring = formatDateTime(this.targettime)
+       var text = typeof (timestring);
+     this.orderdetail.targettime=timestring;
+    },
+    changemethod: function() {
+      let value = this.companystring
+      let id = value.split("|")[1];
+      let name = value.split("|")[0];
+      this.orderdetail.companyid = id
+      this.orderdetail.companyname = name
+
     },
     changeSelection: function() {
       this.orderdetail.picsrc = require('../assets/addimg/' + this.orderdetail.picid.split('-')[0] + '.jpg')
@@ -367,12 +388,13 @@ export default {
         if (valid) {
           this.orderdetail.totalPrice = this.totalPrice;
           this.orderdetail.totalLength = this.totalLength;
-         
+          this.orderdetail.timetarget = this.targettime;
+          console.log(this.orderdetail)
           this.$http.post(this.servicerurl + '/order', this.orderdetail, {
             headers: {},
             emulateJSON: true
           }).then(function(response) {
-            //getagain,save in total_localstorage
+            // getagain,save in total_localstorage
             this.$http.get(this.servicerurl + '/order', {}, {
               headers: {},
               emulateJSON: true

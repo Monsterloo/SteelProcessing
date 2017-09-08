@@ -15,41 +15,40 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.sp.net.common.AppConstants;
-import com.sp.net.common.enums.RoleEnum;
-import com.sp.net.entity.Admin;
+import com.sp.net.common.enums.MaterialEnum;
+import com.sp.net.entity.Material;
 import com.sp.net.entity.page.PageBean;
 import com.sp.net.entity.page.PageParam;
-import com.sp.net.service.AdminService;
+import com.sp.net.service.MaterialService;
 
 @Controller
-@RequestMapping("/admin")
-public class AdminController extends BaseController{
-	
+@RequestMapping("/material")
+public class MaterialController extends BaseController{
+
 	@Autowired
-	private AdminService adminService;
+	private MaterialService materialService;
 	
 	@RequestMapping(value="listPage/{pageIndex}/{pageSize}",method=RequestMethod.GET,produces="application/json; charset=UTF-8")
 	@ResponseBody
 	public void listPage(HttpServletRequest request, HttpServletResponse response, @PathVariable("pageIndex")Integer pageIndex, @PathVariable("pageSize")Integer pageSize) throws IOException{
 		Map<String, Object> paramMap = getParamMap_NullStr();
-		PageBean pageBean = adminService.listPage(new PageParam(pageIndex, pageSize), paramMap);
+		PageBean pageBean = materialService.listPage(new PageParam(pageIndex, pageSize), paramMap);
 		if(pageBean != null){
 			JSONObject jObj = (JSONObject) JSON.toJSON(pageBean);
-			jObj.put("RoleList", RoleEnum.toList());
+			jObj.put("Materialist", MaterialEnum.toList());
 			String result = toJsonString(jObj);
 			outWrite(response, result);
 		}else{
 			outWrite(response, null);
 		}
 	}
-
-	@RequestMapping(value="getInfo/{aId}",method=RequestMethod.GET,produces="application/json; charset=UTF-8")
+	
+	@RequestMapping(value="getInfo/{mId}",method=RequestMethod.GET,produces="application/json; charset=UTF-8")
 	@ResponseBody
-	public void getAdminInfo(HttpServletRequest request, HttpServletResponse response, @PathVariable("aId")String aId) throws IOException{
-		Admin admin = adminService.getById(aId);
-		if(admin !=null){
-			String result = toJsonString(admin);
+	public void getAdminInfo(HttpServletRequest request, HttpServletResponse response, @PathVariable("mId")String mId) throws IOException{
+		Material material = materialService.getById(mId);
+		if(material !=null){
+			String result = toJsonString(material);
 			outWrite(response, result);
 		}else{
 			outWrite(response, null);
@@ -60,12 +59,15 @@ public class AdminController extends BaseController{
 	@ResponseBody
 	public void create(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		Map<String, Object> paramMap = getParamMap_NullStr();
-		Admin admin = new Admin();
-		admin.setAaccount((String)paramMap.get("aaccount"));
-		admin.setApwd((String)paramMap.get("apwd"));
-		admin.setArole((String)paramMap.get("arole"));
-		admin.setAcontact((String)paramMap.get("acontact"));
-		long insert = adminService.insert(admin);
+		Material material = new Material();
+		material.setMname((String) paramMap.get("mname"));
+		material.setMlength((Double) paramMap.get("mlength"));
+		material.setMdiameter((Double) paramMap.get("mdiameter"));
+		material.setMweight((Double) paramMap.get("mweight"));
+		material.setMexistCount((Integer) paramMap.get("mexistCount"));
+		material.setMminCount((Integer) paramMap.get("mminCount"));
+		material.setMcategory((Integer) paramMap.get("mcategory"));
+		long insert = materialService.insert(material);
 		if(insert > 0){
 			String result = toJsonString(insert);
 			outWrite(response, result);
@@ -74,33 +76,14 @@ public class AdminController extends BaseController{
 		}
 	}
 	
-	@RequestMapping(value="updateInfo",method=RequestMethod.PUT,produces="application/json; charset=UTF-8")
-	@ResponseBody
-	public void updateInfo(HttpServletRequest request, HttpServletResponse response) throws IOException{
-		Map<String, Object> paramMap = getParamMap_NullStr();
-		Admin admin = (Admin) getHttpSession().getAttribute(AppConstants.SESSION_ADMIN);
-		admin.setAname((String)paramMap.get("aname"));
-		admin.setAcontact((String)paramMap.get("acontact"));
-		admin.setArole((String)paramMap.get("arole"));
-		long update = adminService.update(admin);
-		if(update > 0){
-			String result = toJsonString(update);
-			outWrite(response, result);
-		}else{
-			outWrite(response, null);
-		}
-	}
-	
-	@RequestMapping(value="update",method=RequestMethod.PATCH,produces="application/json; charset=UTF-8")
+	@RequestMapping(value="update",method=RequestMethod.PUT,produces="application/json; charset=UTF-8")
 	@ResponseBody
 	public void update(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		Map<String, Object> paramMap = getParamMap_NullStr();
-		Admin admin = new Admin();
-		admin.setAid((String) paramMap.get("aid"));
-		admin.setAname((String)paramMap.get("aname"));
-		admin.setAcontact((String)paramMap.get("acontact"));
-		admin.setArole((String)paramMap.get("arole"));
-		long update = adminService.update(admin);
+		Material material = new Material();
+		material.setMid((String) paramMap.get("mid"));
+		material.setMminCount((Integer) paramMap.get("mminCount"));
+		long update = materialService.update(material);
 		if(update > 0){
 			String result = toJsonString(update);
 			outWrite(response, result);
@@ -109,10 +92,26 @@ public class AdminController extends BaseController{
 		}
 	}
 	
-	@RequestMapping(value="delete/{aId}",method=RequestMethod.DELETE,produces="application/json; charset=UTF-8")
+	@RequestMapping(value="purchase",method=RequestMethod.PUT,produces="application/json; charset=UTF-8")
 	@ResponseBody
-	public void delete(HttpServletRequest request, HttpServletResponse response, @PathVariable("aId")String aId) throws IOException{
-		long delete = adminService.deleteById(aId);
+	public void purchase(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		Map<String, Object> paramMap = getParamMap_NullStr();
+		Material material = new Material();
+		material.setMid((String) paramMap.get("mid"));
+		material.setMexistCount((Integer) paramMap.get("mexistCount"));
+		long update = materialService.purchase(material);
+		if(update > 0){
+			String result = toJsonString(update);
+			outWrite(response, result);
+		}else{
+			outWrite(response, null);
+		}
+	}
+	
+	@RequestMapping(value="delete/{mId}",method=RequestMethod.DELETE,produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public void delete(HttpServletRequest request, HttpServletResponse response, @PathVariable("mId")String mId) throws IOException{
+		long delete = materialService.deleteById(mId);
 		if(delete > 0){
 			String result = toJsonString(delete);
 			outWrite(response, result);
@@ -120,6 +119,4 @@ public class AdminController extends BaseController{
 			outWrite(response, null);
 		}
 	}
-	
-	
 }

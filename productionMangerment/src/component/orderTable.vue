@@ -61,10 +61,10 @@
             </el-table-column>
             <el-table-column label="操作">
                 <template scope="scope">
-                    <el-button @click="updatestatus(scope.$index, scope.row)" type="text" v-if="scope.row.status!='订单出库'">更新进度</el-button>
+                    <el-button @click="updatestatus(scope.$index, scope.row)" type="text" v-if="scope.row.status!='订单出库'&&scope.row.status!='生产完成'">更新进度</el-button>
                     <span v-if="scope.row.status=='订单出库'">订单已出库</span>
+                    <span v-if="scope.row.status=='生产完成'">订单待出库</span>
                     <el-button @click="printEdit(scope.$index, scope.row)" type="text">订单打印</el-button>
-
                 </template>
             </el-table-column>
         </el-table>
@@ -82,7 +82,7 @@
 
             <div slot="footer" class="dialog-footer">
                 <el-button @click="dialogFormVisible = false">取 消</el-button>
-                <el-button type="primary" @click="update" v-if="this.selectedTable.status!='订单出库'">下一步</el-button>
+                <el-button type="primary" @click="update" v-if="this.selectedTable.status!='订单出库'&&this.selectedTable.status!='生产完成'">下一步</el-button>
             </div>
         </el-dialog>
 
@@ -142,14 +142,18 @@ export default {
             headers: {},
             emulateJSON: true
         }).then(function(response) {
-            orderStorage.save(response.data);
-            this.tableData = orderStorage.fetch();
-            console.log(response.data)
             for (var i = 0; i < response.data.length; i++) {
                 // 拼接路径
-                // response.data[i].pic=require('../assets/addimg/' + response.data[i].picid.split('-')[0] + '.jpg')
-                console.log(response.data[i].pic);
+                if(response.data[i].picid){
+               response.data[i].pic=require('../assets/addimg/' + response.data[i].picid.split('-')[0] + '.jpg')
+               console.log(response.data[i].pic)
+                console.log(response.data[i].picid.split('-')[0])
+                }
             }
+            orderStorage.save(response.data);
+            this.tableData = orderStorage.fetch();
+            console.log(response.data.pic)
+            
         }, function(response) {
             console.log(response)
         })
@@ -270,16 +274,7 @@ export default {
         printEdit: function($index, row) {
             let ordertemp = {};
             ordertemp = row;
-            //this.tableData1 = ordertemp;
             var printStorage = localStorage.setItem('printTemp', JSON.stringify(ordertemp))
-
-
-            // var pdfdom = document.getElementById('pdfDom').innerHTML;
-            // var newwindow = window.open('print', '_blank');
-
-            // newwindow.document.write(pdfdom);
-            // newwindow.print();
-            // localStorage.removeItem('printTemp')
             this.$router.push({ path: '/print' })
 
         },

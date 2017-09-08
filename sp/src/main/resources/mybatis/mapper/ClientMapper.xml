@@ -106,7 +106,7 @@
 				STATE =#{state,jdbcType=VARCHAR},
 			</if>
 		</set>
-		WHERE C_ID = #{cid,jdbcType=VARCHAR} />
+		WHERE C_ID = #{cid,jdbcType=VARCHAR}
 	</update>
 	
 	<!-- 不分页查询 -->

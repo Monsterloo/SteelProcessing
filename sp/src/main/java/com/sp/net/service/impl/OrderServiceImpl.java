@@ -18,7 +18,6 @@ import com.sp.net.entity.page.PageParam;
 import com.sp.net.service.AdminService;
 import com.sp.net.service.ClientService;
 import com.sp.net.service.OrderService;
-import com.sp.net.service.ProductService;
 import com.sp.net.service.SteelShapeService;
 
 @Component("orderService")

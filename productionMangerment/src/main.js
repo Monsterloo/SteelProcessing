@@ -10,7 +10,8 @@ import {
   Option, Message, Breadcrumb,
   BreadcrumbItem, Loading, Dialog, Switch, Tabs,
   TabPane, Tag, Badge, Notification, Steps,
-  Step,
+  Step,TimeSelect,
+  TimePicker,
 } from 'element-ui';
 import VDistpicker from 'v-distpicker'
 import VueLazyload from 'vue-lazyload'
@@ -24,6 +25,8 @@ Vue.config.debug = true;
 Vue.use(VueLazyload, {
   lazyComponent: true
 });
+Vue.use(TimePicker)
+Vue.use(TimeSelect)
 Vue.use(Step);
 Vue.use(Steps);
 Vue.use(Badge);
@@ -74,7 +77,7 @@ import orderTable from './component/orderTable.vue'
 import addorder from './component/addorder.vue'
 import modifyorder from './component/modifyorder.vue'
 import salechart from './component/saleschart.vue'
-import incomecard from './component/incomecard.vue'
+
 import menbertable from './component/menbertable.vue'
 import addmenber from './component/addmenber.vue'
 import modifymenber from './component/menbermodify.vue'
@@ -141,11 +144,7 @@ const router = new VueRouter({
           component: salechart,
           name: '订单管理-客户销售分析'
         },
-        {
-          path: '/order/income',
-          component: incomecard,
-          name: '订单管理-客户应收查询'
-        }
+      
       ]
     },
     {
