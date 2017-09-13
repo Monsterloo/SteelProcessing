@@ -43,7 +43,7 @@ public class ClientController extends BaseController{
 	
 	@RequestMapping(value="getInfo/{cId}",method=RequestMethod.GET,produces="application/json; charset=UTF-8")
 	@ResponseBody
-	public void getAdminInfo(HttpServletRequest request, HttpServletResponse response, @PathVariable("cId")String cId) throws IOException{
+	public void getInfo(HttpServletRequest request, HttpServletResponse response, @PathVariable("cId")String cId) throws IOException{
 		Client client = clientService.getById(cId);
 		if(client !=null){
 			String result = toJsonString(client);

@@ -6,6 +6,7 @@
 package com.sp.net.service.impl;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,8 @@ public class WarehouseRecordServiceImpl implements WarehouseRecordService{
 	public WarehouseRecord getById(String id) {
 		// TODO Auto-generated method stub
 		WarehouseRecord record = warehouseRecordDao.getById(id);
+		Material m = materialService.getById(record.getMid());
+		record.setMaterial(m);
 		return record;
 	}
 
@@ -53,6 +56,7 @@ public class WarehouseRecordServiceImpl implements WarehouseRecordService{
 	@Override
 	public long update(WarehouseRecord t) {
 		// TODO Auto-generated method stub
+		t.setModifytime(new Date());
 		return warehouseRecordDao.updateIfNotNull(t);
 	}
 
@@ -89,11 +93,23 @@ public class WarehouseRecordServiceImpl implements WarehouseRecordService{
 	@Override
 	public long confirmInventory(String wId) {
 		// TODO Auto-generated method stub
-		WarehouseRecord record = new WarehouseRecord();
-		record.setWid(wId);
+		WarehouseRecord record = getById(wId);
 		record.setPurchaseState("1");
-		record.setModifytime(new Date());
-		return this.update(record);
+		Material material = record.getMaterial();
+		material.setMexistCount(material.getMexistCount() + record.getPurchaseCount());
+		long update = materialService.update(material);
+		if(update > 0){
+			return this.update(record);
+		}else{
+			return 0;
+		}
+	}
+
+	@Override
+	public List<WarehouseRecord> listBy(Map<String, Object> paramMap) {
+		// TODO Auto-generated method stub
+		List<WarehouseRecord> listBy = warehouseRecordDao.listBy(paramMap);
+		return listBy;
 	}
 	
 }

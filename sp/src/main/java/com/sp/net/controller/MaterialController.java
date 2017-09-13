@@ -45,7 +45,7 @@ public class MaterialController extends BaseController{
 	
 	@RequestMapping(value="getInfo/{mId}",method=RequestMethod.GET,produces="application/json; charset=UTF-8")
 	@ResponseBody
-	public void getAdminInfo(HttpServletRequest request, HttpServletResponse response, @PathVariable("mId")String mId) throws IOException{
+	public void getInfo(HttpServletRequest request, HttpServletResponse response, @PathVariable("mId")String mId) throws IOException{
 		Material material = materialService.getById(mId);
 		if(material !=null){
 			String result = toJsonString(material);

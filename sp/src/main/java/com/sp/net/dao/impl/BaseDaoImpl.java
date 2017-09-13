@@ -165,7 +165,7 @@ public abstract class BaseDaoImpl<T> extends SqlSessionDaoSupport implements Bas
 		// 获取分页数据集 , 注切勿换成 sessionTemplate 对象
 		/*List<Object> list = getSqlSession().selectList(getStatement(sqlId), paramMap,
 				new RowBounds((pageParam.getPageNum() - 1) * pageParam.getNumPerPage(), pageParam.getNumPerPage()));*/
-		paramMap.put("pageIndex", pageParam.getPageIndex());
+		paramMap.put("pageIndex", pageParam.getPageIndex()*pageParam.getPageSize());
 		paramMap.put("pageSize", pageParam.getPageSize());
 		
 		List<Object> list = getSqlSession().selectList(getStatement(sqlId), paramMap);

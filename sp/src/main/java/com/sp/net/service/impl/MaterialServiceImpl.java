@@ -5,6 +5,7 @@
 
 package com.sp.net.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sp.net.dao.MaterialDao;
 import com.sp.net.entity.Material;
+import com.sp.net.entity.WarehouseRecord;
 import com.sp.net.entity.page.PageBean;
 import com.sp.net.entity.page.PageParam;
 import com.sp.net.service.MaterialService;
@@ -41,7 +43,7 @@ public class MaterialServiceImpl implements MaterialService{
 	public PageBean listPage(PageParam pageParam, Map<String, Object> paramMap) {
 		// TODO Auto-generated method stub
 		PageBean listPage = materialDao.listPage(pageParam, paramMap);
-		return listPage;
+		return listPageByPurchaseCount(listPage);
 	}
 
 	@Override
@@ -65,14 +67,12 @@ public class MaterialServiceImpl implements MaterialService{
 	@Override
 	public long purchase(Material material) {
 		// TODO Auto-generated method stub
-		Material m = getById(material.getMid());
-		m.setMexistCount(m.getMexistCount() + material.getMexistCount());
 		Map<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("mid", m.getMid());
+		paramMap.put("mid", material.getMid());
 		paramMap.put("purchaseCount", material.getMexistCount());
 		long purchaseMaterial = warehouseRecordService.purchaseMaterial(paramMap);
 		if(purchaseMaterial > 0){
-			return update(m);
+			return purchaseMaterial;
 		}else {
 			return 0;
 		}
@@ -87,6 +87,28 @@ public class MaterialServiceImpl implements MaterialService{
 			count += materialDao.deleteById(mId);
 		}
 		return count;
+	}
+
+	@Override
+	public PageBean listPageByPurchaseCount(PageBean pageBean) {
+		// TODO Auto-generated method stub
+		List<Object> recordList = pageBean.getRecordList();
+		List<Object> mList = new ArrayList<Object>();
+		for(Object obj : recordList){
+			Material m = (Material)obj;
+			Map<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("mid", m.getMid());
+			paramMap.put("purchaseState", "0");
+			List<WarehouseRecord> wrList = warehouseRecordService.listBy(paramMap);
+			long purchaseCount = 0;
+			for(WarehouseRecord wr : wrList){
+				purchaseCount += wr.getPurchaseCount();
+			}
+			m.setPurchaseCount(purchaseCount);
+			mList.add(m);
+		}
+		pageBean.setRecordList(mList);
+		return pageBean;
 	}
 
 }

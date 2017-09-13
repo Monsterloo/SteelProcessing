@@ -2,6 +2,8 @@ package com.sp.net.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
@@ -53,8 +55,8 @@ public class BaseController extends HttpServlet{
 	@ModelAttribute
 	public void setReqAndRes(HttpServletRequest request, HttpServletResponse response){
 	
-       this.request = request;
-
+	   this.request = request;
+	   
        this.response = response;
 
        this.session = request.getSession();
@@ -164,8 +166,13 @@ public class BaseController extends HttpServlet{
 		PrintWriter out = null;
 		try {
 			response.setCharacterEncoding("utf-8");
+			response.setHeader("Access-Control-Allow-Origin", "*");
 			out = response.getWriter();
-			out.write(result.toString());
+			if(result == null){
+				out.write("");
+			}else{
+				out.write(result.toString());
+			}
 			out.close();
 		} catch (IOException e) {
 			throw new IOException(e);
@@ -378,13 +385,16 @@ public class BaseController extends HttpServlet{
 	 * 获取请求中的参数值，如果参数值为null刚转为空字符串""
 	 * 
 	 * @return
+	 * @throws UnsupportedEncodingException 
 	 */
-	public Map<String, Object> getParamMap_NullStr() {
+	public Map<String, Object> getParamMap_NullStr() throws UnsupportedEncodingException {
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		Map map = getHttpRequest().getParameterMap();
 		Set keys = map.keySet();
 		for (Object key : keys) {
-			String value = this.getString(key.toString());
+			/*byte [] b= this.getString(key.toString()).getBytes("ISO-8859-1");
+			String value = new String(b,"utf-8");*/
+			String value = URLDecoder.decode(this.getString(key.toString()),"utf-8");
 			if (value == null) {
 				value = "";
 			}

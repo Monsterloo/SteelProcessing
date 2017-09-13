@@ -46,7 +46,7 @@ public class AdminController extends BaseController{
 
 	@RequestMapping(value="getInfo/{aId}",method=RequestMethod.GET,produces="application/json; charset=UTF-8")
 	@ResponseBody
-	public void getAdminInfo(HttpServletRequest request, HttpServletResponse response, @PathVariable("aId")String aId) throws IOException{
+	public void getInfo(HttpServletRequest request, HttpServletResponse response, @PathVariable("aId")String aId) throws IOException{
 		Admin admin = adminService.getById(aId);
 		if(admin !=null){
 			String result = toJsonString(admin);
@@ -121,5 +121,25 @@ public class AdminController extends BaseController{
 		}
 	}
 	
-	
+	/**
+	 * 修改密码
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
+	@RequestMapping(value="modifyPwd",method=RequestMethod.PUT,produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public void modifyPwd(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		Map<String, Object> paramMap = getParamMap_NullStr();
+		Admin admin = new Admin();
+		admin.setAid(((Admin) getHttpSession().getAttribute(AppConstants.SESSION_ADMIN)).getAid());
+		admin.setApwd((String) paramMap.get("apwd"));
+		long update = adminService.update(admin);
+		if(update > 0){
+			String result = toJsonString(update);
+			outWrite(response, result);
+		}else{
+			outWrite(response, null);
+		}
+	}
 }

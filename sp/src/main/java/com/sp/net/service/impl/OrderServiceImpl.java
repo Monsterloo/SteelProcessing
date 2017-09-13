@@ -5,6 +5,7 @@
 
 package com.sp.net.service.impl;
 
+import java.util.Date;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +60,9 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public long insert(Order order) {
 		// TODO Auto-generated method stub
+		Date date = new Date();
+		order.setCreatetime(date);
+		order.setModifytime(date);
 		order.setState("1");
 		order.setOrderState("1");	//1.订单下达		2.生产完成		3.订单出库
 		return orderDao.insert(order);
@@ -67,6 +71,7 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public long update(Order order) {
 		// TODO Auto-generated method stub
+		order.setModifytime(new Date());
 		return orderDao.updateIfNotNull(order);
 	}
 
@@ -91,7 +96,7 @@ public class OrderServiceImpl implements OrderService{
 		Order order = new Order();
 		order.setOid(oId);
 		order.setOrderState("3");
-		return 0;
+		return update(order);
 	}
 	
 }

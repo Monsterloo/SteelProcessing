@@ -152,6 +152,20 @@
 		<include refid="limit_sql" />
 	</select>
 	
+	<!-- 模糊查询 -->
+	<select id="fuzzyListPage" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="table" />
+		<where>
+			<if test="aname != null and aname !=''">
+				A_name  LIKE CONCAT(CONCAT('%', #{aname,jdbcType=VARCHAR}), '%') 
+			</if>
+		</where>
+		<include refid="limit_sql" />
+	</select>
+	
 	<!-- 分页查询时计算总记录数 -->
 	<select id="listPageCount" parameterType="java.util.Map" resultType="long">
 		select count(1) from
@@ -160,7 +174,7 @@
 			<include refid="condition_sql" />
 		</where>
 	</select>
-
+	
 	<!-- 根据id查询 -->
     <select id="getById" resultMap="BaseResultMap">
 		SELECT <include refid="Base_Column_List" /> 

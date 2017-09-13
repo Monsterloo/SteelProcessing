@@ -59,6 +59,10 @@ public class Material implements Serializable{
 	private String state;
 
 	//columns END
+	
+	//WebModal
+	//入库的中的材料数量
+	private long purchaseCount;
 
 	/**
 	 * 材料主键
@@ -176,8 +180,18 @@ public class Material implements Serializable{
 	public String getState() {
 		return this.state;
 	}
-
-
-
+	
+	/**
+	 * 入库中的材料数量
+	 */
+	public long getPurchaseCount() {
+		return purchaseCount;
+	}
+	/**
+	 * 入库中的材料数量
+	 */
+	public void setPurchaseCount(long purchaseCount) {
+		this.purchaseCount = purchaseCount;
+	}
 
 }
