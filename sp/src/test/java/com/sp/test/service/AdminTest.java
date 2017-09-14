@@ -72,4 +72,12 @@ public class AdminTest {
 		PageBean listPage = adminService.listPage(pageParam, paramMap);
 		System.out.println(listPage);
 	}
+	
+	@Test
+	public void fuzzyListPage(){
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("aname", "lu");
+		PageBean fuzzyListPage = adminService.fuzzyListPage(new PageParam(0, 10), paramMap);
+		System.out.println(fuzzyListPage);
+	}
 }

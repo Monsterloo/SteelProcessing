@@ -91,4 +91,11 @@ public class AdminServiceImpl implements AdminService{
 		return count;
 	}
 
+	@Override
+	public PageBean fuzzyListPage(PageParam pageParam, Map<String, Object> paramMap) {
+		// TODO Auto-generated method stub
+		PageBean fuzzyListPage = adminDao.fuzzyListPage(pageParam, paramMap);
+		return fuzzyListPage;
+	}
+
 }

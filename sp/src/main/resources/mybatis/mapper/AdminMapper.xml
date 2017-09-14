@@ -159,11 +159,24 @@
 		from
 		<include refid="table" />
 		<where>
+				STATE = 1 
 			<if test="aname != null and aname !=''">
-				A_name  LIKE CONCAT(CONCAT('%', #{aname,jdbcType=VARCHAR}), '%') 
+				AND A_name  LIKE CONCAT(CONCAT('%', #{aname,jdbcType=VARCHAR}), '%') 
 			</if>
 		</where>
 		<include refid="limit_sql" />
+	</select>
+	
+	<!-- 模糊查询时计算总记录数 -->
+	<select id="fuzzyListPageCount" parameterType="java.util.Map" resultType="long">
+		select count(1) from
+		<include refid="table" />
+		<where>
+				STATE = 1 
+			<if test="aname != null and aname !=''">
+				AND A_name  LIKE CONCAT(CONCAT('%', #{aname,jdbcType=VARCHAR}), '%') 
+			</if>
+		</where>
 	</select>
 	
 	<!-- 分页查询时计算总记录数 -->

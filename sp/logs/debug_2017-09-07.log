@@ -1,0 +1,67 @@
+2017-09-06 11:42:59 [ main:0 ] - [ INFO ] Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+ 2017-09-06 11:42:59 [ main:18 ] - [ INFO ] Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@419c5f1a, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@12b0404f, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@769e7ee8, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5276e6b0, org.springframework.test.context.transaction.TransactionalTestExecutionListener@71b1176b, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@6193932a]
+ 2017-09-06 11:42:59 [ main:96 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-common.xml]
+ 2017-09-06 11:42:59 [ main:562 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-db.xml]
+ 2017-09-06 11:42:59 [ main:621 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-mybatis.xml]
+ 2017-09-06 11:42:59 [ main:696 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-dao.xml]
+ 2017-09-06 11:42:59 [ main:726 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-tx.xml]
+ 2017-09-06 11:42:59 [ main:779 ] - [ INFO ] Refreshing org.springframework.context.support.GenericApplicationContext@41fbdac4: startup date [Wed Sep 06 11:42:59 CST 2017]; root of context hierarchy
+ 2017-09-06 11:43:00 [ main:967 ] - [ WARN ] No MyBatis mapper was found in '[com.sp.net.dao.impl]' package. Please check your configuration.
+ 2017-09-06 11:43:01 [ main:2534 ] - [ INFO ] {dataSource-1} inited
+ 2017-09-06 11:43:01 [ main:2559 ] - [ DEBUG ] ==>  Preparing: INSERT INTO tb_steel_shape ( S_ID, IMAGE_URL , FORMULA , STATE ) VALUES ( ?, ?, ?, ? ) 
+ 2017-09-06 11:43:01 [ main:2627 ] - [ DEBUG ] ==> Parameters: 000010(String), ../assets/addimg/000010.jpg(String), null, 1(String)
+ 2017-09-06 11:43:01 [ main:2628 ] - [ DEBUG ] <==    Updates: 1
+ 2017-09-06 11:43:01 [ main:2666 ] - [ DEBUG ] ==>  Preparing: INSERT INTO tb_steel_shape ( S_ID, IMAGE_URL , FORMULA , STATE ) VALUES ( ?, ?, ?, ? ) 
+ 2017-09-06 11:43:01 [ main:2667 ] - [ DEBUG ] ==> Parameters: 000011(String), ../assets/addimg/000011.jpg(String), null, 1(String)
+ 2017-09-06 11:43:01 [ main:2668 ] - [ DEBUG ] <==    Updates: 1
+ 2017-09-06 11:43:01 [ main:2698 ] - [ DEBUG ] ==>  Preparing: INSERT INTO tb_steel_shape ( S_ID, IMAGE_URL , FORMULA , STATE ) VALUES ( ?, ?, ?, ? ) 
+ 2017-09-06 11:43:01 [ main:2699 ] - [ DEBUG ] ==> Parameters: 000012(String), ../assets/addimg/000012.jpg(String), null, 1(String)
+ 2017-09-06 11:43:01 [ main:2699 ] - [ DEBUG ] <==    Updates: 1
+ 2017-09-06 11:43:01 [ main:2765 ] - [ DEBUG ] ==>  Preparing: INSERT INTO tb_steel_shape ( S_ID, IMAGE_URL , FORMULA , STATE ) VALUES ( ?, ?, ?, ? ) 
+ 2017-09-06 11:43:01 [ main:2766 ] - [ DEBUG ] ==> Parameters: 000013(String), ../assets/addimg/000013.jpg(String), null, 1(String)
+ 2017-09-06 11:43:01 [ main:2766 ] - [ DEBUG ] <==    Updates: 1
+ 2017-09-06 11:43:02 [ main:2918 ] - [ DEBUG ] ==>  Preparing: INSERT INTO tb_steel_shape ( S_ID, IMAGE_URL , FORMULA , STATE ) VALUES ( ?, ?, ?, ? ) 
+ 2017-09-06 11:43:02 [ main:2919 ] - [ DEBUG ] ==> Parameters: 000020(String), ../assets/addimg/000020.jpg(String), null, 1(String)
+ 2017-09-06 11:43:02 [ main:2921 ] - [ DEBUG ] <==    Updates: 1
+ 2017-09-06 11:43:02 [ main:2980 ] - [ DEBUG ] ==>  Preparing: INSERT INTO tb_steel_shape ( S_ID, IMAGE_URL , FORMULA , STATE ) VALUES ( ?, ?, ?, ? ) 
+ 2017-09-06 11:43:02 [ main:2985 ] - [ DEBUG ] ==> Parameters: 000021(String), ../assets/addimg/000021.jpg(String), null, 1(String)
+ 2017-09-06 11:43:02 [ main:3006 ] - [ DEBUG ] <==    Updates: 1
+ 2017-09-06 11:43:02 [ main:3055 ] - [ DEBUG ] ==>  Preparing: INSERT INTO tb_steel_shape ( S_ID, IMAGE_URL , FORMULA , STATE ) VALUES ( ?, ?, ?, ? ) 
+ 2017-09-06 11:43:02 [ main:3057 ] - [ DEBUG ] ==> Parameters: 000030(String), ../assets/addimg/000030.jpg(String), null, 1(String)
+ 2017-09-06 11:43:02 [ main:3058 ] - [ DEBUG ] <==    Updates: 1
+ 2017-09-06 11:43:02 [ main:3100 ] - [ DEBUG ] ==>  Preparing: INSERT INTO tb_steel_shape ( S_ID, IMAGE_URL , FORMULA , STATE ) VALUES ( ?, ?, ?, ? ) 
+ 2017-09-06 11:43:02 [ main:3101 ] - [ DEBUG ] ==> Parameters: 000031(String), ../assets/addimg/000031.jpg(String), null, 1(String)
+ 2017-09-06 11:43:02 [ main:3103 ] - [ DEBUG ] <==    Updates: 1
+ 2017-09-06 11:43:02 [ main:3141 ] - [ DEBUG ] ==>  Preparing: INSERT INTO tb_steel_shape ( S_ID, IMAGE_URL , FORMULA , STATE ) VALUES ( ?, ?, ?, ? ) 
+ 2017-09-06 11:43:02 [ main:3142 ] - [ DEBUG ] ==> Parameters: 000032(String), ../assets/addimg/000032.jpg(String), null, 1(String)
+ 2017-09-06 11:43:02 [ main:3142 ] - [ DEBUG ] <==    Updates: 1
+ 2017-09-06 11:43:02 [ main:3176 ] - [ DEBUG ] ==>  Preparing: INSERT INTO tb_steel_shape ( S_ID, IMAGE_URL , FORMULA , STATE ) VALUES ( ?, ?, ?, ? ) 
+ 2017-09-06 11:43:02 [ main:3177 ] - [ DEBUG ] ==> Parameters: 000035(String), ../assets/addimg/000035.jpg(String), null, 1(String)
+ 2017-09-06 11:43:02 [ main:3178 ] - [ DEBUG ] <==    Updates: 1
+ 2017-09-06 11:43:02 [ main:3209 ] - [ DEBUG ] ==>  Preparing: INSERT INTO tb_steel_shape ( S_ID, IMAGE_URL , FORMULA , STATE ) VALUES ( ?, ?, ?, ? ) 
+ 2017-09-06 11:43:02 [ main:3211 ] - [ DEBUG ] ==> Parameters: 000040(String), ../assets/addimg/000040.jpg(String), null, 1(String)
+ 2017-09-06 11:43:02 [ main:3212 ] - [ DEBUG ] <==    Updates: 1
+ 2017-09-06 11:43:02 [ main:3252 ] - [ DEBUG ] ==>  Preparing: INSERT INTO tb_steel_shape ( S_ID, IMAGE_URL , FORMULA , STATE ) VALUES ( ?, ?, ?, ? ) 
+ 2017-09-06 11:43:02 [ main:3252 ] - [ DEBUG ] ==> Parameters: 000041(String), ../assets/addimg/000041.jpg(String), null, 1(String)
+ 2017-09-06 11:43:02 [ main:3255 ] - [ DEBUG ] <==    Updates: 1
+ 2017-09-06 11:43:02 [ Thread-0:3290 ] - [ INFO ] Closing org.springframework.context.support.GenericApplicationContext@41fbdac4: startup date [Wed Sep 06 11:42:59 CST 2017]; root of context hierarchy
+ 2017-09-06 11:43:02 [ Thread-0:3299 ] - [ INFO ] {dataSource-1} closed
+ 2017-09-06 11:51:31 [ main:0 ] - [ INFO ] Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+ 2017-09-06 11:51:31 [ main:19 ] - [ INFO ] Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@419c5f1a, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@12b0404f, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@769e7ee8, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5276e6b0, org.springframework.test.context.transaction.TransactionalTestExecutionListener@71b1176b, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@6193932a]
+ 2017-09-06 11:51:31 [ main:144 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-common.xml]
+ 2017-09-06 11:51:32 [ main:351 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-db.xml]
+ 2017-09-06 11:51:32 [ main:375 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-mybatis.xml]
+ 2017-09-06 11:51:32 [ main:399 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-dao.xml]
+ 2017-09-06 11:51:32 [ main:420 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-tx.xml]
+ 2017-09-06 11:51:32 [ main:472 ] - [ INFO ] Refreshing org.springframework.context.support.GenericApplicationContext@41fbdac4: startup date [Wed Sep 06 11:51:32 CST 2017]; root of context hierarchy
+ 2017-09-06 11:51:32 [ main:711 ] - [ WARN ] No MyBatis mapper was found in '[com.sp.net.dao.impl]' package. Please check your configuration.
+ 2017-09-06 11:51:33 [ main:2006 ] - [ INFO ] {dataSource-1} inited
+ 2017-09-06 11:51:33 [ main:2104 ] - [ DEBUG ] ==>  Preparing: select S_ID, IMAGE_URL, FORMULA, STATE from tb_steel_shape WHERE STATE = ? LIMIT ?,? 
+ 2017-09-06 11:51:33 [ main:2128 ] - [ DEBUG ] ==> Parameters: 1(String), 0(Integer), 100(Integer)
+ 2017-09-06 11:51:33 [ main:2225 ] - [ DEBUG ] <==      Total: 12
+ 2017-09-06 11:51:33 [ main:2228 ] - [ DEBUG ] ==>  Preparing: select count(1) from tb_steel_shape WHERE STATE = ? 
+ 2017-09-06 11:51:34 [ main:2319 ] - [ DEBUG ] ==> Parameters: 1(String)
+ 2017-09-06 11:51:34 [ main:2321 ] - [ DEBUG ] <==      Total: 1
+ 2017-09-06 11:51:34 [ Thread-0:2409 ] - [ INFO ] Closing org.springframework.context.support.GenericApplicationContext@41fbdac4: startup date [Wed Sep 06 11:51:32 CST 2017]; root of context hierarchy
+ 2017-09-06 11:51:34 [ Thread-0:2427 ] - [ INFO ] {dataSource-1} closed
+ 

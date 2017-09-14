@@ -19,4 +19,5 @@ public interface AdminService extends BaseService<Admin>{
 	
 	public long batchDelete(List<String> aIds);
 
+	public PageBean fuzzyListPage(PageParam pageParam, Map<String, Object> paramMap);
 }

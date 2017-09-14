@@ -35,6 +35,8 @@ public abstract class BaseDaoImpl<T> extends SqlSessionDaoSupport implements Bas
 	public static final String SQL_MAP_BY_ID = "mapById";
 	public static final String SQL_MAP_BY = "mapBy";
 	private final static String DEFAULT_ID_COLUMN_NAME = "id";
+	public final static String FUZZY_LIST_PAGE = "fuzzyListPage";	//模糊查找
+	public final static String FUZZY_LIST_PAGE_COUNT = "fuzzyListPageCount";	//模糊查找统计总记录数
 	
 	/**
 	 * 注入SqlSessionTemplate实例(要求Spring中进行SqlSessionTemplate的配置).<br/>

@@ -43,6 +43,22 @@ public class AdminController extends BaseController{
 			outWrite(response, null);
 		}
 	}
+	
+	@RequestMapping(value="fuzzyListPage/{pageIndex}/{pageSize}/{aname}",method=RequestMethod.GET,produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public void fuzzyListPage(HttpServletRequest request, HttpServletResponse response, @PathVariable("pageIndex")Integer pageIndex, @PathVariable("pageSize")Integer pageSize, @PathVariable("aname")String aname) throws IOException{
+		Map<String, Object> paramMap = getParamMap_NullStr();
+		paramMap.put("aname", aname);
+		PageBean pageBean = adminService.fuzzyListPage(new PageParam(pageIndex, pageSize), paramMap);
+		if(pageBean != null){
+			JSONObject jObj = (JSONObject) JSON.toJSON(pageBean);
+			jObj.put("RoleList", RoleEnum.toList());
+			String result = toJsonString(jObj);
+			outWrite(response, result);
+		}else{
+			outWrite(response, null);
+		}
+	}
 
 	@RequestMapping(value="getInfo/{aId}",method=RequestMethod.GET,produces="application/json; charset=UTF-8")
 	@ResponseBody
@@ -65,6 +81,7 @@ public class AdminController extends BaseController{
 		admin.setApwd((String)paramMap.get("apwd"));
 		admin.setArole((String)paramMap.get("arole"));
 		admin.setAcontact((String)paramMap.get("acontact"));
+		admin.setAname((String)paramMap.get("aname"));
 		long insert = adminService.insert(admin);
 		if(insert > 0){
 			String result = toJsonString(insert);
@@ -91,7 +108,7 @@ public class AdminController extends BaseController{
 		}
 	}
 	
-	@RequestMapping(value="update",method=RequestMethod.PATCH,produces="application/json; charset=UTF-8")
+	@RequestMapping(value="update",method=RequestMethod.PUT,produces="application/json; charset=UTF-8")
 	@ResponseBody
 	public void update(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		Map<String, Object> paramMap = getParamMap_NullStr();
