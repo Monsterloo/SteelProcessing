@@ -1,6 +1,7 @@
 package com.sp.net.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.Map;
 
@@ -20,6 +21,7 @@ import com.sp.net.entity.Order;
 import com.sp.net.entity.page.PageBean;
 import com.sp.net.entity.page.PageParam;
 import com.sp.net.service.OrderService;
+import com.sp.net.utils.DateUtil;
 
 @Controller
 @RequestMapping("/order")
@@ -56,19 +58,19 @@ public class OrderController extends BaseController {
 	
 	@RequestMapping(value="create",method=RequestMethod.POST,produces="application/json; charset=UTF-8")
 	@ResponseBody
-	public void create(HttpServletRequest request, HttpServletResponse response) throws IOException{
+	public void create(HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException{
 		Map<String, Object> paramMap = getParamMap_NullStr();
 		Order order = new Order();
 		order.setProjectName((String) paramMap.get("projectName"));
 		order.setCid((String) paramMap.get("cid"));
 		order.setSid((String) paramMap.get("sid"));
 		order.setAid((String) paramMap.get("aid"));
-		order.setPrice((Double) paramMap.get("price"));
-		order.setCount((Integer) paramMap.get("count"));
-		order.setDueDate((Date) paramMap.get("dueDate"));
-		order.setTotalLength((Double) paramMap.get("totalLength"));
-		order.setTotalWeight((Double) paramMap.get("totalWeight"));
-		order.setTotalPrice((Double) paramMap.get("totalPrice"));
+		order.setPrice(Double.valueOf((String) paramMap.get("price")));
+		order.setCount(Integer.valueOf((String) paramMap.get("count")));
+		order.setDueDate(DateUtil.LONG_DATE_FORMAT.parse((String) paramMap.get("dueDate")));
+		order.setTotalLength(Double.valueOf((String) paramMap.get("totalLength")));
+		order.setTotalWeight(Double.valueOf((String) paramMap.get("totalWeight")));
+		order.setTotalPrice(Double.valueOf((String) paramMap.get("totalPrice")));
 		long insert = orderService.insert(order);
 		if(insert > 0){
 			String result = toJsonString(insert);

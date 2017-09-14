@@ -61,12 +61,12 @@ public class MaterialController extends BaseController{
 		Map<String, Object> paramMap = getParamMap_NullStr();
 		Material material = new Material();
 		material.setMname((String) paramMap.get("mname"));
-		material.setMlength((Double) paramMap.get("mlength"));
-		material.setMdiameter((Double) paramMap.get("mdiameter"));
-		material.setMweight((Double) paramMap.get("mweight"));
-		material.setMexistCount((Integer) paramMap.get("mexistCount"));
-		material.setMminCount((Integer) paramMap.get("mminCount"));
-		material.setMcategory((Integer) paramMap.get("mcategory"));
+		material.setMlength(Double.valueOf((String) paramMap.get("mlength")));
+		material.setMdiameter(Double.valueOf((String) paramMap.get("mdiameter")));
+		material.setMweight(Double.valueOf((String) paramMap.get("mweight")));
+		material.setMexistCount(Integer.valueOf((String) paramMap.get("mexistCount")));
+		material.setMminCount(Integer.valueOf((String) paramMap.get("mminCount")));
+		material.setMcategory(Integer.valueOf((String) paramMap.get("mcategory")));
 		long insert = materialService.insert(material);
 		if(insert > 0){
 			String result = toJsonString(insert);
@@ -82,7 +82,7 @@ public class MaterialController extends BaseController{
 		Map<String, Object> paramMap = getParamMap_NullStr();
 		Material material = new Material();
 		material.setMid((String) paramMap.get("mid"));
-		material.setMminCount((Integer) paramMap.get("mminCount"));
+		material.setMminCount(Integer.valueOf((String) paramMap.get("mminCount")));
 		long update = materialService.update(material);
 		if(update > 0){
 			String result = toJsonString(update);
@@ -98,7 +98,7 @@ public class MaterialController extends BaseController{
 		Map<String, Object> paramMap = getParamMap_NullStr();
 		Material material = new Material();
 		material.setMid((String) paramMap.get("mid"));
-		material.setMexistCount((Integer) paramMap.get("mexistCount"));
+		material.setMexistCount(Integer.valueOf((String) paramMap.get("mexistCount")));
 		long update = materialService.purchase(material);
 		if(update > 0){
 			String result = toJsonString(update);
