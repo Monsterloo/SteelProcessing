@@ -49,6 +49,7 @@ public class MaterialServiceImpl implements MaterialService{
 	@Override
 	public long insert(Material material) {
 		// TODO Auto-generated method stub
+		material.setState("1");
 		return materialDao.insert(material);
 	}
 
