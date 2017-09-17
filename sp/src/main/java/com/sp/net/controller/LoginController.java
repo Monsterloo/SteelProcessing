@@ -30,6 +30,7 @@ public class LoginController extends BaseController{
 		Admin admin = adminService.login(paramMap);
 		if(admin != null){
 			getHttpSession().setAttribute(AppConstants.SESSION_ADMIN, admin);
+			System.out.println(getHttpSession());
 			String result = toJsonString(admin);
 			outWrite(response, result);
 		}else{

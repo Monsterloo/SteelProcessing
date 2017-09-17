@@ -219,7 +219,7 @@ export default {
     },
     methods: {
         fetchData: function() {
-            this.$http.get('/api/client/listPage' + '/' + this.pageIndex + '/' + this.pageSize).then((response) => {
+            this.$http.get('/sp/client/listPage' + '/' + this.pageIndex + '/' + this.pageSize).then((response) => {
                 console.log(response.data);
                 this.totaldata=response.data.recordList;
                 this.total=response.data.total;
@@ -263,7 +263,7 @@ export default {
             // this.selectTable.companyaddress1 = data.province.value + data.city.value + data.area.value;
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    this.$http.post('/api/client/create', {cname: this.clientInfo.companyname,
+                    this.$http.post('/sp/client/create', {cname: this.clientInfo.companyname,
                         caddress:this.clientInfo.companyaddress1+ '-' + this.clientInfo.companyaddress2,
                         ccontact:this.clientInfo.companycontact,
                         clegalperson:this.clientInfo.ownername}, {
@@ -301,7 +301,7 @@ export default {
                     let address = this.selectTable.companyaddress1 +'-' + this.selectTable.companyaddress2;
                     let owner = this.selectTable.clegalperson;
                     console.log(address);
-                    this.$http.post('/api/client/update?cid='+ id +'&cname='+ name +'&ccontact='+ contact +'&clegalperson='+ owner +'&caddress='+ address , {
+                    this.$http.post('/sp/client/update?cid='+ id +'&cname='+ name +'&ccontact='+ contact +'&clegalperson='+ owner +'&caddress='+ address , {
                     // this.$http.put('/api/client/update',this.selectTable,{
                         headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
                         emulateJSON: true,
@@ -336,7 +336,7 @@ export default {
         },
         confirmdelete: function() {
             this.dialogVisible_delete = false;
-            this.$http.delete('/api/client/delete/'+ this.selectTable.cid).then((response) => {
+            this.$http.delete('/sp/client/delete/'+ this.selectTable.cid).then((response) => {
                 console.log(response.data);
                 this.$message({
                     showClose: true,

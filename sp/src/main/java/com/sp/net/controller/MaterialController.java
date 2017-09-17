@@ -76,7 +76,7 @@ public class MaterialController extends BaseController{
 		}
 	}
 	
-	@RequestMapping(value="update",method=RequestMethod.PUT,produces="application/json; charset=UTF-8")
+	@RequestMapping(value="update",method=RequestMethod.POST,produces="application/json; charset=UTF-8")
 	@ResponseBody
 	public void update(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		Map<String, Object> paramMap = getParamMap_NullStr();
@@ -92,7 +92,7 @@ public class MaterialController extends BaseController{
 		}
 	}
 	
-	@RequestMapping(value="purchase",method=RequestMethod.PUT,produces="application/json; charset=UTF-8")
+	@RequestMapping(value="purchase",method=RequestMethod.POST,produces="application/json; charset=UTF-8")
 	@ResponseBody
 	public void purchase(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		Map<String, Object> paramMap = getParamMap_NullStr();

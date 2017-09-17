@@ -41,10 +41,10 @@ export default {
     methods: {
         submitForm: function(formname) {
             let loginparam = {
-                aacount: this.form.name,
+                aaccount: this.form.name,
                 apwd: this.form.password
             };            
-            this.$http.post('/api/login/login',loginparam).then((response)=>{
+            this.$http.post('/sp/login/login',loginparam).then((response)=>{
                 const self = this;
                 //注意这里是个难点，Vuex与Vue-Resource结合使用。 
                 let admintemp = this.$tooljs.toJsonArray(response.data);
@@ -57,6 +57,7 @@ export default {
                     });
                     self.form = admintemp;
                     localStorage.setItem('st_admin', JSON.stringify(self.form));
+                    
                     this.name = '';
                     this.password = '';
                     this.$router.push({ path: '/index' });

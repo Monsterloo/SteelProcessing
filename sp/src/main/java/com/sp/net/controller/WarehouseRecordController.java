@@ -42,7 +42,7 @@ public class WarehouseRecordController extends BaseController {
 		}
 	}
 	
-	@RequestMapping(value="confirm/{wId}",method=RequestMethod.PUT,produces="application/json; charset=UTF-8")
+	@RequestMapping(value="confirm/{wId}",method=RequestMethod.POST,produces="application/json; charset=UTF-8")
 	@ResponseBody
 	public void confirm(HttpServletRequest request, HttpServletResponse response, @PathVariable("wId")String wId) throws IOException{
 		long confirmInventory = warehouseRecordService.confirmInventory(wId);

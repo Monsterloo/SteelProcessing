@@ -242,7 +242,7 @@ export default {
         },
         fetchData: function() {
             this.loading = true;
-            this.$http.get('/api/admin/listPage' + '/' + this.pageIndex + '/' + this.pageSize).then((response) => {
+            this.$http.get('/sp/admin/listPage' + '/' + this.pageIndex + '/' + this.pageSize).then((response) => {
                 console.log(response.data);
                 this.totaldata=response.data.recordList;
                 this.total=response.data.total;
@@ -278,7 +278,7 @@ export default {
                         aRoleName = '普通管理员';
                     }
                     // };
-                    this.$http.post('/api/admin/create', {aaccount:aaccount,aname:aname,apwd:apwd,arole:arole,aRoleName:aRoleName,acontact:acontact}, {
+                    this.$http.post('/sp/admin/create', {aaccount:aaccount,aname:aname,apwd:apwd,arole:arole,aRoleName:aRoleName,acontact:acontact}, {
                         headers: {},
                         emulateJSON: true
                     }).then(function(response) {
@@ -315,7 +315,7 @@ export default {
         },
         confirmdelete: function() {
             this.dialogVisible_delete = false;
-            this.$http.delete('/api/admin/delete/'+ this.selectTable.aid).then((response) => {
+            this.$http.delete('/sp/admin/delete/'+ this.selectTable.aid).then((response) => {
                 console.log(response.data);
                 this.$message({
                     showClose: true,
@@ -342,7 +342,7 @@ export default {
                     }else if(arole =='1'){
                         aRoleName='超级管理员';
                     }
-                    this.$http.patch('/api/admin/update?aid='+ id +'&aname='+ name +'&acontact='+ contact +'&arole='+ arole +'&aRoleName='+ aRoleName , {
+                    this.$http.post('/sp/admin/update?aid='+ id +'&aname='+ name +'&acontact='+ contact +'&arole='+ arole +'&aRoleName='+ aRoleName , {
                         headers: {},
                         emulateJSON: true
                     }).then(function(response) {

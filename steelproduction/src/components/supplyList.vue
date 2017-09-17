@@ -6,14 +6,17 @@
                 <template scope="scope">
                     <el-form label-position="left" inline class="demo-table-expand">
                         <el-form-item label="材料直径">
-                            <span>{{ scope.row.mdiameter}}</span>
+                            <span>{{ scope.row.mdiameter}}</span>cm
                         </el-form-item>
                         <el-form-item label="材料重量">
-                            <span>{{ scope.row.mweight}}</span>
+                            <span>{{ scope.row.mweight}}</span>kg
                         </el-form-item>
-                        <el-form-item label="材料长度">
+                        <el-form-item label="材料来源">
                             <span>{{ scope.row.mlength}}</span>
                         </el-form-item>  
+                         <el-form-item label="材料单价">
+                            <span>{{ scope.row.mlength}}</span>元
+                        </el-form-item> 
                     </el-form>
                 </template>
             </el-table-column>
@@ -178,37 +181,55 @@
                         <el-input v-model="newtable.mname" placeholder="材料名称"></el-input>
                     </div>
                 </el-form-item>
-                 <el-form-item label="材料长度" class="fontcolor" >
+                <el-form-item label="材料来源" class="fontcolor" >
                     <div class="forminput">
-                         <el-input-number v-model="newtable.mlength" placeholder="材料长度" ></el-input-number> 
+                        <el-input v-model="newtable.from" placeholder="材料名称"></el-input>
                     </div>
                 </el-form-item>
+                <el-form-item label="材料单价" class="fontcolor" >
+                    <div class="forminput">
+                         <!-- <el-input-number v-model="newtable.price" placeholder="材料名称"></el-input-number>  -->
+                         <input type="number" v-model="newtable.price" placeholder="材料单价" style="height: 29px; border-radius: -3px;border-width: 1px;border-color: #bfcbd9;border-radius: 3px;" min="0"></input> 
+                    </div>
+                </el-form-item>
+          
                  <el-form-item label="材料直径" class="fontcolor" >
                     <div class="forminput">
-                        <el-input-number v-model="newtable.mdiameter" placeholder="材料直径" ></el-input-number>
+                        <!-- <el-input-number v-model="newtable.mdiameter" placeholder="材料直径" ></el-input-number> -->
+                    <input type="number" v-model="newtable.mdiameter" placeholder="材料直径(cm)" style="height: 29px; border-radius: -3px;border-width: 1px;border-color: #bfcbd9;border-radius: 3px;" min="0"></input> 
+          
                     </div>
                 </el-form-item>
                  <el-form-item label="材料重量" class="fontcolor" >
                     <div class="forminput">
-                        <el-input-number v-model="newtable.mweight" placeholder="材料重量"></el-input-number>
+                        <!-- <el-input-number v-model="newtable.mweight" placeholder="材料重量"></el-input-number> -->
+                    <input type="number" v-model="newtable.mweight" placeholder="材料重量(kg)" style="height: 29px; border-radius: -3px;border-width: 1px;border-color: #bfcbd9;border-radius: 3px;" min="0"></input> 
+
                     </div>
                 </el-form-item>
                 <el-form-item label="材料入库数量" class="fontcolor">
                     <div class="forminput">
-                        <el-input-number v-model="newtable.mexistCount" ></el-input-number>
+                        <!-- <el-input-number v-model="newtable.mexistCount" ></el-input-number> -->
+         <input type="number" v-model="newtable.mexistCount" placeholder="材料入库数量(件)" style="height: 29px; border-radius: -3px;border-width: 1px;border-color: #bfcbd9;border-radius: 3px;" min="0"></input> 
+   
                     </div>
                 </el-form-item>
                 <el-form-item label="材料最低数量" class="fontcolor">
                     <div class="forminput">
-                        <el-input-number v-model="newtable.mminCount" ></el-input-number>
+                        <!-- <el-input-number v-model="newtable.mminCount" ></el-input-number> -->
+                 <input type="number" v-model="newtable.mminCount" placeholder="材料最低数量(件)" style="height: 29px; border-radius: -3px;border-width: 1px;border-color: #bfcbd9;border-radius: 3px;" min="0"></input> 
+
                     </div>
                 </el-form-item>
                 <el-form-item label="材料类别" class="fontcolor" prop='class'>
                     <div class="forminput">
-                        <el-select v-model="newtable.mcategory" placeholder="请选择">
+                        <!-- <el-select v-model="newtable.mcategory" placeholder="请选择">
                             <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
                             </el-option>
-                        </el-select>
+                        </el-select> -->
+                        <select v-model="newtable.mcategory" class="mySelect">
+                            <option v-for="item in options" v-bind:value="item.value" v-bind:key="item.value" placeholder="请选择" >{{item.label}}</option>
+                        </select>
                     </div>
                 </el-form-item>
                 <el-form-item label-width="80px">
@@ -221,6 +242,11 @@
 </template>
 
 <style>
+.mySelect{
+    width: 172px;
+    height: 36px;
+    border-color: #bfcbd9;
+}
 .form{
 		min-width: 400px;
 		margin-bottom: 30px;
@@ -292,7 +318,7 @@ export default {
             dialogFormVisible_in: false,
             dialogFormVisible_confirmIn: false,
             selectTable: [],
-            newtable:{},
+            newtable:[],
             options: [{
                 value: 0,
                 label: '原材料'
@@ -318,7 +344,7 @@ export default {
     },
     methods: {
         fetchData_material: function() {
-            this.$http.get('/api/material/listPage' + '/' + this.pageIndex + '/' + this.pageSize).then((response) => {
+            this.$http.get('/sp/material/listPage' + '/' + this.pageIndex + '/' + this.pageSize).then((response) => {
                 console.log(response.data);
                 this.totaldata=response.data.recordList;
                 //务必提交去除label属性
@@ -337,7 +363,7 @@ export default {
             });
         },
         fetchData_warehouse: function() {
-            this.$http.get('/api/warehouseRecord/listPage' + '/' + this.pageIndex + '/' + this.pageSize).then((response) => {
+            this.$http.get('/sp/warehouseRecord/listPage' + '/' + this.pageIndex + '/' + this.pageSize).then((response) => {
                 console.log(response.data);
                 this.addrecord=response.data.recordList;
                 //务必提交去除label属性
@@ -349,7 +375,7 @@ export default {
                     }else if(this.addrecord[i].materialCategory==2){
                         this.addrecord[i].mcategory_label='成品';
                     }
-                    this.$http.get('/api/material/getInfo/'+this.addrecord[i].mid).then((response) => {
+                    this.$http.get('/sp/material/getInfo/'+this.addrecord[i].mid).then((response) => {
                         this.addrecord[i].mname =  response.data.mname;
                     }).then((response) => {
                         console.log(response);
@@ -409,7 +435,7 @@ export default {
                     let id = this.selectTable.mid;
                     let mminCount = this.selectTable.mminCount;
                     // this.$http.put('/api/material/update?mid='+ id +'&mminCount='+ mminCount , {
-                    this.$http.post('/api/material/update',{mid:id,mminCount:mminCount},{
+                    this.$http.post('/sp/material/update',{mid:id,mminCount:mminCount},{
                         headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
                         emulateJSON: true,
                         emulateHttp: true
@@ -443,13 +469,14 @@ export default {
         },
         confirmadd: function() {
             this.dialogFormVisible_delte = false;
-            this.$http.post('/api/material/purchase?mid='+ this.selectTable.mid +'&mexistCount='+this.selectTable.purchaseCount).then((response) => {
+            this.$http.post('/sp/material/purchase?mid='+ this.selectTable.mid +'&mexistCount='+this.selectTable.purchaseCount).then((response) => {
                 console.log(response.data);
                 this.$message({
                     showClose: true,
                     message: '采购成功',
                     type: 'success'
                 });
+                this.dialogFormVisible_in=false;
                 this.fetchData_warehouse();
             }).then((response) => {
                 this.fetchData_warehouse();
@@ -458,22 +485,24 @@ export default {
         },
         confirmconfirmIn: function(){
             this.dialogFormVisible_confirmIn = false;
-            this.$http.post('/api/warehouseRecord/confirm/'+ this.selectTable.wid).then((response) => {
+            this.$http.post('/sp/warehouseRecord/confirm/'+ this.selectTable.wid).then((response) => {
                 console.log(response.data);
                 this.$message({
                     showClose: true,
                     message: '入库成功',
                     type: 'success'
                 });
+                this.fetchData_warehouse();
                 this.fetchData_material();
             }).then((response) => {
+                this.fetchData_warehouse();
                 this.fetchData_material();
                 console.log(response);
             });
         },
         confirmdelete: function() {
             this.dialogFormVisible_delte = false;
-            this.$http.delete('/api/material/delete/'+ this.selectTable.mid).then((response) => {
+            this.$http.delete('/sp/material/delete/'+ this.selectTable.mid).then((response) => {
                 console.log(response.data);
                 this.$message({
                     showClose: true,
@@ -487,8 +516,7 @@ export default {
             });
         },
         onSubmit: function (formName) {
-            this.$http.post('/api/material/create', {mname: this.newtable.mname,
-                mlength:this.newtable.mlength,
+            this.$http.post('/sp/material/create', {mname: this.newtable.mname,
                 mdiameter:this.newtable.mdiameter,
                 mexistCount:this.newtable.mexistCount,
                 mminCount:this.newtable.mminCount,
@@ -505,6 +533,11 @@ export default {
                         message: '添加成功',
                         type: 'success'
                     });
+                    this.newtable.mname = '';
+                    this.newtable.mexistCount = 0;
+                    this.newtable.mminCount = 0;
+                    this.newtable.mcategory = 0;
+                    this.newtable.mweight = 0;
                 }, function(response) {
                     console.log(response);
                     this.fetchData_material();

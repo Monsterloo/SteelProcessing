@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
@@ -108,7 +109,7 @@ public class AdminController extends BaseController{
 		}
 	}
 	
-	@RequestMapping(value="update",method=RequestMethod.PUT,produces="application/json; charset=UTF-8")
+	@RequestMapping(value="update",method=RequestMethod.POST,produces="application/json; charset=UTF-8")
 	@ResponseBody
 	public void update(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		Map<String, Object> paramMap = getParamMap_NullStr();
@@ -144,12 +145,12 @@ public class AdminController extends BaseController{
 	 * @param response
 	 * @throws IOException
 	 */
-	@RequestMapping(value="modifyPwd",method=RequestMethod.PUT,produces="application/json; charset=UTF-8")
+	@RequestMapping(value="modifyPwd",method=RequestMethod.POST,produces="application/json; charset=UTF-8")
 	@ResponseBody
 	public void modifyPwd(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		Map<String, Object> paramMap = getParamMap_NullStr();
-		Admin admin = new Admin();
-		admin.setAid(((Admin) getHttpSession().getAttribute(AppConstants.SESSION_ADMIN)).getAid());
+		System.out.println(getHttpSession());
+		Admin admin = (Admin) getHttpSession().getAttribute(AppConstants.SESSION_ADMIN);
 		admin.setApwd((String) paramMap.get("apwd"));
 		long update = adminService.update(admin);
 		if(update > 0){
