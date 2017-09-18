@@ -4,9 +4,9 @@
         </el-input>
         <el-button type="primary" class="addbtn not-print" @click="addOrder">新 增 订 单</el-button>
         <el-table :data="totaldata" border style="width: 100%;" class="ordertable not-print">
-            <!-- <el-table-column type="expand">
+             <el-table-column type="expand">
                  <template scope="scope">
-                    <el-form label-position="left" inline class="demo-table-expand">
+                    <!-- <el-form label-position="left" inline class="demo-table-expand">
                         <el-form-item label="工程名称">
                             <span>{{ scope.row.projectName}}</span>
                         </el-form-item>
@@ -37,9 +37,55 @@
                         </el-form-item>
                         
 
-                    </el-form>
+                    </el-form> -->
+                     <el-table :data="scope.row.products" stripe style="width: 100%">
+                            <el-table-column  label="钢 筋 直 径">
+                                <template scope="scope">
+                                    <span style="margin-left: 10px;">{{ scope.row.dim}}</span>
+                                </template>
+                            </el-table-column>
+                            <el-table-column   label="钢 筋 简 图" >
+                                <span class="imgstyle">
+                                <lazy-component @show="handler">
+                                    <img v-bind:src="scope.row.pic" alt="" srcset="">
+                                </lazy-component>
+                            </span>
+                            </el-table-column>
+                            <el-table-column  label="钢 筋 种 类">
+                                <template scope="scope">
+                                    <span style="margin-left: 10px;">{{ scope.row.type}}</span>
+                                </template>
+                            </el-table-column>
+                             <el-table-column  label="部 件 长 度">
+                                <el-table-column  label="A">
+                                <template scope="scope">
+                                    <span style="margin-left: 10px;">{{ scope.row.A}}</span>
+                                </template>
+                            </el-table-column>
+                            <el-table-column  label="B">
+                                <template scope="scope">
+                                    <span style="margin-left: 10px;">{{ scope.row.B}}</span>
+                                </template>
+                            </el-table-column>
+                            <el-table-column  label="C">
+                                <template scope="scope">
+                                    <span style="margin-left: 10px;">{{ scope.row.C}}</span>
+                                </template>
+                            </el-table-column>
+                            <el-table-column  label="D">
+                                <template scope="scope">
+                                    <span style="margin-left: 10px;">{{ scope.row.D}}</span>
+                                </template>
+                            </el-table-column>
+                            </el-table-column>
+                            <el-table-column  label="重量">
+                                <template scope="scope">
+                                    <span style="margin-left: 10px;">{{ scope.row.totalWeight}}</span>
+                                </template>
+                            </el-table-column>
+                    </el-table>
                 </template> 
-            </el-table-column> -->
+            </el-table-column> 
             <el-table-column label="订单编号">
                 <template scope="scope">
                     <span style="margin-left: 10px;">{{ scope.row.oid }}</span>
@@ -55,7 +101,11 @@
                     <span> {{ scope.row.companyname}}</span>
                 </template>
             </el-table-column>
-
+            <el-table-column label="订单总价">
+                <template scope="scope">
+                    <span> {{ scope.row.companyname}}</span>
+                </template>
+            </el-table-column>
             <el-table-column label="到期日">
                 <template scope="scope">
                     <span>{{ scope.row.dueDate}}</span>
@@ -184,6 +234,12 @@ export default {
             this.$http.get('/sp/order/listPage' + '/' + this.pageIndex + '/' + this.pageSize).then((response) => {
                 console.log(response.data);
                 this.totaldata=response.data.recordList;
+                for (var i = 0; i < this.totaldata.length; i++) {
+                // 拼接路径
+                    if(this.totaldata[i].picid){
+                        this.totaldata[i].pic=require('../assets/addimg/' + response.data[i].picid.split('-')[0] + '.jpg');
+                    }
+                }
                 this.total=response.data.total;
             }).then((response) => {
                 console.log(response);

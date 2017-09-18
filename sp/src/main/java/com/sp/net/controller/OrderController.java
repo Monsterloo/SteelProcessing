@@ -87,7 +87,7 @@ public class OrderController extends BaseController {
 	 * @param oId
 	 * @throws IOException
 	 */
-	@RequestMapping(value="completeProducted/{oId}",method=RequestMethod.PUT,produces="application/json; charset=UTF-8")
+	@RequestMapping(value="completeProducted/{oId}",method=RequestMethod.POST,produces="application/json; charset=UTF-8")
 	@ResponseBody
 	public void completeProducted(HttpServletRequest request, HttpServletResponse response, @PathVariable("oId")String oId) throws IOException{
 		long completeProducted = orderService.completeProducted(oId);
@@ -106,7 +106,7 @@ public class OrderController extends BaseController {
 	 * @param oId
 	 * @throws IOException
 	 */
-	@RequestMapping(value="stockOut/{oId}",method=RequestMethod.PUT,produces="application/json; charset=UTF-8")
+	@RequestMapping(value="stockOut/{oId}",method=RequestMethod.POST,produces="application/json; charset=UTF-8")
 	@ResponseBody
 	public void stockOut(HttpServletRequest request, HttpServletResponse response, @PathVariable("oId")String oId) throws IOException{
 		Map<String, Object> paramMap = getParamMap_NullStr();
