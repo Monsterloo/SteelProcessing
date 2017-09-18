@@ -4,11 +4,11 @@
         </el-input>
         <el-button type="primary" class="addbtn not-print" @click="addOrder">新 增 订 单</el-button>
         <el-table :data="totaldata" border style="width: 100%;" class="ordertable not-print">
-            <el-table-column type="expand">
-                <template scope="scope">
+            <!-- <el-table-column type="expand">
+                 <template scope="scope">
                     <el-form label-position="left" inline class="demo-table-expand">
                         <el-form-item label="工程名称">
-                            <span>{{ scope.row.workname}}</span>
+                            <span>{{ scope.row.projectName}}</span>
                         </el-form-item>
                         <el-form-item label="直径规格">
                             <span>{{ scope.row.dim}}</span>
@@ -35,16 +35,19 @@
                                 </lazy-component>
                             </span>
                         </el-form-item>
-                        <el-form-item>
-
-                        </el-form-item>
+                        
 
                     </el-form>
-                </template>
-            </el-table-column>
+                </template> 
+            </el-table-column> -->
             <el-table-column label="订单编号">
                 <template scope="scope">
-                    <span style="margin-left: 10px;">{{ scope.row.id }}</span>
+                    <span style="margin-left: 10px;">{{ scope.row.oid }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column label="工程名称">
+                <template scope="scope">
+                    <span style="margin-left: 10px;">{{ scope.row.projectName}}</span>
                 </template>
             </el-table-column>
             <el-table-column label="公司名称">
@@ -55,14 +58,15 @@
 
             <el-table-column label="到期日">
                 <template scope="scope">
-                    <span>{{ scope.row.targettime}}</span>
+                    <span>{{ scope.row.dueDate}}</span>
                 </template>
             </el-table-column>
             <el-table-column label="操作">
                 <template scope="scope">
-                    <el-button @click="updatestatus(scope.$index, scope.row)" type="text" v-if="scope.row.status!='订单出库'&&scope.row.status!='生产完成'">更新进度</el-button>
-                    <span v-if="scope.row.status=='订单出库'">订单已出库</span>
-                    <span v-if="scope.row.status=='生产完成'">订单待出库</span>
+                    <!--确认订单生产完成-->
+                    <el-button @click="updatestatus(scope.$index, scope.row)" type="text" v-if="scope.row.orderState!='订单出库'&&scope.row.orderState!='生产完成'">更新进度</el-button>
+                    <span v-if="scope.row.orderState=='3'">订单已出库</span>
+                    <span v-if="scope.row.orderState=='2'">订单待出库</span>
                     <el-button @click="printEdit(scope.$index, scope.row)" type="text">订单打印</el-button>
                 </template>
             </el-table-column>
@@ -72,7 +76,7 @@
         </el-pagination>
 
         <!--订单进度-->
-        <!-- <el-dialog title="订单进度" :visible.sync="dialogFormVisible">
+         <el-dialog title="订单进度" :visible.sync="dialogFormVisible">
             <el-steps :space="100" :active="active" finish-status="success">
                 <el-step title="订单下达"></el-step>
                 <el-step title="生产完成"></el-step>
@@ -81,9 +85,9 @@
 
             <div slot="footer" class="dialog-footer">
                 <el-button @click="dialogFormVisible = false">取 消</el-button>
-                <el-button type="primary" @click="update" v-if="this.selectedTable.status!='订单出库'&&this.selectedTable.status!='生产完成'">下一步</el-button>
+                <el-button type="primary" @click="update" v-if="this.selectedTable.orderState!='2'&&this.selectedTable.orderState!='3'">确认生产完成</el-button>
             </div>
-        </el-dialog> -->
+        </el-dialog> 
 
     </div>
 </template>
@@ -163,6 +167,9 @@ export default {
             total: 0,
             pageSizes: [10, 20, 50, 100],
             totaldata: [],
+            selectedTable:[],
+            active: 1,
+            dialogFormVisible:false
         };
     },
     mounted :function(){
@@ -190,6 +197,58 @@ export default {
             this.pageIndex = pageIndex-1;
             this.fetchData();
         },
+        updatestatus: function($index, row) {
+            if (row.orderState == '2') { this.active = 2; }
+            else if (row.orderState == '3') { this.active = 3; }
+            else this.active = 1;
+            this.selectedTable = row;
+            this.dialogFormVisible = true;
+            console.log(this.selectedTable);
+        },
+        update: function() {
+            //更改订单状态
+
+            // if (this.selectedTable.status == '生产完成') {
+            //     this.selectedTable.status = '订单出库';
+            // }
+            // else { this.selectedTable.status = '生产完成';}
+            //    console.log(this.selectedTable)
+            this.$http.post('/sp/order/completeProducted' + '/' + this.selectedTable.id, this.selectedTable, {
+                headers: {},
+                emulateJSON: true
+            }).then(function(response) {
+                this.dialogFormVisible = false;
+                this.$message({
+                    message: '更新成功',
+                    showClose: true,
+                    type: 'success'
+                });
+                this.fetchData();
+                // this.$http.get(this.servicerurl + '/order', {
+                //     pageIndex: this.pageIndex,
+                //     pageSize: this.pageSize
+                // }, {
+                //     headers: {},
+                //     emulateJSON: true
+                // }).then(function(response) {
+                //     console.log(response.data);
+                    
+                // });
+                console.log(response.data);
+
+            }, function(response) {
+                console.log(response);
+            });
+
+        },
+        printEdit: function($index, row) {
+            let ordertemp = {};
+            ordertemp = row;
+            localStorage.setItem('printTemp', JSON.stringify(ordertemp));
+            this.$router.push({ path: '/print' });
+
+        },
+        
     }
 };
 </script>
