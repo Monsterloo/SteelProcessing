@@ -6,7 +6,7 @@
         <el-submenu index="/order">
         <template slot="title"><i class="el-icon-document"></i>订 单 管 理</template>
          <el-menu-item index="/order/listMangerment">订 单 管 理</el-menu-item>
-    <el-menu-item index="/order/sale">客 户 销 售 分 析</el-menu-item>
+    <el-menu-item index="/order/sale">客 户 销 售 报 表</el-menu-item>
         </el-submenu>
         
          <el-submenu index="/system" v-show="disablemode">

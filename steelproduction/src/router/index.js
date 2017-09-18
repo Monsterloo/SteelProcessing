@@ -87,7 +87,7 @@ export default new Router({
         {
           path: '/order/sale',
           component: salechart,
-          name: '订单管理-客户销售分析'
+          name: '订单管理-客户销售报表'
         }
       ]
     },
