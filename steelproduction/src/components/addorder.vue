@@ -35,7 +35,7 @@
             </template>
           </el-table-column>
           
-            <el-table-column  label="A" >
+            <!-- <el-table-column  label="A" >
             <template scope="scope">
               <span>{{scope.row.A}}cm</span>
             </template>
@@ -54,11 +54,11 @@
             <template scope="scope">
               <span>{{scope.row.D}}cm</span>
             </template>
-            </el-table-column>
+            </el-table-column> -->
         
           <el-table-column label="重量">
             <template scope="scope">
-              <span style="margin-left: 10px;">{{ scope.row.totalWeight}}</span>
+              <span style="margin-left: 10px;">{{ scope.row.totalWeight}}cm/kg</span>
             </template>
           </el-table-column>
 
@@ -71,9 +71,14 @@
               <span v-if='scope.row.type==5'> 变 形 钢 筋 (圆)</span>
             </template>
           </el-table-column>
-          <el-table-column label="简图">
+          <el-table-column label="简图" width="180">
             <template scope="scope">
-             <img class="avatar" :src='scope.row.picsrc' style="height:36px">
+             <img class="avatar" :src='scope.row.picsrc' style="height:36px;">
+            </template>
+          </el-table-column>
+          <el-table-column label="总价">
+            <template scope="scope">
+            <span>{{scope.row.totalPrice}}</span>
             </template>
           </el-table-column>
           <el-table-column label="操作">
@@ -84,7 +89,9 @@
         </el-table>
       </el-form-item>
       <el-form-item label="总 价" class="fontcolor temipt">
-        <p>¥{{totalPrice}}</p>
+          
+        <p>¥{{this.orderdetail.totalPrice}}</p>
+       
       </el-form-item>
       <el-form-item label-width="80px" class="btnblock">
         <el-button type="primary" @click="onSubmit('ruleForm')">立即创建</el-button>
@@ -159,6 +166,9 @@
       </el-form-item> 
       <el-form-item label="重量" class="fontcolor temipt">
         <p>{{ totalWeight }}cm/kg</p>
+      </el-form-item> 
+      <el-form-item label="总价" class="fontcolor temipt">
+        <p>{{totalPrice }}元</p>
       </el-form-item> 
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -325,7 +335,7 @@ export default {
                 projectName: '',
                 companyid: '',
                 companyname: '',
-                totalPrice: '',
+                totalPrice: 0,
                 weight: 0,
                 products:[{
                     amount: 0,
@@ -408,17 +418,16 @@ export default {
     },
 
     computed: {
-
         totalPrice: function() {
-            this.orderdetail.totalPrice = Number(this.orderdetail.amount) * Number(this.orderdetail.price);
-            return this.orderdetail.totalPrice.toString();
+            this.productform.totalPrice = Number(this.productform.amount) * Number(this.productform.price);
+            return Number(this.productform.totalPrice);
         },
         totalWeight: function(){
             /*cm*/
             let lenght = Number(this.productform.totalLength);
             let dim = Number(this.productform.dim); 
             let weightper = dim * lenght * 0.00617;
-            return this.productform.totalWeigth = weightper * this.productform.amount;
+            return this.productform.totalWeight = weightper * this.productform.amount;
            
         },
 
@@ -491,6 +500,7 @@ export default {
     },
     methods: {
         addspecs: function() {
+           
             let objtemp = {};
             objtemp.picid =this.productform.picid;
             objtemp.amount = this.productform.amount;
@@ -503,10 +513,34 @@ export default {
             objtemp.B = Number(this.productform.B);
             objtemp.C = Number(this.productform.C);
             objtemp.D = Number(this.productform.D);
+            objtemp.totalWeight = Number(this.productform.totalWeight).toFixed(2);
+            objtemp.totalPrice=Number(this.productform.totalPrice);
             this.orderdetail.products.push(objtemp);
             console.log(this.orderdetail.products);
             console.log(this.orderdetail.products.picid);
             this.dialogFormVisible = false;
+            this.orderdetail.totalPrice+=this.productform.totalPrice;
+            for(var i=0;i<this.orderdetail.products.length;i++){
+                if(this.orderdetail.products[i].amount == 0){
+                    this.orderdetail.products.splice(i,1);
+                }
+                // this.orderdetail.totalPrice=this.orderdetail.totalPrice+Number(this.orderdetail.products[i].totalPrice);
+            }
+            console.log(this.orderdetail.totalPrice);
+            this.productform.picid = '';
+            this.productform.amount = 0;
+            this.productform.picsrc = '';
+            this.productform.price = 0;
+            this.productform.dim= 0;
+            this.productform.totalLength=0;
+            this.productform.type= 0;
+            this.productform.A=0;
+            this.productform.B=0;
+            this.productform.C=0;
+            this.productform.D=0;
+            this.productform.totalWeight=0;
+            this.productform.totalPrice=0;
+
         },
         changdate: function() { 
             var timestring = formatDateTime(this.targettime);
@@ -525,41 +559,37 @@ export default {
             this.varNum = this.productform.picid.split('-')[1];
             console.log(this.productform.picid);
         },
-        onSubmit: function(formName) {
-            this.$refs[formName].validate((valid) => {
-                if (valid) {
-                    this.orderdetail.totalPrice = this.totalPrice;
-                    this.orderdetail.totalLength = this.totalLength;
-                    this.orderdetail.timetarget = this.targettime;
-         
-                    this.$http.post('/sp/order/create', this.orderdetail, {
-                        headers: {},
-                        emulateJSON: true
-                    }).then(function(response) {
-            // getagain,save in total_localstorage
-                        this.$http.get(this.servicerurl + '/order', {}, {
-                            headers: {},
-                            emulateJSON: true
-                        }).then(function(response) {
-              
-                            localStorage.setItem('orderList', JSON.stringify(response.data));
+        onSubmit: function(formName) {            
+            console.log(this.orderdetail);
+            // this.$refs[formName].validate((valid) => {
+            //     if (valid) {         
+            //         this.$http.post('/sp/order/create', this.orderdetail, {
+            //             headers: {},
+            //             emulateJSON: true
+            //         }).then(function(response) {
+            // // getagain,save in total_localstorage
+            //             this.$http.get('/sp/order/listPage/0/10', {}, {
+            //                 headers: {},
+            //                 emulateJSON: true
+            //             }).then(function(response) {
+            //                 localStorage.setItem('orderList', JSON.stringify(response.data));
 
-                            this.$router.push({ path: '/order/listMangerment' });
-                        });
+            //                 this.$router.push({ path: '/order/listMangerment' });
+            //             });
            
-                    }, function(response) {
+            //         }, function(response) {
           
-                    });
-                } else {
-                    this.$message({
-                        showClose: true,
-                        message: '添加失败',
-                        type: 'warning'
-                    });
+            //         });
+            //     } else {
+            //         this.$message({
+            //             showClose: true,
+            //             message: '添加失败',
+            //             type: 'warning'
+            //         });
           
-                    return false;
-                }
-            });
+            //         return false;
+            //     }
+            // });
         },
 
         cancelAdd: function() {

@@ -169,6 +169,9 @@ export default {
         this.fetchData();
     },
     methods: {
+        addOrder: function(){
+            this.$router.push('/order/add');
+        },
         fetchData: function() {
             this.loading = true;
             this.$http.get('/sp/order/listPage' + '/' + this.pageIndex + '/' + this.pageSize).then((response) => {
