@@ -499,6 +499,9 @@ export default {
         }
     },
     methods: {
+        handleDelete(index) {
+            this.orderdetail.products.splice(index, 1);
+        },
         addspecs: function() {
            
             let objtemp = {};
