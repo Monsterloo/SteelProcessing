@@ -288,51 +288,53 @@ export default {
             });
         },
         updatemenber: function(formName) {
-            if(this.selectTable.companyaddress1==undefined){
-                this.selectTable.companyaddress1 = this.provincetemp + '-' + this.citytemp + '-' + this.arrtemp;
-            }
             console.log(this.selectTable.companyaddress1);
-            this.$refs[formName].validate((valid) => {
-                if (valid) {
-                    this.dialogFormVisible_update = false;
-                    let id = this.selectTable.cid;
-                    let name = this.selectTable.cname;
-                    let contact = this.selectTable.ccontact;
-                    let address = this.selectTable.companyaddress1 +'-' + this.selectTable.companyaddress2;
-                    let owner = this.selectTable.clegalperson;
-                    console.log(address);
-                    this.$http.post('/sp/client/update?cid='+ id +'&cname='+ name +'&ccontact='+ contact +'&clegalperson='+ owner +'&caddress='+ address , {
-                    // this.$http.put('/api/client/update',this.selectTable,{
-                        headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
-                        emulateJSON: true,
-                        emulateHttp: true
-                    }).then(function(response) {
-                        this.fetchData();
-                        this.dialogFormVisible_update=false;
-                        this.$message({
-                            showClose: true,
-                            message: '更新成功',
-                            type: 'success'
-                        });
+            console.log(this.selectTable.companyaddress2);
+            // if(this.selectTable.companyaddress1==undefined){
+            //     this.selectTable.companyaddress1 = this.provincetemp + '-' + this.citytemp + '-' + this.arrtemp;
+            // }
+            // console.log(this.selectTable.companyaddress1);
+            // this.$refs[formName].validate((valid) => {
+            //     if (valid) {
+            //         this.dialogFormVisible_update = false;
+            //         let id = this.selectTable.cid;
+            //         let name = this.selectTable.cname;
+            //         let contact = this.selectTable.ccontact;
+            //         let address = this.selectTable.companyaddress1 +'-' + this.selectTable.companyaddress2;
+            //         let owner = this.selectTable.clegalperson;
+            //         console.log(address);
+            //         this.$http.post('/sp/client/update?cid='+ id +'&cname='+ name +'&ccontact='+ contact +'&clegalperson='+ owner +'&caddress='+ address , {
+            //         // this.$http.put('/api/client/update',this.selectTable,{
+            //             headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
+            //             emulateJSON: true,
+            //             emulateHttp: true
+            //         }).then(function(response) {
+            //             this.fetchData();
+            //             this.dialogFormVisible_update=false;
+            //             this.$message({
+            //                 showClose: true,
+            //                 message: '更新成功',
+            //                 type: 'success'
+            //             });
                         
-                    }, function(response) {
-                        this.fetchData();
-                        this.$message({
-                            showClose: true,
-                            message: '更新管理员信息失败',
-                            type: 'warning'
-                        });
-                    });
-                } else {
-                    this.$message({
-                        showClose: true,
-                        message: '更新管理员信息失败',
-                        type: 'warning'
-                    });
+            //         }, function(response) {
+            //             this.fetchData();
+            //             this.$message({
+            //                 showClose: true,
+            //                 message: '更新管理员信息失败',
+            //                 type: 'warning'
+            //             });
+            //         });
+            //     } else {
+            //         this.$message({
+            //             showClose: true,
+            //             message: '更新管理员信息失败',
+            //             type: 'warning'
+            //         });
                     
-                    return false;
-                }
-            });
+            //         return false;
+            //     }
+            // });
         },
         confirmdelete: function() {
             this.dialogVisible_delete = false;
