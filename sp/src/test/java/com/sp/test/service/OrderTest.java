@@ -27,11 +27,7 @@ public class OrderTest {
 		Order order = new Order();
 		order.setProjectName("测试项目111111");
 		order.setCid("3ea284418c6e11e7b5cec85b76aeb963");
-		order.setSid("000010");
 		order.setAid("64c7f5eb87e311e7b5cec85b76aeb963");
-		order.setCount(3);
-		order.setDiameter(10.0);
-		order.setPrice(2.33);
 		Date date = new Date();
 		order.setCreatetime(date);
 		order.setModifytime(date);
@@ -43,6 +39,7 @@ public class OrderTest {
 		System.out.println(format.format(c.getTime()));
 		long insert = orderService.insert(order);
 		System.out.println(insert);
+		System.out.println(order.getOid());
 	}
 	
 	@Test
@@ -65,5 +62,16 @@ public class OrderTest {
 	@Test
 	public void stockOut(){
 		
+	}
+	
+	@Test
+	public void createOrder() throws Exception{
+		Order order = new Order();
+		order.setProjectName("test");
+		order.setAid("1");
+		order.setCid("3ea284418c6e11e7b5cec85b76aeb963");
+		order.setDueDate(new Date());
+		long createOrder = orderService.createOrder(order);
+		System.out.println(createOrder);
 	}
 }

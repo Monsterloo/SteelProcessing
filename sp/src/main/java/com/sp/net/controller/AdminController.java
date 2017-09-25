@@ -23,6 +23,11 @@ import com.sp.net.entity.page.PageBean;
 import com.sp.net.entity.page.PageParam;
 import com.sp.net.service.AdminService;
 
+/**
+ * 管理员
+ * @author junlonlu
+ *
+ */
 @Controller
 @RequestMapping("/admin")
 public class AdminController extends BaseController{

@@ -20,6 +20,11 @@ import com.sp.net.entity.page.PageBean;
 import com.sp.net.entity.page.PageParam;
 import com.sp.net.service.WarehouseRecordService;
 
+/**
+ * 入库
+ * @author junlonlu
+ *
+ */
 @Controller
 @RequestMapping("/warehouseRecord")
 public class WarehouseRecordController extends BaseController {

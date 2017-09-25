@@ -11,23 +11,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sp.net.dao.SteelShapeDao;
-import com.sp.net.entity.SteelShape;
+import com.sp.net.dao.SteelDao;
+import com.sp.net.entity.Steel;
 import com.sp.net.entity.page.PageBean;
 import com.sp.net.entity.page.PageParam;
-import com.sp.net.service.SteelShapeService;
+import com.sp.net.service.SteelService;
 
 @Component("steelShapeService")
-@Transactional
-public class SteelShapeServiceImpl implements SteelShapeService{
+@Transactional(rollbackFor=Exception.class)
+public class SteelServiceImpl implements SteelService{
 
 	@Autowired
-	SteelShapeDao steelShapeDao;
+	SteelDao steelShapeDao;
 	
 	@Override
-	public SteelShape getById(String id) {
+	public Steel getById(String id) {
 		// TODO Auto-generated method stub
-		SteelShape ss = steelShapeDao.getById(id);
+		Steel ss = steelShapeDao.getById(id);
 		return ss;
 	}
 
@@ -39,14 +39,14 @@ public class SteelShapeServiceImpl implements SteelShapeService{
 	}
 
 	@Override
-	public long insert(SteelShape t) {
+	public long insert(Steel t) {
 		// TODO Auto-generated method stub
 		t.setState("1");
 		return steelShapeDao.insert(t);
 	}
 
 	@Override
-	public long update(SteelShape t) {
+	public long update(Steel t) {
 		// TODO Auto-generated method stub
 		return steelShapeDao.updateIfNotNull(t);
 	}

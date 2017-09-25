@@ -3,6 +3,7 @@ package com.sp.net.controller;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,16 +14,25 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.sp.net.common.AppConstants;
+import com.sp.net.entity.Admin;
 import com.sp.net.entity.Order;
+import com.sp.net.entity.OrderDetail;
 import com.sp.net.entity.page.PageBean;
 import com.sp.net.entity.page.PageParam;
 import com.sp.net.service.OrderService;
 import com.sp.net.utils.DateUtil;
 
+/**
+ * 订单
+ * @author junlonlu
+ *
+ */
 @Controller
 @RequestMapping("/order")
 public class OrderController extends BaseController {
@@ -58,25 +68,28 @@ public class OrderController extends BaseController {
 	
 	@RequestMapping(value="create",method=RequestMethod.POST,produces="application/json; charset=UTF-8")
 	@ResponseBody
-	public void create(HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException{
+	public void create(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "details[]") List<OrderDetail> details) throws IOException, ParseException{
 		Map<String, Object> paramMap = getParamMap_NullStr();
 		Order order = new Order();
 		order.setProjectName((String) paramMap.get("projectName"));
 		order.setCid((String) paramMap.get("cid"));
-		order.setSid((String) paramMap.get("sid"));
-		order.setAid((String) paramMap.get("aid"));
-		order.setPrice(Double.valueOf((String) paramMap.get("price")));
-		order.setCount(Integer.valueOf((String) paramMap.get("count")));
+		Admin admin = (Admin) getHttpSession().getAttribute(AppConstants.SESSION_ADMIN);
+		order.setAid((String) admin.getAid());
 		order.setDueDate(DateUtil.LONG_DATE_FORMAT.parse((String) paramMap.get("dueDate")));
-		order.setTotalLength(Double.valueOf((String) paramMap.get("totalLength")));
-		order.setTotalWeight(Double.valueOf((String) paramMap.get("totalWeight")));
 		order.setTotalPrice(Double.valueOf((String) paramMap.get("totalPrice")));
-		long insert = orderService.insert(order);
-		if(insert > 0){
-			String result = toJsonString(insert);
-			outWrite(response, result);
-		}else{
-			outWrite(response, null);
+		order.setOrderDetailList(details);
+		long insert;
+		try {
+			insert = orderService.createOrder(order);
+			if(insert > 0){
+				String result = toJsonString(insert);
+				outWrite(response, result);
+			}else{
+				outWrite(response, null);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			outWrite(response, e.getMessage());
 		}
 	}
 	

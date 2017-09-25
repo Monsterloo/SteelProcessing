@@ -22,7 +22,7 @@ import com.sp.net.service.MaterialService;
 import com.sp.net.service.WarehouseRecordService;
 
 @Component("warehouseRecordService")
-@Transactional
+@Transactional(rollbackFor=Exception.class)
 public class WarehouseRecordServiceImpl implements WarehouseRecordService{
 	
 	@Autowired
@@ -79,6 +79,7 @@ public class WarehouseRecordServiceImpl implements WarehouseRecordService{
 		record.setMid(mId);
 		record.setMaterialCategory(material.getMcategory());
 		record.setPurchaseCount(purchaseCount);
+		record.setPrice(material.getMprice());
 		record.setPurchaseState("0");
 		//record.setMaterial(material);
 		record.setState("1");

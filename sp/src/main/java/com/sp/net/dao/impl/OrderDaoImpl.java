@@ -12,5 +12,5 @@ import com.sp.net.dao.OrderDao;
 
 @Repository("orderDao")
 public class OrderDaoImpl extends BaseDaoImpl<Order> implements OrderDao {
-
+	
 }

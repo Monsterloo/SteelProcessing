@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * 
  */
-public class SteelShape implements Serializable{
+public class Steel implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 

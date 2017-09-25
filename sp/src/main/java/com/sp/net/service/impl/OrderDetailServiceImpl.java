@@ -11,58 +11,53 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sp.net.dao.MaterialDao;
-import com.sp.net.dao.ProductDao;
-import com.sp.net.entity.Material;
-import com.sp.net.entity.Product;
+import com.sp.net.dao.OrderDetailDao;
+import com.sp.net.entity.OrderDetail;
 import com.sp.net.entity.page.PageBean;
 import com.sp.net.entity.page.PageParam;
-import com.sp.net.service.ProductService;
+import com.sp.net.service.OrderDetailService;
 
-@Component("productService")
+@Component("orderDetailService")
 @Transactional(rollbackFor=Exception.class)
-public class ProductServiceImpl implements ProductService{
+public class OrderDetailServiceImpl implements OrderDetailService{
 
 	@Autowired
-	ProductDao productDao;
-	
-	@Autowired
-	MaterialDao materialDao;
+	private OrderDetailDao orderDetailDao;
 	
 	@Override
-	public Product getById(String id) {
+	public OrderDetail getById(String id) {
 		// TODO Auto-generated method stub
-		Product product = productDao.getById(id);
-		String mId = product.getMid();
-		Material material = materialDao.getById(mId);
-		product.setMaterial(material);
-		return product;
+		OrderDetail detail = orderDetailDao.getById(id);
+		return detail;
 	}
 
 	@Override
 	public PageBean listPage(PageParam pageParam, Map<String, Object> paramMap) {
 		// TODO Auto-generated method stub
-		PageBean listPage = productDao.listPage(pageParam, paramMap);
+		PageBean listPage = orderDetailDao.listPage(pageParam, paramMap);
 		return listPage;
 	}
 
 	@Override
-	public long insert(Product t) {
+	public long insert(OrderDetail t) {
 		// TODO Auto-generated method stub
 		t.setState("1");
-		return productDao.insert(t);
+		long insert = orderDetailDao.insert(t);
+		return insert;
 	}
 
 	@Override
-	public long update(Product t) {
+	public long update(OrderDetail t) {
 		// TODO Auto-generated method stub
-		return productDao.updateIfNotNull(t);
+		long updateIfNotNull = orderDetailDao.updateIfNotNull(t);
+		return updateIfNotNull;
 	}
 
 	@Override
 	public long deleteById(String id) {
 		// TODO Auto-generated method stub
-		return productDao.deleteById(id);
+		long deleteById = orderDetailDao.deleteById(id);
+		return deleteById;
 	}
 	
 }

@@ -5,7 +5,9 @@
 package com.sp.net.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 /**
  * 
  */
@@ -30,44 +32,14 @@ public class Order implements Serializable{
 	private String cid;
 
 	/**
-	 * 钢筋图主键
-	 */
-	private String sid;
-
-	/**
 	 * 管理员主键
 	 */
 	private String aid;
 
 	/**
-	 * 单价
-	 */
-	private Double price;
-
-	/**
-	 * 数量
-	 */
-	private Integer count;
-
-	/**
-	 * 钢筋直径
-	 */
-	private Double diameter;
-
-	/**
 	 * 到期日期
 	 */
 	private Date dueDate;
-
-	/**
-	 * 总长度
-	 */
-	private Double totalLength;
-
-	/**
-	 * totalWeight
-	 */
-	private Double totalWeight;
 
 	/**
 	 * totalPrice
@@ -96,14 +68,17 @@ public class Order implements Serializable{
 
 	//columns END
 	
+	//订金
+	private Double deposit;
+
 	//操作人
 	private Admin admin;
 	
 	//公司
 	private Client client;
 	
-	//钢筋简图
-	private SteelShape steelShape;
+	//订单明细
+	private List<OrderDetail> orderDetailList;
 
 	/**
 	 * 订单ID
@@ -145,19 +120,6 @@ public class Order implements Serializable{
 	}
 
 	/**
-	 * 钢筋图主键
-	 */
-	public void setSid(String sid) {
-		this.sid = sid;
-	}
-	/**
-	 * 钢筋图主键
-	 */
-	public String getSid() {
-		return this.sid;
-	}
-
-	/**
 	 * 管理员主键
 	 */
 	public void setAid(String aid) {
@@ -171,45 +133,6 @@ public class Order implements Serializable{
 	}
 
 	/**
-	 * 单价
-	 */
-	public void setPrice(Double price) {
-		this.price = price;
-	}
-	/**
-	 * 单价
-	 */
-	public Double getPrice() {
-		return this.price;
-	}
-
-	/**
-	 * 数量
-	 */
-	public void setCount(Integer count) {
-		this.count = count;
-	}
-	/**
-	 * 数量
-	 */
-	public Integer getCount() {
-		return this.count;
-	}
-
-	/**
-	 * 钢筋直径
-	 */
-	public void setDiameter(Double diameter) {
-		this.diameter = diameter;
-	}
-	/**
-	 * 钢筋直径
-	 */
-	public Double getDiameter() {
-		return this.diameter;
-	}
-
-	/**
 	 * 到期日期
 	 */
 	public void setDueDate(Date dueDate) {
@@ -220,32 +143,6 @@ public class Order implements Serializable{
 	 */
 	public Date getDueDate() {
 		return this.dueDate;
-	}
-
-	/**
-	 * 总长度
-	 */
-	public void setTotalLength(Double totalLength) {
-		this.totalLength = totalLength;
-	}
-	/**
-	 * 总长度
-	 */
-	public Double getTotalLength() {
-		return this.totalLength;
-	}
-
-	/**
-	 * totalWeight
-	 */
-	public void setTotalWeight(Double totalWeight) {
-		this.totalWeight = totalWeight;
-	}
-	/**
-	 * totalWeight
-	 */
-	public Double getTotalWeight() {
-		return this.totalWeight;
 	}
 
 	/**
@@ -313,29 +210,35 @@ public class Order implements Serializable{
 		return this.state;
 	}
 	
-	//操作人
+	//订金
+	public Double getDeposit() {
+		if(totalPrice != null){
+			return totalPrice == 0.0? 0.0 : new BigDecimal(totalPrice*0.2).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		}
+		return 0.0;
+	}
+	public void setDeposit(Double deposit) {
+		this.deposit = deposit;
+	}
+	
+	//Vo
 	public Admin getAdmin() {
 		return admin;
 	}
 	public void setAdmin(Admin admin) {
 		this.admin = admin;
 	}
-	//公司
 	public Client getClient() {
 		return client;
 	}
 	public void setClient(Client client) {
 		this.client = client;
 	}
-	//钢筋简图
-	public SteelShape getSteelShape() {
-		return steelShape;
+	public List<OrderDetail> getOrderDetailList() {
+		return orderDetailList;
 	}
-	public void setSteelShape(SteelShape steelShape) {
-		this.steelShape = steelShape;
+	public void setOrderDetailList(List<OrderDetail> orderDetailList) {
+		this.orderDetailList = orderDetailList;
 	}
-
-	
-
 
 }

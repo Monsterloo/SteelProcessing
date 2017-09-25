@@ -21,6 +21,11 @@ import com.sp.net.entity.page.PageBean;
 import com.sp.net.entity.page.PageParam;
 import com.sp.net.service.MaterialService;
 
+/**
+ * 材料
+ * @author junlonlu
+ *
+ */
 @Controller
 @RequestMapping("/material")
 public class MaterialController extends BaseController{
@@ -61,6 +66,8 @@ public class MaterialController extends BaseController{
 		Map<String, Object> paramMap = getParamMap_NullStr();
 		Material material = new Material();
 		material.setMname((String) paramMap.get("mname"));
+		material.setMsource((String) paramMap.get("msource"));
+		material.setMprice((Double) paramMap.get("mprice"));
 		material.setMlength(Double.valueOf((String) paramMap.get("mlength")));
 		material.setMdiameter(Double.valueOf((String) paramMap.get("mdiameter")));
 		material.setMweight(Double.valueOf((String) paramMap.get("mweight")));

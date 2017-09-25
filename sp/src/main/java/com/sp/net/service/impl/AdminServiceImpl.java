@@ -15,7 +15,7 @@ import com.sp.net.entity.page.PageParam;
 import com.sp.net.service.AdminService;
 
 @Component("adminService")
-@Transactional
+@Transactional(rollbackFor=Exception.class)
 public class AdminServiceImpl implements AdminService{
 	
 	@Autowired

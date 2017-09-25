@@ -8,6 +8,8 @@
 	<resultMap id="BaseResultMap" type="com.sp.net.entity.Material">
 		<result column="M_ID" property="mid" jdbcType="VARCHAR"/>
 		<result column="M_NAME" property="mname" jdbcType="VARCHAR"/>
+		<result column="M_SOURCE" property="msource" jdbcType="VARCHAR"/>
+		<result column="M_PRICE" property="mprice" jdbcType="DOUBLE"/>
 		<result column="M_EXIST_COUNT" property="mexistCount" jdbcType="INTEGER"/>
 		<result column="M_MIN_COUNT" property="mminCount" jdbcType="INTEGER"/>
 		<result column="M_CATEGORY" property="mcategory" jdbcType="INTEGER"/>
@@ -21,6 +23,8 @@
 	<sql id="Base_Column_List">
 		M_ID,
 		M_NAME,
+		M_SOURCE,
+		M_PRICE,
 		M_EXIST_COUNT,
 		M_MIN_COUNT,
 		M_CATEGORY,
@@ -40,6 +44,8 @@
 		INSERT INTO <include refid="table" /> (
 			M_ID,
         	M_NAME ,
+        	M_SOURCE ,
+        	M_PRICE ,
         	M_EXIST_COUNT ,
         	M_MIN_COUNT ,
         	M_CATEGORY ,
@@ -48,8 +54,10 @@
         	M_WEIGHT ,
         	STATE 
         ) VALUES (
-        	#{mid,jdbcType=VARCHAR},
+			#{mid,jdbcType=VARCHAR},
 			#{mname,jdbcType=VARCHAR},
+			#{msource,jdbcType=VARCHAR},
+			#{mprice,jdbcType=DOUBLE},
 			#{mexistCount,jdbcType=INTEGER},
 			#{mminCount,jdbcType=INTEGER},
 			#{mcategory,jdbcType=INTEGER},
@@ -70,6 +78,8 @@
 		INSERT INTO <include refid="table" /> (
 			M_ID,
         	M_NAME ,
+        	M_SOURCE ,
+        	M_PRICE ,
         	M_EXIST_COUNT ,
         	M_MIN_COUNT ,
         	M_CATEGORY ,
@@ -82,6 +92,8 @@
 			(
 			#{item.mid,jdbcType=VARCHAR},
 			#{item.mname,jdbcType=VARCHAR},
+			#{item.msource,jdbcType=VARCHAR},
+			#{item.mprice,jdbcType=DOUBLE},
 			#{item.mexistCount,jdbcType=INTEGER},
 			#{item.mminCount,jdbcType=INTEGER},
 			#{item.mcategory,jdbcType=INTEGER},
@@ -97,6 +109,8 @@
 	<update id="update" parameterType="com.sp.net.entity.Material">
         UPDATE <include refid="table" /> SET
 			M_NAME = #{mname,jdbcType=VARCHAR},
+			M_SOURCE = #{msource,jdbcType=VARCHAR},
+			M_PRICE = #{mprice,jdbcType=DOUBLE},
 			M_EXIST_COUNT = #{mexistCount,jdbcType=INTEGER},
 			M_MIN_COUNT = #{mminCount,jdbcType=INTEGER},
 			M_CATEGORY = #{mcategory,jdbcType=INTEGER},
@@ -113,6 +127,12 @@
 		<set>
 			<if test="mname != null">
 				M_NAME =#{mname,jdbcType=VARCHAR},
+			</if>
+			<if test="msource != null">
+				M_SOURCE =#{msource,jdbcType=VARCHAR},
+			</if>
+			<if test="mprice != null">
+				M_PRICE =#{mprice,jdbcType=DOUBLE},
 			</if>
 			<if test="mexistCount != null">
 				M_EXIST_COUNT =#{mexistCount,jdbcType=INTEGER},
@@ -136,7 +156,7 @@
 				STATE =#{state,jdbcType=VARCHAR},
 			</if>
 		</set>
-		WHERE M_ID = #{mid,jdbcType=VARCHAR} 
+		WHERE M_ID = #{mid,jdbcType=VARCHAR}
 	</update>
 	
 	<!-- 不分页查询 -->
@@ -193,6 +213,12 @@
 		</if>
 		<if test="mname != null and mname !=''">
 			and M_NAME = #{mname,jdbcType=VARCHAR}
+		</if>
+		<if test="msource != null and msource !=''">
+			and M_SOURCE = #{msource,jdbcType=VARCHAR}
+		</if>
+		<if test="mprice != null">
+			and M_PRICE = #{mprice,jdbcType=DOUBLE}
 		</if>
 		<if test="mexistCount != null">
 			and M_EXIST_COUNT = #{mexistCount,jdbcType=INTEGER}

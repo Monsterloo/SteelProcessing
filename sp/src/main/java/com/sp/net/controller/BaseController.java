@@ -56,12 +56,6 @@ public class BaseController extends HttpServlet{
 	public void setReqAndRes(HttpServletRequest request, HttpServletResponse response){
 	
 	   this.request = request;
-	   try {
-		request.setCharacterEncoding("utf-8");
-	} catch (UnsupportedEncodingException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
 	   
        this.response = response;
 
@@ -400,8 +394,8 @@ public class BaseController extends HttpServlet{
 		for (Object key : keys) {
 			/*byte [] b= this.getString(key.toString()).getBytes("ISO-8859-1");
 			String value = new String(b,"utf-8");*/
-			//String value = URLDecoder.decode(this.getString(key.toString()),"utf-8");
-			String value = this.getString(key.toString());
+			String value = URLDecoder.decode(this.getString(key.toString()),"utf-8");
+			//String value = this.getString(key.toString());
 			if (value == null) {
 				value = "";
 			}

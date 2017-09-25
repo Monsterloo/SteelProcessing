@@ -18,7 +18,7 @@ import com.sp.net.entity.page.PageParam;
 import com.sp.net.service.ClientService;
 
 @Component("clientService")
-@Transactional
+@Transactional(rollbackFor=Exception.class)
 public class ClientServiceImpl implements ClientService{
 	
 	@Autowired
@@ -70,4 +70,10 @@ public class ClientServiceImpl implements ClientService{
 		return count;
 	}
 	
+	@Override
+	public PageBean fuzzyListPage(PageParam pageParam, Map<String, Object> paramMap) {
+		// TODO Auto-generated method stub
+		PageBean fuzzyListPage = clientDao.fuzzyListPage(pageParam, paramMap);
+		return fuzzyListPage;
+	}
 }

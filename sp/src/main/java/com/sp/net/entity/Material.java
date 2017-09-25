@@ -24,6 +24,16 @@ public class Material implements Serializable{
 	private String mname;
 
 	/**
+	 * 材料来源
+	 */
+	private String msource;
+
+	/**
+	 * 材料单价
+	 */
+	private Double mprice;
+
+	/**
 	 * 现存数量
 	 */
 	private Integer mexistCount;
@@ -59,7 +69,7 @@ public class Material implements Serializable{
 	private String state;
 
 	//columns END
-	
+
 	//WebModal
 	//入库的中的材料数量
 	private long purchaseCount;
@@ -88,6 +98,32 @@ public class Material implements Serializable{
 	 */
 	public String getMname() {
 		return this.mname;
+	}
+
+	/**
+	 * 材料来源
+	 */
+	public void setMsource(String msource) {
+		this.msource = msource;
+	}
+	/**
+	 * 材料来源
+	 */
+	public String getMsource() {
+		return this.msource;
+	}
+
+	/**
+	 * 材料单价
+	 */
+	public void setMprice(Double mprice) {
+		this.mprice = mprice;
+	}
+	/**
+	 * 材料单价
+	 */
+	public Double getMprice() {
+		return this.mprice;
 	}
 
 	/**
@@ -180,7 +216,7 @@ public class Material implements Serializable{
 	public String getState() {
 		return this.state;
 	}
-	
+
 	/**
 	 * 入库中的材料数量
 	 */
@@ -193,5 +229,6 @@ public class Material implements Serializable{
 	public void setPurchaseCount(long purchaseCount) {
 		this.purchaseCount = purchaseCount;
 	}
+
 
 }

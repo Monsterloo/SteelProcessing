@@ -20,6 +20,11 @@ import com.sp.net.entity.page.PageBean;
 import com.sp.net.entity.page.PageParam;
 import com.sp.net.service.ClientService;
 
+/**
+ * 商户
+ * @author junlonlu
+ *
+ */
 @Controller
 @RequestMapping("/client")
 public class ClientController extends BaseController{

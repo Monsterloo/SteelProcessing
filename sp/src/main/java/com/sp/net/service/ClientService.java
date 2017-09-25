@@ -17,4 +17,5 @@ public interface ClientService extends BaseService<Client>{
 
 	public long insert(Client client);
 	
+	public PageBean fuzzyListPage(PageParam pageParam, Map<String, Object> paramMap);
 }

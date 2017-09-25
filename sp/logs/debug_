@@ -1,155 +1,932 @@
-2017-09-14 09:39:14 [ main:0 ] - [ INFO ] Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
- 2017-09-14 09:39:14 [ main:193 ] - [ INFO ] Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@12b0404f, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@769e7ee8, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@5276e6b0, org.springframework.test.context.support.DirtiesContextTestExecutionListener@71b1176b, org.springframework.test.context.transaction.TransactionalTestExecutionListener@6193932a, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@647fd8ce]
- 2017-09-14 09:39:14 [ main:594 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-common.xml]
- 2017-09-14 09:39:15 [ main:1477 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-db.xml]
- 2017-09-14 09:39:15 [ main:1542 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-mybatis.xml]
- 2017-09-14 09:39:15 [ main:1572 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-dao.xml]
- 2017-09-14 09:39:15 [ main:1626 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-tx.xml]
- 2017-09-14 09:39:16 [ main:1778 ] - [ INFO ] Refreshing org.springframework.context.support.GenericApplicationContext@3c407114: startup date [Thu Sep 14 09:39:16 CST 2017]; root of context hierarchy
- 2017-09-14 09:39:16 [ main:2133 ] - [ WARN ] No MyBatis mapper was found in '[com.sp.net.dao.impl]' package. Please check your configuration.
- 2017-09-14 09:39:19 [ main:5382 ] - [ INFO ] {dataSource-1} inited
- 2017-09-14 09:39:19 [ main:5629 ] - [ DEBUG ] ==>  Preparing: select A_id, A_account, A_pwd, A_role, A_dept, A_name, A_contact, STATE from tb_admin WHERE STATE = 1 AND A_name LIKE CONCAT(CONCAT('%', ?), '%') and STATE = ? LIMIT ?,? 
- 2017-09-14 09:39:19 [ main:5655 ] - [ DEBUG ] ==> Parameters: lu(String), 1(String), 0(Integer), 10(Integer)
- 2017-09-14 09:39:20 [ main:5809 ] - [ DEBUG ] <==      Total: 1
- 2017-09-14 09:39:20 [ main:5813 ] - [ DEBUG ] ==>  Preparing: select count(1) from tb_admin WHERE STATE = 1 and A_name = ? and STATE = ? 
- 2017-09-14 09:39:20 [ main:5814 ] - [ DEBUG ] ==> Parameters: lu(String), 1(String)
- 2017-09-14 09:39:20 [ main:5816 ] - [ DEBUG ] <==      Total: 1
- 2017-09-14 09:39:20 [ Thread-0:5837 ] - [ INFO ] Closing org.springframework.context.support.GenericApplicationContext@3c407114: startup date [Thu Sep 14 09:39:16 CST 2017]; root of context hierarchy
- 2017-09-14 09:39:20 [ Thread-0:5863 ] - [ INFO ] {dataSource-1} closed
- 2017-09-14 09:45:08 [ main:0 ] - [ INFO ] Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
- 2017-09-14 09:45:08 [ main:34 ] - [ INFO ] Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@12b0404f, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@769e7ee8, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@5276e6b0, org.springframework.test.context.support.DirtiesContextTestExecutionListener@71b1176b, org.springframework.test.context.transaction.TransactionalTestExecutionListener@6193932a, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@647fd8ce]
- 2017-09-14 09:45:08 [ main:157 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-common.xml]
- 2017-09-14 09:45:09 [ main:381 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-db.xml]
- 2017-09-14 09:45:09 [ main:402 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-mybatis.xml]
- 2017-09-14 09:45:09 [ main:422 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-dao.xml]
- 2017-09-14 09:45:09 [ main:444 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-tx.xml]
- 2017-09-14 09:45:09 [ main:484 ] - [ INFO ] Refreshing org.springframework.context.support.GenericApplicationContext@3c407114: startup date [Thu Sep 14 09:45:09 CST 2017]; root of context hierarchy
- 2017-09-14 09:45:09 [ main:685 ] - [ WARN ] No MyBatis mapper was found in '[com.sp.net.dao.impl]' package. Please check your configuration.
- 2017-09-14 09:45:10 [ main:2061 ] - [ INFO ] {dataSource-1} inited
- 2017-09-14 09:45:10 [ main:2212 ] - [ DEBUG ] ==>  Preparing: select A_id, A_account, A_pwd, A_role, A_dept, A_name, A_contact, STATE from tb_admin WHERE STATE = 1 AND A_name LIKE CONCAT(CONCAT('%', ?), '%') LIMIT ?,? 
- 2017-09-14 09:45:10 [ main:2241 ] - [ DEBUG ] ==> Parameters: lu(String), 0(Integer), 10(Integer)
- 2017-09-14 09:45:10 [ main:2262 ] - [ DEBUG ] <==      Total: 1
- 2017-09-14 09:45:10 [ main:2264 ] - [ DEBUG ] ==>  Preparing: select count(1) from tb_admin WHERE STATE = 1 and A_name = ? and STATE = ? 
- 2017-09-14 09:45:10 [ main:2265 ] - [ DEBUG ] ==> Parameters: lu(String), 1(String)
- 2017-09-14 09:45:10 [ main:2267 ] - [ DEBUG ] <==      Total: 1
- 2017-09-14 09:45:22 [ Thread-0:13958 ] - [ INFO ] Closing org.springframework.context.support.GenericApplicationContext@3c407114: startup date [Thu Sep 14 09:45:09 CST 2017]; root of context hierarchy
- 2017-09-14 09:45:22 [ Thread-0:13975 ] - [ INFO ] {dataSource-1} closed
- 2017-09-14 09:47:22 [ main:0 ] - [ INFO ] Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
- 2017-09-14 09:47:22 [ main:21 ] - [ INFO ] Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@12b0404f, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@769e7ee8, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@5276e6b0, org.springframework.test.context.support.DirtiesContextTestExecutionListener@71b1176b, org.springframework.test.context.transaction.TransactionalTestExecutionListener@6193932a, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@647fd8ce]
- 2017-09-14 09:47:22 [ main:122 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-common.xml]
- 2017-09-14 09:47:22 [ main:347 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-db.xml]
- 2017-09-14 09:47:22 [ main:369 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-mybatis.xml]
- 2017-09-14 09:47:22 [ main:392 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-dao.xml]
- 2017-09-14 09:47:22 [ main:410 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-tx.xml]
- 2017-09-14 09:47:22 [ main:472 ] - [ INFO ] Refreshing org.springframework.context.support.GenericApplicationContext@3c407114: startup date [Thu Sep 14 09:47:22 CST 2017]; root of context hierarchy
- 2017-09-14 09:47:22 [ main:661 ] - [ WARN ] No MyBatis mapper was found in '[com.sp.net.dao.impl]' package. Please check your configuration.
- 2017-09-14 09:47:32 [ main:10066 ] - [ INFO ] {dataSource-1} inited
- 2017-09-14 09:47:32 [ main:10282 ] - [ DEBUG ] ==>  Preparing: select A_id, A_account, A_pwd, A_role, A_dept, A_name, A_contact, STATE from tb_admin WHERE STATE = 1 AND A_name LIKE CONCAT(CONCAT('%', ?), '%') LIMIT ?,? 
- 2017-09-14 09:47:32 [ main:10474 ] - [ DEBUG ] ==> Parameters: lu(String), 0(Integer), 10(Integer)
- 2017-09-14 09:47:32 [ main:10611 ] - [ DEBUG ] <==      Total: 1
- 2017-09-14 09:47:32 [ main:10616 ] - [ DEBUG ] ==>  Preparing: select count(1) from tb_admin WHERE STATE = 1 and A_name = ? and STATE = ? 
- 2017-09-14 09:47:32 [ main:10617 ] - [ DEBUG ] ==> Parameters: lu(String), 1(String)
- 2017-09-14 09:47:32 [ main:10622 ] - [ DEBUG ] <==      Total: 1
- 2017-09-14 09:47:58 [ Thread-0:36658 ] - [ INFO ] Closing org.springframework.context.support.GenericApplicationContext@3c407114: startup date [Thu Sep 14 09:47:22 CST 2017]; root of context hierarchy
- 2017-09-14 09:47:58 [ Thread-0:36684 ] - [ INFO ] {dataSource-1} closed
- 2017-09-14 09:48:44 [ main:0 ] - [ INFO ] Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
- 2017-09-14 09:48:44 [ main:23 ] - [ INFO ] Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@12b0404f, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@769e7ee8, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@5276e6b0, org.springframework.test.context.support.DirtiesContextTestExecutionListener@71b1176b, org.springframework.test.context.transaction.TransactionalTestExecutionListener@6193932a, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@647fd8ce]
- 2017-09-14 09:48:44 [ main:150 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-common.xml]
- 2017-09-14 09:48:44 [ main:398 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-db.xml]
- 2017-09-14 09:48:44 [ main:421 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-mybatis.xml]
- 2017-09-14 09:48:44 [ main:444 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-dao.xml]
- 2017-09-14 09:48:44 [ main:475 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-tx.xml]
- 2017-09-14 09:48:44 [ main:517 ] - [ INFO ] Refreshing org.springframework.context.support.GenericApplicationContext@3c407114: startup date [Thu Sep 14 09:48:44 CST 2017]; root of context hierarchy
- 2017-09-14 09:48:44 [ main:739 ] - [ WARN ] No MyBatis mapper was found in '[com.sp.net.dao.impl]' package. Please check your configuration.
- 2017-09-14 09:48:46 [ main:2500 ] - [ INFO ] {dataSource-1} inited
- 2017-09-14 09:49:32 [ main:48644 ] - [ DEBUG ] ==>  Preparing: select A_id, A_account, A_pwd, A_role, A_dept, A_name, A_contact, STATE from tb_admin WHERE STATE = 1 AND A_name LIKE CONCAT(CONCAT('%', ?), '%') LIMIT ?,? 
- 2017-09-14 09:49:32 [ main:48838 ] - [ DEBUG ] ==> Parameters: lu(String), 0(Integer), 10(Integer)
- 2017-09-14 09:49:33 [ main:48977 ] - [ DEBUG ] <==      Total: 1
- 2017-09-14 09:49:50 [ main:66548 ] - [ DEBUG ] ==>  Preparing: select count(1) from tb_admin WHERE STATE = 1 and A_name = ? and STATE = ? 
- 2017-09-14 09:49:50 [ main:66551 ] - [ DEBUG ] ==> Parameters: lu(String), 1(String)
- 2017-09-14 09:49:50 [ main:66554 ] - [ DEBUG ] <==      Total: 1
- 2017-09-14 09:49:50 [ Thread-0:66567 ] - [ INFO ] Closing org.springframework.context.support.GenericApplicationContext@3c407114: startup date [Thu Sep 14 09:48:44 CST 2017]; root of context hierarchy
- 2017-09-14 09:49:50 [ Thread-0:66585 ] - [ INFO ] {dataSource-1} closed
- 2017-09-14 09:50:50 [ main:0 ] - [ INFO ] Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
- 2017-09-14 09:50:50 [ main:20 ] - [ INFO ] Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@12b0404f, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@769e7ee8, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@5276e6b0, org.springframework.test.context.support.DirtiesContextTestExecutionListener@71b1176b, org.springframework.test.context.transaction.TransactionalTestExecutionListener@6193932a, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@647fd8ce]
- 2017-09-14 09:50:50 [ main:202 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-common.xml]
- 2017-09-14 09:50:50 [ main:445 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-db.xml]
- 2017-09-14 09:50:50 [ main:466 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-mybatis.xml]
- 2017-09-14 09:50:50 [ main:486 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-dao.xml]
- 2017-09-14 09:50:50 [ main:505 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-tx.xml]
- 2017-09-14 09:50:50 [ main:545 ] - [ INFO ] Refreshing org.springframework.context.support.GenericApplicationContext@3c407114: startup date [Thu Sep 14 09:50:50 CST 2017]; root of context hierarchy
- 2017-09-14 09:50:50 [ main:733 ] - [ WARN ] No MyBatis mapper was found in '[com.sp.net.dao.impl]' package. Please check your configuration.
- 2017-09-14 09:50:52 [ main:2217 ] - [ INFO ] {dataSource-1} inited
- 2017-09-14 09:50:52 [ main:2326 ] - [ DEBUG ] ==>  Preparing: select A_id, A_account, A_pwd, A_role, A_dept, A_name, A_contact, STATE from tb_admin WHERE STATE = 1 AND A_name LIKE CONCAT(CONCAT('%', ?), '%') LIMIT ?,? 
- 2017-09-14 09:50:52 [ main:2364 ] - [ DEBUG ] ==> Parameters: lu(String), 0(Integer), 10(Integer)
- 2017-09-14 09:50:52 [ main:2381 ] - [ DEBUG ] <==      Total: 1
- 2017-09-14 09:50:52 [ main:2382 ] - [ DEBUG ] ==>  Preparing: select count(1) from tb_admin WHERE STATE = 1 AND A_name LIKE CONCAT(CONCAT('%', ?), '%') 
- 2017-09-14 09:50:52 [ main:2383 ] - [ DEBUG ] ==> Parameters: lu(String)
- 2017-09-14 09:50:52 [ main:2385 ] - [ DEBUG ] <==      Total: 1
- 2017-09-14 09:50:52 [ Thread-0:2393 ] - [ INFO ] Closing org.springframework.context.support.GenericApplicationContext@3c407114: startup date [Thu Sep 14 09:50:50 CST 2017]; root of context hierarchy
- 2017-09-14 09:50:52 [ Thread-0:2412 ] - [ INFO ] {dataSource-1} closed
- 2017-09-14 09:51:05 [ main:0 ] - [ INFO ] Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
- 2017-09-14 09:51:06 [ main:28 ] - [ INFO ] Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@12b0404f, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@769e7ee8, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@5276e6b0, org.springframework.test.context.support.DirtiesContextTestExecutionListener@71b1176b, org.springframework.test.context.transaction.TransactionalTestExecutionListener@6193932a, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@647fd8ce]
- 2017-09-14 09:51:06 [ main:144 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-common.xml]
- 2017-09-14 09:51:06 [ main:399 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-db.xml]
- 2017-09-14 09:51:06 [ main:425 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-mybatis.xml]
- 2017-09-14 09:51:06 [ main:453 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-dao.xml]
- 2017-09-14 09:51:06 [ main:477 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-tx.xml]
- 2017-09-14 09:51:06 [ main:559 ] - [ INFO ] Refreshing org.springframework.context.support.GenericApplicationContext@3c407114: startup date [Thu Sep 14 09:51:06 CST 2017]; root of context hierarchy
- 2017-09-14 09:51:06 [ main:799 ] - [ WARN ] No MyBatis mapper was found in '[com.sp.net.dao.impl]' package. Please check your configuration.
- 2017-09-14 09:51:08 [ main:2848 ] - [ INFO ] {dataSource-1} inited
- 2017-09-14 09:51:08 [ main:2969 ] - [ DEBUG ] ==>  Preparing: select A_id, A_account, A_pwd, A_role, A_dept, A_name, A_contact, STATE from tb_admin WHERE STATE = 1 AND A_name LIKE CONCAT(CONCAT('%', ?), '%') LIMIT ?,? 
- 2017-09-14 09:51:09 [ main:3026 ] - [ DEBUG ] ==> Parameters: lu(String), 0(Integer), 10(Integer)
- 2017-09-14 09:51:09 [ main:3043 ] - [ DEBUG ] <==      Total: 1
- 2017-09-14 09:51:09 [ main:3044 ] - [ DEBUG ] ==>  Preparing: select count(1) from tb_admin WHERE STATE = 1 AND A_name LIKE CONCAT(CONCAT('%', ?), '%') 
- 2017-09-14 09:51:09 [ main:3045 ] - [ DEBUG ] ==> Parameters: lu(String)
- 2017-09-14 09:51:09 [ main:3046 ] - [ DEBUG ] <==      Total: 1
- 2017-09-14 09:51:21 [ Thread-0:15486 ] - [ INFO ] Closing org.springframework.context.support.GenericApplicationContext@3c407114: startup date [Thu Sep 14 09:51:06 CST 2017]; root of context hierarchy
- 2017-09-14 09:51:21 [ Thread-0:15495 ] - [ INFO ] {dataSource-1} closed
- 2017-09-14 09:51:59 [ main:0 ] - [ INFO ] Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
- 2017-09-14 09:51:59 [ main:16 ] - [ INFO ] Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@12b0404f, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@769e7ee8, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@5276e6b0, org.springframework.test.context.support.DirtiesContextTestExecutionListener@71b1176b, org.springframework.test.context.transaction.TransactionalTestExecutionListener@6193932a, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@647fd8ce]
- 2017-09-14 09:51:59 [ main:128 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-common.xml]
- 2017-09-14 09:51:59 [ main:354 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-db.xml]
- 2017-09-14 09:51:59 [ main:376 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-mybatis.xml]
- 2017-09-14 09:51:59 [ main:397 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-dao.xml]
- 2017-09-14 09:51:59 [ main:414 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-tx.xml]
- 2017-09-14 09:52:00 [ main:470 ] - [ INFO ] Refreshing org.springframework.context.support.GenericApplicationContext@3c407114: startup date [Thu Sep 14 09:52:00 CST 2017]; root of context hierarchy
- 2017-09-14 09:52:00 [ main:659 ] - [ WARN ] No MyBatis mapper was found in '[com.sp.net.dao.impl]' package. Please check your configuration.
- 2017-09-14 09:52:01 [ main:2262 ] - [ INFO ] {dataSource-1} inited
- 2017-09-14 09:52:01 [ main:2381 ] - [ DEBUG ] ==>  Preparing: select A_id, A_account, A_pwd, A_role, A_dept, A_name, A_contact, STATE from tb_admin WHERE STATE = 1 AND A_name LIKE CONCAT(CONCAT('%', ?), '%') LIMIT ?,? 
- 2017-09-14 09:52:02 [ main:2425 ] - [ DEBUG ] ==> Parameters: lu(String), 0(Integer), 10(Integer)
- 2017-09-14 09:52:02 [ main:2443 ] - [ DEBUG ] <==      Total: 1
- 2017-09-14 09:52:02 [ main:2445 ] - [ DEBUG ] ==>  Preparing: select count(1) from tb_admin WHERE STATE = 1 AND A_name LIKE CONCAT(CONCAT('%', ?), '%') 
- 2017-09-14 09:52:02 [ main:2446 ] - [ DEBUG ] ==> Parameters: lu(String)
- 2017-09-14 09:52:02 [ main:2449 ] - [ DEBUG ] <==      Total: 1
- 2017-09-14 09:52:31 [ Thread-0:32307 ] - [ INFO ] Closing org.springframework.context.support.GenericApplicationContext@3c407114: startup date [Thu Sep 14 09:52:00 CST 2017]; root of context hierarchy
- 2017-09-14 09:52:31 [ Thread-0:32324 ] - [ INFO ] {dataSource-1} closed
- 2017-09-14 09:52:51 [ main:0 ] - [ INFO ] Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
- 2017-09-14 09:52:51 [ main:16 ] - [ INFO ] Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@12b0404f, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@769e7ee8, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@5276e6b0, org.springframework.test.context.support.DirtiesContextTestExecutionListener@71b1176b, org.springframework.test.context.transaction.TransactionalTestExecutionListener@6193932a, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@647fd8ce]
- 2017-09-14 09:52:51 [ main:119 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-common.xml]
- 2017-09-14 09:52:51 [ main:341 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-db.xml]
- 2017-09-14 09:52:51 [ main:363 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-mybatis.xml]
- 2017-09-14 09:52:51 [ main:383 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-dao.xml]
- 2017-09-14 09:52:51 [ main:401 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-tx.xml]
- 2017-09-14 09:52:51 [ main:436 ] - [ INFO ] Refreshing org.springframework.context.support.GenericApplicationContext@3c407114: startup date [Thu Sep 14 09:52:51 CST 2017]; root of context hierarchy
- 2017-09-14 09:52:51 [ main:637 ] - [ WARN ] No MyBatis mapper was found in '[com.sp.net.dao.impl]' package. Please check your configuration.
- 2017-09-14 09:52:53 [ main:2199 ] - [ INFO ] {dataSource-1} inited
- 2017-09-14 09:52:53 [ main:2507 ] - [ DEBUG ] ==>  Preparing: select A_id, A_account, A_pwd, A_role, A_dept, A_name, A_contact, STATE from tb_admin WHERE STATE = 1 AND A_name LIKE CONCAT(CONCAT('%', ?), '%') LIMIT ?,? 
- 2017-09-14 09:52:53 [ main:2567 ] - [ DEBUG ] ==> Parameters: lu(String), 0(Integer), 10(Integer)
- 2017-09-14 09:52:53 [ main:2586 ] - [ DEBUG ] <==      Total: 1
- 2017-09-14 09:52:53 [ main:2587 ] - [ DEBUG ] ==>  Preparing: select count(1) from tb_admin WHERE STATE = 1 AND A_name LIKE CONCAT(CONCAT('%', ?), '%') 
- 2017-09-14 09:52:53 [ main:2587 ] - [ DEBUG ] ==> Parameters: lu(String)
- 2017-09-14 09:52:53 [ main:2588 ] - [ DEBUG ] <==      Total: 1
- 2017-09-14 09:53:00 [ Thread-0:9513 ] - [ INFO ] Closing org.springframework.context.support.GenericApplicationContext@3c407114: startup date [Thu Sep 14 09:52:51 CST 2017]; root of context hierarchy
- 2017-09-14 09:53:00 [ Thread-0:9522 ] - [ INFO ] {dataSource-1} closed
- 2017-09-14 14:50:00 [ main:0 ] - [ INFO ] Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
- 2017-09-14 14:50:00 [ main:15 ] - [ INFO ] Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@12b0404f, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@769e7ee8, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@5276e6b0, org.springframework.test.context.support.DirtiesContextTestExecutionListener@71b1176b, org.springframework.test.context.transaction.TransactionalTestExecutionListener@6193932a, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@647fd8ce]
- 2017-09-14 14:50:00 [ main:136 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-common.xml]
- 2017-09-14 14:50:00 [ main:416 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-db.xml]
- 2017-09-14 14:50:01 [ main:445 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-mybatis.xml]
- 2017-09-14 14:50:01 [ main:485 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-dao.xml]
- 2017-09-14 14:50:01 [ main:582 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-tx.xml]
- 2017-09-14 14:50:01 [ main:668 ] - [ INFO ] Refreshing org.springframework.context.support.GenericApplicationContext@3c407114: startup date [Thu Sep 14 14:50:01 CST 2017]; root of context hierarchy
- 2017-09-14 14:50:01 [ main:883 ] - [ WARN ] No MyBatis mapper was found in '[com.sp.net.dao.impl]' package. Please check your configuration.
- 2017-09-14 14:50:03 [ Thread-0:2423 ] - [ INFO ] Closing org.springframework.context.support.GenericApplicationContext@3c407114: startup date [Thu Sep 14 14:50:01 CST 2017]; root of context hierarchy
+2017-09-25 15:26:42 [ main:0 ] - [ INFO ] Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+ 2017-09-25 15:26:42 [ main:20 ] - [ INFO ] Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@419c5f1a, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@12b0404f, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@769e7ee8, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5276e6b0, org.springframework.test.context.transaction.TransactionalTestExecutionListener@71b1176b, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@6193932a]
+ 2017-09-25 15:26:43 [ main:134 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-common.xml]
+ 2017-09-25 15:26:43 [ main:732 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-db.xml]
+ 2017-09-25 15:26:43 [ main:801 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-mybatis.xml]
+ 2017-09-25 15:26:43 [ main:855 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-dao.xml]
+ 2017-09-25 15:26:43 [ main:906 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-tx.xml]
+ 2017-09-25 15:26:43 [ main:1026 ] - [ INFO ] Refreshing org.springframework.context.support.GenericApplicationContext@41fbdac4: startup date [Mon Sep 25 15:26:43 CST 2017]; root of context hierarchy
+ 2017-09-25 15:26:44 [ main:1449 ] - [ WARN ] No MyBatis mapper was found in '[com.sp.net.dao.impl]' package. Please check your configuration.
+ 2017-09-25 15:26:45 [ main:2699 ] - [ WARN ] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminController': Unsatisfied dependency expressed through field 'adminService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminService': Unsatisfied dependency expressed through field 'adminDao'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/sp/config/spring-mybatis.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: java.io.IOException: Could not find resource mybatis/mapper/SteelShapeMapper.xml
+ 2017-09-25 15:26:45 [ main:2712 ] - [ ERROR ] Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@769e7ee8] to prepare test instance [com.sp.test.service.OrderTest@4a9cc6cb]
+ java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:83)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:117)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:83)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:230)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:228)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:287)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:289)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:247)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:94)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:191)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminController': Unsatisfied dependency expressed through field 'adminService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminService': Unsatisfied dependency expressed through field 'adminDao'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/sp/config/spring-mybatis.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: java.io.IOException: Could not find resource mybatis/mapper/SteelShapeMapper.xml
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:588)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:867)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:543)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:128)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:60)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:108)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.loadContext(AbstractDelegatingSmartContextLoader.java:251)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:98)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:116)
+	... 25 more
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminService': Unsatisfied dependency expressed through field 'adminDao'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/sp/config/spring-mybatis.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: java.io.IOException: Could not find resource mybatis/mapper/SteelShapeMapper.xml
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:588)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585)
+	... 43 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/sp/config/spring-mybatis.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: java.io.IOException: Could not find resource mybatis/mapper/SteelShapeMapper.xml
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessPropertyValues(CommonAnnotationBeanPostProcessor.java:321)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585)
+	... 56 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/sp/config/spring-mybatis.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: java.io.IOException: Could not find resource mybatis/mapper/SteelShapeMapper.xml
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1628)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:522)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:496)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:627)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:178)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessPropertyValues(CommonAnnotationBeanPostProcessor.java:318)
+	... 67 more
+Caused by: org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: java.io.IOException: Could not find resource mybatis/mapper/SteelShapeMapper.xml
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:499)
+	at org.mybatis.spring.SqlSessionFactoryBean.afterPropertiesSet(SqlSessionFactoryBean.java:381)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1687)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1624)
+	... 79 more
+Caused by: org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: java.io.IOException: Could not find resource mybatis/mapper/SteelShapeMapper.xml
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.parseConfiguration(XMLConfigBuilder.java:117)
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.parse(XMLConfigBuilder.java:95)
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:493)
+	... 82 more
+Caused by: java.io.IOException: Could not find resource mybatis/mapper/SteelShapeMapper.xml
+	at org.apache.ibatis.io.Resources.getResourceAsStream(Resources.java:114)
+	at org.apache.ibatis.io.Resources.getResourceAsStream(Resources.java:100)
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.mapperElement(XMLConfigBuilder.java:358)
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.parseConfiguration(XMLConfigBuilder.java:115)
+	... 84 more
+2017-09-25 15:27:37 [ main:0 ] - [ INFO ] Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+ 2017-09-25 15:27:37 [ main:29 ] - [ INFO ] Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@4df50bcc, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@6b26e945, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@63a65a25, org.springframework.test.context.support.DirtiesContextTestExecutionListener@54c562f7, org.springframework.test.context.transaction.TransactionalTestExecutionListener@318ba8c8, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@6dbb137d]
+ 2017-09-25 15:27:37 [ main:160 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-common.xml]
+ 2017-09-25 15:27:38 [ main:674 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-db.xml]
+ 2017-09-25 15:27:38 [ main:724 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-mybatis.xml]
+ 2017-09-25 15:27:38 [ main:749 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-dao.xml]
+ 2017-09-25 15:27:38 [ main:770 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-tx.xml]
+ 2017-09-25 15:27:38 [ main:835 ] - [ INFO ] Refreshing org.springframework.context.support.GenericApplicationContext@15eb5ee5: startup date [Mon Sep 25 15:27:38 CST 2017]; root of context hierarchy
+ 2017-09-25 15:27:38 [ main:1055 ] - [ WARN ] No MyBatis mapper was found in '[com.sp.net.dao.impl]' package. Please check your configuration.
+ 2017-09-25 15:27:39 [ main:1866 ] - [ WARN ] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminController': Unsatisfied dependency expressed through field 'adminService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminService': Unsatisfied dependency expressed through field 'adminDao'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/sp/config/spring-mybatis.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+ 2017-09-25 15:27:39 [ main:1871 ] - [ ERROR ] Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@63a65a25] to prepare test instance [com.sp.test.service.OrderTest@49f5c307]
+ java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:83)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:117)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:83)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:230)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:228)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:287)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:289)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:247)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:94)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:191)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminController': Unsatisfied dependency expressed through field 'adminService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminService': Unsatisfied dependency expressed through field 'adminDao'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/sp/config/spring-mybatis.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:588)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:867)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:543)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:128)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:60)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:108)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.loadContext(AbstractDelegatingSmartContextLoader.java:251)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:98)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:116)
+	... 25 more
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminService': Unsatisfied dependency expressed through field 'adminDao'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/sp/config/spring-mybatis.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:588)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585)
+	... 43 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/sp/config/spring-mybatis.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessPropertyValues(CommonAnnotationBeanPostProcessor.java:321)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585)
+	... 56 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/sp/config/spring-mybatis.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1628)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:522)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:496)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:627)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:178)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessPropertyValues(CommonAnnotationBeanPostProcessor.java:318)
+	... 67 more
+Caused by: org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:499)
+	at org.mybatis.spring.SqlSessionFactoryBean.afterPropertiesSet(SqlSessionFactoryBean.java:381)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1687)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1624)
+	... 79 more
+Caused by: org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.parseConfiguration(XMLConfigBuilder.java:117)
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.parse(XMLConfigBuilder.java:95)
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:493)
+	... 82 more
+Caused by: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:120)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.parse(XMLMapperBuilder.java:92)
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.mapperElement(XMLConfigBuilder.java:360)
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.parseConfiguration(XMLConfigBuilder.java:115)
+	... 84 more
+Caused by: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:118)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElement(XMLMapperBuilder.java:265)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElement(XMLMapperBuilder.java:252)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElements(XMLMapperBuilder.java:244)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:116)
+	... 87 more
+Caused by: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:120)
+	at org.apache.ibatis.builder.BaseBuilder.resolveAlias(BaseBuilder.java:149)
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:116)
+	... 91 more
+Caused by: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:200)
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:89)
+	at org.apache.ibatis.io.Resources.classForName(Resources.java:261)
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:116)
+	... 93 more
+2017-09-25 15:27:39 [ main:1938 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-common.xml]
+ 2017-09-25 15:27:39 [ main:2269 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-db.xml]
+ 2017-09-25 15:27:39 [ main:2307 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-mybatis.xml]
+ 2017-09-25 15:27:39 [ main:2340 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-dao.xml]
+ 2017-09-25 15:27:39 [ main:2375 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-tx.xml]
+ 2017-09-25 15:27:39 [ main:2391 ] - [ INFO ] Refreshing org.springframework.context.support.GenericApplicationContext@782a4fff: startup date [Mon Sep 25 15:27:39 CST 2017]; root of context hierarchy
+ 2017-09-25 15:27:40 [ main:2470 ] - [ WARN ] No MyBatis mapper was found in '[com.sp.net.dao.impl]' package. Please check your configuration.
+ 2017-09-25 15:27:40 [ main:2778 ] - [ WARN ] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminController': Unsatisfied dependency expressed through field 'adminService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminService': Unsatisfied dependency expressed through field 'adminDao'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/sp/config/spring-mybatis.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+ 2017-09-25 15:27:40 [ main:2786 ] - [ ERROR ] Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@63a65a25] to prepare test instance [com.sp.test.service.OrderTest@5489c777]
+ java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:83)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:117)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:83)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:230)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:228)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:287)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:289)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:247)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:94)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:191)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminController': Unsatisfied dependency expressed through field 'adminService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminService': Unsatisfied dependency expressed through field 'adminDao'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/sp/config/spring-mybatis.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:588)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:867)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:543)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:128)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:60)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:108)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.loadContext(AbstractDelegatingSmartContextLoader.java:251)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:98)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:116)
+	... 25 more
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminService': Unsatisfied dependency expressed through field 'adminDao'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/sp/config/spring-mybatis.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:588)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585)
+	... 43 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/sp/config/spring-mybatis.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessPropertyValues(CommonAnnotationBeanPostProcessor.java:321)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585)
+	... 56 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/sp/config/spring-mybatis.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1628)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:522)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:496)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:627)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:178)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessPropertyValues(CommonAnnotationBeanPostProcessor.java:318)
+	... 67 more
+Caused by: org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:499)
+	at org.mybatis.spring.SqlSessionFactoryBean.afterPropertiesSet(SqlSessionFactoryBean.java:381)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1687)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1624)
+	... 79 more
+Caused by: org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.parseConfiguration(XMLConfigBuilder.java:117)
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.parse(XMLConfigBuilder.java:95)
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:493)
+	... 82 more
+Caused by: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:120)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.parse(XMLMapperBuilder.java:92)
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.mapperElement(XMLConfigBuilder.java:360)
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.parseConfiguration(XMLConfigBuilder.java:115)
+	... 84 more
+Caused by: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:118)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElement(XMLMapperBuilder.java:265)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElement(XMLMapperBuilder.java:252)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElements(XMLMapperBuilder.java:244)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:116)
+	... 87 more
+Caused by: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:120)
+	at org.apache.ibatis.builder.BaseBuilder.resolveAlias(BaseBuilder.java:149)
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:116)
+	... 91 more
+Caused by: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:200)
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:89)
+	at org.apache.ibatis.io.Resources.classForName(Resources.java:261)
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:116)
+	... 93 more
+2017-09-25 15:27:40 [ main:2815 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-common.xml]
+ 2017-09-25 15:27:40 [ main:3103 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-db.xml]
+ 2017-09-25 15:27:40 [ main:3116 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-mybatis.xml]
+ 2017-09-25 15:27:40 [ main:3124 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-dao.xml]
+ 2017-09-25 15:27:40 [ main:3135 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-tx.xml]
+ 2017-09-25 15:27:40 [ main:3145 ] - [ INFO ] Refreshing org.springframework.context.support.GenericApplicationContext@35038141: startup date [Mon Sep 25 15:27:40 CST 2017]; root of context hierarchy
+ 2017-09-25 15:27:40 [ main:3191 ] - [ WARN ] No MyBatis mapper was found in '[com.sp.net.dao.impl]' package. Please check your configuration.
+ 2017-09-25 15:27:40 [ main:3405 ] - [ WARN ] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminController': Unsatisfied dependency expressed through field 'adminService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminService': Unsatisfied dependency expressed through field 'adminDao'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/sp/config/spring-mybatis.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+ 2017-09-25 15:27:40 [ main:3406 ] - [ ERROR ] Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@63a65a25] to prepare test instance [com.sp.test.service.OrderTest@1e53135d]
+ java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:83)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:117)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:83)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:230)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:228)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:287)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:289)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:247)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:94)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:191)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminController': Unsatisfied dependency expressed through field 'adminService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminService': Unsatisfied dependency expressed through field 'adminDao'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/sp/config/spring-mybatis.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:588)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:867)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:543)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:128)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:60)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:108)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.loadContext(AbstractDelegatingSmartContextLoader.java:251)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:98)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:116)
+	... 25 more
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminService': Unsatisfied dependency expressed through field 'adminDao'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/sp/config/spring-mybatis.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:588)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585)
+	... 43 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/sp/config/spring-mybatis.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessPropertyValues(CommonAnnotationBeanPostProcessor.java:321)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585)
+	... 56 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/sp/config/spring-mybatis.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1628)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:522)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:496)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:627)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:178)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessPropertyValues(CommonAnnotationBeanPostProcessor.java:318)
+	... 67 more
+Caused by: org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:499)
+	at org.mybatis.spring.SqlSessionFactoryBean.afterPropertiesSet(SqlSessionFactoryBean.java:381)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1687)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1624)
+	... 79 more
+Caused by: org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.parseConfiguration(XMLConfigBuilder.java:117)
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.parse(XMLConfigBuilder.java:95)
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:493)
+	... 82 more
+Caused by: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:120)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.parse(XMLMapperBuilder.java:92)
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.mapperElement(XMLConfigBuilder.java:360)
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.parseConfiguration(XMLConfigBuilder.java:115)
+	... 84 more
+Caused by: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:118)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElement(XMLMapperBuilder.java:265)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElement(XMLMapperBuilder.java:252)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElements(XMLMapperBuilder.java:244)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:116)
+	... 87 more
+Caused by: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:120)
+	at org.apache.ibatis.builder.BaseBuilder.resolveAlias(BaseBuilder.java:149)
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:116)
+	... 91 more
+Caused by: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:200)
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:89)
+	at org.apache.ibatis.io.Resources.classForName(Resources.java:261)
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:116)
+	... 93 more
+2017-09-25 15:27:40 [ main:3431 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-common.xml]
+ 2017-09-25 15:27:41 [ main:3608 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-db.xml]
+ 2017-09-25 15:27:41 [ main:3623 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-mybatis.xml]
+ 2017-09-25 15:27:41 [ main:3631 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-dao.xml]
+ 2017-09-25 15:27:41 [ main:3643 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-tx.xml]
+ 2017-09-25 15:27:41 [ main:3653 ] - [ INFO ] Refreshing org.springframework.context.support.GenericApplicationContext@6e9c413e: startup date [Mon Sep 25 15:27:41 CST 2017]; root of context hierarchy
+ 2017-09-25 15:27:41 [ main:3701 ] - [ WARN ] No MyBatis mapper was found in '[com.sp.net.dao.impl]' package. Please check your configuration.
+ 2017-09-25 15:27:41 [ main:3994 ] - [ WARN ] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminController': Unsatisfied dependency expressed through field 'adminService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminService': Unsatisfied dependency expressed through field 'adminDao'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/sp/config/spring-mybatis.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+ 2017-09-25 15:27:41 [ main:3997 ] - [ ERROR ] Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@63a65a25] to prepare test instance [com.sp.test.service.OrderTest@6aa648b9]
+ java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:83)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:117)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:83)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:230)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:228)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:287)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:289)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:247)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:94)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:191)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminController': Unsatisfied dependency expressed through field 'adminService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminService': Unsatisfied dependency expressed through field 'adminDao'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/sp/config/spring-mybatis.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:588)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:867)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:543)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:128)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:60)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:108)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.loadContext(AbstractDelegatingSmartContextLoader.java:251)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:98)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:116)
+	... 25 more
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminService': Unsatisfied dependency expressed through field 'adminDao'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/sp/config/spring-mybatis.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:588)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585)
+	... 43 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/sp/config/spring-mybatis.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessPropertyValues(CommonAnnotationBeanPostProcessor.java:321)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585)
+	... 56 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/sp/config/spring-mybatis.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1628)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:522)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:496)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:627)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:178)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessPropertyValues(CommonAnnotationBeanPostProcessor.java:318)
+	... 67 more
+Caused by: org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:499)
+	at org.mybatis.spring.SqlSessionFactoryBean.afterPropertiesSet(SqlSessionFactoryBean.java:381)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1687)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1624)
+	... 79 more
+Caused by: org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.parseConfiguration(XMLConfigBuilder.java:117)
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.parse(XMLConfigBuilder.java:95)
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:493)
+	... 82 more
+Caused by: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:120)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.parse(XMLMapperBuilder.java:92)
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.mapperElement(XMLConfigBuilder.java:360)
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.parseConfiguration(XMLConfigBuilder.java:115)
+	... 84 more
+Caused by: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:118)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElement(XMLMapperBuilder.java:265)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElement(XMLMapperBuilder.java:252)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElements(XMLMapperBuilder.java:244)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:116)
+	... 87 more
+Caused by: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:120)
+	at org.apache.ibatis.builder.BaseBuilder.resolveAlias(BaseBuilder.java:149)
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:116)
+	... 91 more
+Caused by: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:200)
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:89)
+	at org.apache.ibatis.io.Resources.classForName(Resources.java:261)
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:116)
+	... 93 more
+2017-09-25 15:27:41 [ main:4010 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-common.xml]
+ 2017-09-25 15:27:41 [ main:4109 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-db.xml]
+ 2017-09-25 15:27:41 [ main:4120 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-mybatis.xml]
+ 2017-09-25 15:27:41 [ main:4134 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-dao.xml]
+ 2017-09-25 15:27:41 [ main:4143 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-tx.xml]
+ 2017-09-25 15:27:41 [ main:4160 ] - [ INFO ] Refreshing org.springframework.context.support.GenericApplicationContext@7a9c84a5: startup date [Mon Sep 25 15:27:41 CST 2017]; root of context hierarchy
+ 2017-09-25 15:27:41 [ main:4255 ] - [ WARN ] No MyBatis mapper was found in '[com.sp.net.dao.impl]' package. Please check your configuration.
+ 2017-09-25 15:27:42 [ main:4441 ] - [ WARN ] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminController': Unsatisfied dependency expressed through field 'adminService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminService': Unsatisfied dependency expressed through field 'adminDao'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/sp/config/spring-mybatis.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+ 2017-09-25 15:27:42 [ main:4443 ] - [ ERROR ] Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@63a65a25] to prepare test instance [com.sp.test.service.OrderTest@d59970a]
+ java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:83)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:117)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:83)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:230)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:228)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:287)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:289)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:247)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:94)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:191)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminController': Unsatisfied dependency expressed through field 'adminService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminService': Unsatisfied dependency expressed through field 'adminDao'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/sp/config/spring-mybatis.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:588)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:867)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:543)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:128)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:60)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:108)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.loadContext(AbstractDelegatingSmartContextLoader.java:251)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:98)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:116)
+	... 25 more
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminService': Unsatisfied dependency expressed through field 'adminDao'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/sp/config/spring-mybatis.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:588)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585)
+	... 43 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminDao': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/sp/config/spring-mybatis.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessPropertyValues(CommonAnnotationBeanPostProcessor.java:321)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585)
+	... 56 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/sp/config/spring-mybatis.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1628)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:522)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:496)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:627)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:178)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessPropertyValues(CommonAnnotationBeanPostProcessor.java:318)
+	... 67 more
+Caused by: org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [com/sp/config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:499)
+	at org.mybatis.spring.SqlSessionFactoryBean.afterPropertiesSet(SqlSessionFactoryBean.java:381)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1687)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1624)
+	... 79 more
+Caused by: org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.parseConfiguration(XMLConfigBuilder.java:117)
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.parse(XMLConfigBuilder.java:95)
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:493)
+	... 82 more
+Caused by: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:120)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.parse(XMLMapperBuilder.java:92)
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.mapperElement(XMLConfigBuilder.java:360)
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.parseConfiguration(XMLConfigBuilder.java:115)
+	... 84 more
+Caused by: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:118)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElement(XMLMapperBuilder.java:265)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElement(XMLMapperBuilder.java:252)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElements(XMLMapperBuilder.java:244)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:116)
+	... 87 more
+Caused by: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.sp.net.entity.SteelShape'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:120)
+	at org.apache.ibatis.builder.BaseBuilder.resolveAlias(BaseBuilder.java:149)
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:116)
+	... 91 more
+Caused by: java.lang.ClassNotFoundException: Cannot find class: com.sp.net.entity.SteelShape
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:200)
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:89)
+	at org.apache.ibatis.io.Resources.classForName(Resources.java:261)
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:116)
+	... 93 more
+2017-09-25 15:29:07 [ main:0 ] - [ INFO ] Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+ 2017-09-25 15:29:07 [ main:17 ] - [ INFO ] Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@419c5f1a, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@12b0404f, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@769e7ee8, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5276e6b0, org.springframework.test.context.transaction.TransactionalTestExecutionListener@71b1176b, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@6193932a]
+ 2017-09-25 15:29:07 [ main:145 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-common.xml]
+ 2017-09-25 15:29:08 [ main:409 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-db.xml]
+ 2017-09-25 15:29:08 [ main:432 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-mybatis.xml]
+ 2017-09-25 15:29:08 [ main:455 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-dao.xml]
+ 2017-09-25 15:29:08 [ main:483 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-tx.xml]
+ 2017-09-25 15:29:08 [ main:530 ] - [ INFO ] Refreshing org.springframework.context.support.GenericApplicationContext@41fbdac4: startup date [Mon Sep 25 15:29:08 CST 2017]; root of context hierarchy
+ 2017-09-25 15:29:08 [ main:794 ] - [ WARN ] No MyBatis mapper was found in '[com.sp.net.dao.impl]' package. Please check your configuration.
+ 2017-09-25 15:29:11 [ main:3207 ] - [ INFO ] {dataSource-1} inited
+ 2017-09-25 15:29:11 [ main:3343 ] - [ DEBUG ] ==>  Preparing: select uuid() from dual 
+ 2017-09-25 15:29:11 [ main:3369 ] - [ DEBUG ] ==> Parameters: 
+ 2017-09-25 15:29:11 [ main:3455 ] - [ DEBUG ] <==      Total: 1
+ 2017-09-25 15:29:11 [ main:3455 ] - [ DEBUG ] ==>  Preparing: INSERT INTO tb_order ( O_ID, PROJECT_NAME , C_ID , A_ID , DUE_DATE , TOTAL_PRICE , CREATETIME , MODIFYTIME , ORDER_STATE , STATE ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+ 2017-09-25 15:29:11 [ main:3462 ] - [ DEBUG ] ==> Parameters: 531d211c-a1c3-11e7-9d08-c85b76aeb963(String), 测试项目111111(String), 3ea284418c6e11e7b5cec85b76aeb963(String), 64c7f5eb87e311e7b5cec85b76aeb963(String), 2017-09-30 15:29:09.985(Timestamp), null, 2017-09-25 15:29:11.071(Timestamp), 2017-09-25 15:29:11.071(Timestamp), 1(String), 1(String)
+ 2017-09-25 15:29:11 [ main:3472 ] - [ DEBUG ] <==    Updates: 1
+ 2017-09-25 15:29:11 [ Thread-0:3515 ] - [ INFO ] Closing org.springframework.context.support.GenericApplicationContext@41fbdac4: startup date [Mon Sep 25 15:29:08 CST 2017]; root of context hierarchy
+ 2017-09-25 15:29:11 [ Thread-0:3537 ] - [ INFO ] {dataSource-1} closed
+ 2017-09-25 16:00:46 [ main:0 ] - [ INFO ] Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+ 2017-09-25 16:00:46 [ main:72 ] - [ INFO ] Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@419c5f1a, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@12b0404f, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@769e7ee8, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5276e6b0, org.springframework.test.context.transaction.TransactionalTestExecutionListener@71b1176b, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@6193932a]
+ 2017-09-25 16:00:46 [ main:214 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-common.xml]
+ 2017-09-25 16:00:46 [ main:484 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-db.xml]
+ 2017-09-25 16:00:47 [ main:519 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-mybatis.xml]
+ 2017-09-25 16:00:47 [ main:550 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-dao.xml]
+ 2017-09-25 16:00:47 [ main:583 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-tx.xml]
+ 2017-09-25 16:00:47 [ main:644 ] - [ INFO ] Refreshing org.springframework.context.support.GenericApplicationContext@41fbdac4: startup date [Mon Sep 25 16:00:47 CST 2017]; root of context hierarchy
+ 2017-09-25 16:00:47 [ main:970 ] - [ WARN ] No MyBatis mapper was found in '[com.sp.net.dao.impl]' package. Please check your configuration.
+ 2017-09-25 16:00:49 [ main:3178 ] - [ INFO ] {dataSource-1} inited
+ 2017-09-25 16:00:49 [ Thread-0:3245 ] - [ INFO ] Closing org.springframework.context.support.GenericApplicationContext@41fbdac4: startup date [Mon Sep 25 16:00:47 CST 2017]; root of context hierarchy
+ 2017-09-25 16:00:49 [ Thread-0:3263 ] - [ INFO ] {dataSource-1} closed
+ 2017-09-25 16:10:22 [ main:0 ] - [ INFO ] Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+ 2017-09-25 16:10:22 [ main:20 ] - [ INFO ] Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@419c5f1a, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@12b0404f, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@769e7ee8, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5276e6b0, org.springframework.test.context.transaction.TransactionalTestExecutionListener@71b1176b, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@6193932a]
+ 2017-09-25 16:10:22 [ main:120 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-common.xml]
+ 2017-09-25 16:10:22 [ main:378 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-db.xml]
+ 2017-09-25 16:10:22 [ main:404 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-mybatis.xml]
+ 2017-09-25 16:10:22 [ main:436 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-dao.xml]
+ 2017-09-25 16:10:22 [ main:457 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-tx.xml]
+ 2017-09-25 16:10:22 [ main:513 ] - [ INFO ] Refreshing org.springframework.context.support.GenericApplicationContext@41fbdac4: startup date [Mon Sep 25 16:10:22 CST 2017]; root of context hierarchy
+ 2017-09-25 16:10:23 [ main:762 ] - [ WARN ] No MyBatis mapper was found in '[com.sp.net.dao.impl]' package. Please check your configuration.
+ 2017-09-25 16:10:24 [ main:2369 ] - [ INFO ] {dataSource-1} inited
+ 2017-09-25 16:10:24 [ main:2453 ] - [ DEBUG ] ==>  Preparing: select replace(uuid(),'-','') from dual 
+ 2017-09-25 16:10:24 [ main:2471 ] - [ DEBUG ] ==> Parameters: 
+ 2017-09-25 16:10:24 [ main:2540 ] - [ DEBUG ] <==      Total: 1
+ 2017-09-25 16:10:24 [ main:2541 ] - [ DEBUG ] ==>  Preparing: INSERT INTO tb_order_detail ( D_ID, O_ID , S_ID , DIAMETRE , PRICE , STEEL_CATEGORY , LENGTH , COUNT , WEIGHT , TOTAL_PRICE , STATE ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+ 2017-09-25 16:10:24 [ main:2546 ] - [ DEBUG ] ==> Parameters: 12312321(String), null, null, null, null, null, null, null, null, 1(String)
+ 2017-09-25 16:10:24 [ main:2584 ] - [ INFO ] Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+ 2017-09-25 16:10:24 [ main:2646 ] - [ INFO ] SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase, Hana]
+ 2017-09-25 16:10:24 [ Thread-0:2659 ] - [ INFO ] Closing org.springframework.context.support.GenericApplicationContext@41fbdac4: startup date [Mon Sep 25 16:10:22 CST 2017]; root of context hierarchy
+ 2017-09-25 16:10:24 [ Thread-0:2673 ] - [ INFO ] {dataSource-1} closed
+ 2017-09-25 16:18:19 [ main:0 ] - [ INFO ] Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+ 2017-09-25 16:18:19 [ main:84 ] - [ INFO ] Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@419c5f1a, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@12b0404f, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@769e7ee8, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5276e6b0, org.springframework.test.context.transaction.TransactionalTestExecutionListener@71b1176b, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@6193932a]
+ 2017-09-25 16:18:19 [ main:212 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-common.xml]
+ 2017-09-25 16:18:20 [ main:563 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-db.xml]
+ 2017-09-25 16:18:20 [ main:620 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-mybatis.xml]
+ 2017-09-25 16:18:20 [ main:676 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-dao.xml]
+ 2017-09-25 16:18:20 [ main:739 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-tx.xml]
+ 2017-09-25 16:18:20 [ main:862 ] - [ INFO ] Refreshing org.springframework.context.support.GenericApplicationContext@41fbdac4: startup date [Mon Sep 25 16:18:20 CST 2017]; root of context hierarchy
+ 2017-09-25 16:18:20 [ main:1186 ] - [ WARN ] No MyBatis mapper was found in '[com.sp.net.dao.impl]' package. Please check your configuration.
+ 2017-09-25 16:18:23 [ main:3560 ] - [ INFO ] {dataSource-1} inited
+ 2017-09-25 16:18:23 [ main:3648 ] - [ DEBUG ] ==>  Preparing: select uuid() from dual 
+ 2017-09-25 16:18:23 [ main:3669 ] - [ DEBUG ] ==> Parameters: 
+ 2017-09-25 16:18:23 [ main:3685 ] - [ DEBUG ] <==      Total: 1
+ 2017-09-25 16:18:23 [ main:3686 ] - [ DEBUG ] ==>  Preparing: INSERT INTO tb_order_detail ( D_ID, O_ID , S_ID , DIAMETRE , PRICE , STEEL_CATEGORY , LENGTH , COUNT , WEIGHT , TOTAL_PRICE , STATE ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+ 2017-09-25 16:18:23 [ main:3687 ] - [ DEBUG ] ==> Parameters: 3298dfa5-a1ca-11e7-9d08-c85b76aeb963(String), 12312321(String), null, null, null, null, null, null, null, null, 1(String)
+ 2017-09-25 16:18:23 [ main:3689 ] - [ DEBUG ] <==    Updates: 1
+ 2017-09-25 16:18:23 [ Thread-0:3769 ] - [ INFO ] Closing org.springframework.context.support.GenericApplicationContext@41fbdac4: startup date [Mon Sep 25 16:18:20 CST 2017]; root of context hierarchy
+ 2017-09-25 16:18:23 [ Thread-0:3797 ] - [ INFO ] {dataSource-1} closed
+ 2017-09-25 17:49:47 [ main:0 ] - [ INFO ] Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+ 2017-09-25 17:49:47 [ main:63 ] - [ INFO ] Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@419c5f1a, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@12b0404f, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@769e7ee8, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5276e6b0, org.springframework.test.context.transaction.TransactionalTestExecutionListener@71b1176b, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@6193932a]
+ 2017-09-25 17:49:47 [ main:164 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-common.xml]
+ 2017-09-25 17:49:47 [ main:376 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-db.xml]
+ 2017-09-25 17:49:47 [ main:397 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-mybatis.xml]
+ 2017-09-25 17:49:47 [ main:419 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-dao.xml]
+ 2017-09-25 17:49:47 [ main:437 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-tx.xml]
+ 2017-09-25 17:49:47 [ main:493 ] - [ INFO ] Refreshing org.springframework.context.support.GenericApplicationContext@41fbdac4: startup date [Mon Sep 25 17:49:47 CST 2017]; root of context hierarchy
+ 2017-09-25 17:49:48 [ main:744 ] - [ WARN ] No MyBatis mapper was found in '[com.sp.net.dao.impl]' package. Please check your configuration.
+ 2017-09-25 17:49:49 [ main:2392 ] - [ INFO ] {dataSource-1} inited
+ 2017-09-25 17:49:49 [ main:2472 ] - [ DEBUG ] ==>  Preparing: select uuid() from dual 
+ 2017-09-25 17:49:49 [ main:2496 ] - [ DEBUG ] ==> Parameters: 
+ 2017-09-25 17:49:49 [ main:2519 ] - [ DEBUG ] <==      Total: 1
+ 2017-09-25 17:49:49 [ main:2520 ] - [ DEBUG ] ==>  Preparing: INSERT INTO tb_order ( O_ID, PROJECT_NAME , C_ID , A_ID , DUE_DATE , TOTAL_PRICE , CREATETIME , MODIFYTIME , ORDER_STATE , STATE ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+ 2017-09-25 17:49:49 [ main:2529 ] - [ DEBUG ] ==> Parameters: f8d6520e-a1d6-11e7-9d08-c85b76aeb963(String), test(String), null, null, null, null, 2017-09-25 17:49:49.659(Timestamp), 2017-09-25 17:49:49.659(Timestamp), 1(String), 1(String)
+ 2017-09-25 17:49:49 [ main:2557 ] - [ INFO ] Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+ 2017-09-25 17:49:49 [ main:2664 ] - [ INFO ] SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase, Hana]
+ 2017-09-25 17:49:49 [ Thread-0:2713 ] - [ INFO ] Closing org.springframework.context.support.GenericApplicationContext@41fbdac4: startup date [Mon Sep 25 17:49:47 CST 2017]; root of context hierarchy
+ 2017-09-25 17:49:49 [ Thread-0:2729 ] - [ INFO ] {dataSource-1} closed
+ 2017-09-25 17:51:21 [ main:0 ] - [ INFO ] Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+ 2017-09-25 17:51:21 [ main:20 ] - [ INFO ] Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@419c5f1a, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@12b0404f, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@769e7ee8, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5276e6b0, org.springframework.test.context.transaction.TransactionalTestExecutionListener@71b1176b, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@6193932a]
+ 2017-09-25 17:51:21 [ main:123 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-common.xml]
+ 2017-09-25 17:51:21 [ main:353 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-db.xml]
+ 2017-09-25 17:51:21 [ main:384 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-mybatis.xml]
+ 2017-09-25 17:51:21 [ main:432 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-dao.xml]
+ 2017-09-25 17:51:21 [ main:455 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-tx.xml]
+ 2017-09-25 17:51:21 [ main:505 ] - [ INFO ] Refreshing org.springframework.context.support.GenericApplicationContext@41fbdac4: startup date [Mon Sep 25 17:51:21 CST 2017]; root of context hierarchy
+ 2017-09-25 17:51:21 [ main:734 ] - [ WARN ] No MyBatis mapper was found in '[com.sp.net.dao.impl]' package. Please check your configuration.
+ 2017-09-25 17:51:23 [ main:2226 ] - [ INFO ] {dataSource-1} inited
+ 2017-09-25 17:51:23 [ main:2309 ] - [ DEBUG ] ==>  Preparing: select uuid() from dual 
+ 2017-09-25 17:51:23 [ main:2327 ] - [ DEBUG ] ==> Parameters: 
+ 2017-09-25 17:51:23 [ main:2343 ] - [ DEBUG ] <==      Total: 1
+ 2017-09-25 17:51:23 [ main:2345 ] - [ DEBUG ] ==>  Preparing: INSERT INTO tb_order ( O_ID, PROJECT_NAME , C_ID , A_ID , DUE_DATE , TOTAL_PRICE , CREATETIME , MODIFYTIME , ORDER_STATE , STATE ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+ 2017-09-25 17:51:23 [ main:2352 ] - [ DEBUG ] ==> Parameters: 30af6599-a1d7-11e7-9d08-c85b76aeb963(String), test(String), cid(String), aid(String), 2017-09-25 17:51:22.883(Timestamp), null, 2017-09-25 17:51:23.357(Timestamp), 2017-09-25 17:51:23.357(Timestamp), 1(String), 1(String)
+ 2017-09-25 17:51:23 [ main:2514 ] - [ INFO ] Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+ 2017-09-25 17:51:23 [ main:2550 ] - [ INFO ] SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase, Hana]
+ 2017-09-25 17:51:23 [ Thread-0:2594 ] - [ INFO ] Closing org.springframework.context.support.GenericApplicationContext@41fbdac4: startup date [Mon Sep 25 17:51:21 CST 2017]; root of context hierarchy
+ 2017-09-25 17:51:23 [ Thread-0:2610 ] - [ INFO ] {dataSource-1} closed
+ 2017-09-25 17:51:59 [ main:0 ] - [ INFO ] Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+ 2017-09-25 17:51:59 [ main:30 ] - [ INFO ] Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@419c5f1a, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@12b0404f, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@769e7ee8, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5276e6b0, org.springframework.test.context.transaction.TransactionalTestExecutionListener@71b1176b, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@6193932a]
+ 2017-09-25 17:51:59 [ main:175 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-common.xml]
+ 2017-09-25 17:52:00 [ main:398 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-db.xml]
+ 2017-09-25 17:52:00 [ main:422 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-mybatis.xml]
+ 2017-09-25 17:52:00 [ main:443 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-dao.xml]
+ 2017-09-25 17:52:00 [ main:462 ] - [ INFO ] Loading XML bean definitions from class path resource [com/sp/config/spring-tx.xml]
+ 2017-09-25 17:52:00 [ main:518 ] - [ INFO ] Refreshing org.springframework.context.support.GenericApplicationContext@41fbdac4: startup date [Mon Sep 25 17:52:00 CST 2017]; root of context hierarchy
+ 2017-09-25 17:52:00 [ main:724 ] - [ WARN ] No MyBatis mapper was found in '[com.sp.net.dao.impl]' package. Please check your configuration.
+ 2017-09-25 17:52:02 [ main:2557 ] - [ INFO ] {dataSource-1} inited
+ 2017-09-25 17:52:02 [ main:2634 ] - [ DEBUG ] ==>  Preparing: select uuid() from dual 
+ 2017-09-25 17:52:02 [ main:2652 ] - [ DEBUG ] ==> Parameters: 
+ 2017-09-25 17:52:02 [ main:2668 ] - [ DEBUG ] <==      Total: 1
+ 2017-09-25 17:52:02 [ main:2669 ] - [ DEBUG ] ==>  Preparing: INSERT INTO tb_order ( O_ID, PROJECT_NAME , C_ID , A_ID , DUE_DATE , TOTAL_PRICE , CREATETIME , MODIFYTIME , ORDER_STATE , STATE ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+ 2017-09-25 17:52:02 [ main:2676 ] - [ DEBUG ] ==> Parameters: 47ef542e-a1d7-11e7-9d08-c85b76aeb963(String), test(String), 3ea284418c6e11e7b5cec85b76aeb963(String), 1(String), 2017-09-25 17:52:01.829(Timestamp), null, 2017-09-25 17:52:02.374(Timestamp), 2017-09-25 17:52:02.374(Timestamp), 1(String), 1(String)
+ 2017-09-25 17:52:02 [ main:2726 ] - [ DEBUG ] <==    Updates: 1
+ 2017-09-25 17:52:02 [ Thread-0:2761 ] - [ INFO ] Closing org.springframework.context.support.GenericApplicationContext@41fbdac4: startup date [Mon Sep 25 17:52:00 CST 2017]; root of context hierarchy
+ 2017-09-25 17:52:02 [ Thread-0:2773 ] - [ INFO ] {dataSource-1} closed
  

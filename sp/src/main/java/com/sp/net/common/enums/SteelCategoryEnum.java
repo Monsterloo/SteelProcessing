@@ -7,15 +7,15 @@ import java.util.Map;
 
 public enum SteelCategoryEnum {
 
-	GY_STEEL("光圆钢筋",0),
+	GY_STEEL("光圆钢筋",1),
 	
-	DL_STEEL("带肋钢筋",1),
+	DL_STEEL("带肋钢筋",2),
 	
-	NZ_STEEL("扭转钢筋",2),
+	NZ_STEEL("扭转钢筋",3),
 	
-	BX_Z_STEEL("变形钢筋(直)",3),
+	BX_Z_STEEL("变形钢筋(直)",4),
 	
-	BX_Y_STEEL("变形钢筋(圆)",4);
+	BX_Y_STEEL("变形钢筋(圆)",5);
 	
 	/**
 	 * 枚举值

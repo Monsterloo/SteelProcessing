@@ -23,7 +23,7 @@ import com.sp.net.service.MaterialService;
 import com.sp.net.service.WarehouseRecordService;
 
 @Component("materialService")
-@Transactional
+@Transactional(rollbackFor=Exception.class)
 public class MaterialServiceImpl implements MaterialService{
 	
 	@Autowired
@@ -90,6 +90,9 @@ public class MaterialServiceImpl implements MaterialService{
 		return count;
 	}
 
+	/**
+	 * 获取入库中的材料数量
+	 */
 	@Override
 	public PageBean listPageByPurchaseCount(PageBean pageBean) {
 		// TODO Auto-generated method stub

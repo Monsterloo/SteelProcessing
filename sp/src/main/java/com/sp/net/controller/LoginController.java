@@ -16,6 +16,11 @@ import com.sp.net.common.AppConstants;
 import com.sp.net.entity.Admin;
 import com.sp.net.service.AdminService;
 
+/**
+ * 登录
+ * @author junlonlu
+ *
+ */
 @Controller
 @RequestMapping("/login/*")
 public class LoginController extends BaseController{

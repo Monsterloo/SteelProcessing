@@ -18,7 +18,8 @@
 		<mapper resource="mybatis/mapper/WarehouseRecordMapper.xml" />
 		<mapper resource="mybatis/mapper/ProductMapper.xml" />
 		<mapper resource="mybatis/mapper/OrderMapper.xml" />
-		<mapper resource="mybatis/mapper/SteelShapeMapper.xml" />
+		<mapper resource="mybatis/mapper/SteelMapper.xml" />
+		<mapper resource="mybatis/mapper/OrderDetailMapper.xml" />
 	</mappers>
 
 </configuration>  

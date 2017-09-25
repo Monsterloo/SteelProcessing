@@ -37,6 +37,11 @@ public class WarehouseRecord implements Serializable{
 	 * 材料类型
 	 */
 	private Integer materialCategory;
+	
+	/**
+	 * 入库单价
+	 */
+	private Double price;
 
 	/**
 	 * 采购状态
@@ -117,6 +122,19 @@ public class WarehouseRecord implements Serializable{
 	 */
 	public Integer getMaterialCategory() {
 		return this.materialCategory;
+	}
+	
+	/**
+	 * 入库单价
+	 */
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+	/**
+	 * 入库单价
+	 */
+	public Double getPrice() {
+		return this.price;
 	}
 
 	/**

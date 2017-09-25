@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="com.sp.net.dao.impl.SteelShapeDaoImpl">
-	<sql id="table"> tb_steel_shape </sql>
+<mapper namespace="com.sp.net.dao.impl.SteelDaoImpl">
+	<sql id="table"> tb_steel </sql>
 
 	<!-- 用于返回的bean对象 -->
-	<resultMap id="BaseResultMap" type="com.sp.net.entity.SteelShape">
+	<resultMap id="BaseResultMap" type="com.sp.net.entity.Steel">
 		<result column="S_ID" property="sid" jdbcType="VARCHAR"/>
 		<result column="IMAGE_URL" property="imageUrl" jdbcType="VARCHAR"/>
 		<result column="FORMULA" property="formula" jdbcType="VARCHAR"/>
@@ -21,7 +21,7 @@
 	</sql>
 
 	<!-- 插入记录 -->
-	<insert id="insert" parameterType="com.sp.net.entity.SteelShape"  keyProperty="sid">		
+	<insert id="insert" parameterType="com.sp.net.entity.Steel"  keyProperty="sid">		
 		INSERT INTO <include refid="table" /> (
 			S_ID,
         	IMAGE_URL ,
@@ -54,7 +54,7 @@
 	</insert>
 
 	<!--更新-->
-	<update id="update" parameterType="com.sp.net.entity.SteelShape">
+	<update id="update" parameterType="com.sp.net.entity.Steel">
         UPDATE <include refid="table" /> SET
 			IMAGE_URL = #{imageUrl,jdbcType=VARCHAR},
 			FORMULA = #{formula,jdbcType=VARCHAR},
@@ -63,7 +63,7 @@
 	</update>
 
 	<!-- 只更新不为null的属性 -->
-	<update id="updateIfNotNull" parameterType="com.sp.net.entity.SteelShape">
+	<update id="updateIfNotNull" parameterType="com.sp.net.entity.Steel">
 		UPDATE <include refid="table" />
 		<set>
 			<if test="imageUrl != null">
