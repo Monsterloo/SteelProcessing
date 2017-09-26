@@ -23,4 +23,11 @@ public class OrderDetailTest {
 		long insert = orderDetailService.insert(od);
 		System.out.println(insert);
 	}
+	
+	@Test
+	public void dIdSub(){
+		String dId = "000040-3";
+		dId = dId.substring(0, dId.indexOf("-"));
+		System.out.println(dId);
+	}
 }

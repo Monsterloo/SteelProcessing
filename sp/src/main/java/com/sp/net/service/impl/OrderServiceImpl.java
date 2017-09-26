@@ -112,6 +112,9 @@ public class OrderServiceImpl implements OrderService{
 			List<OrderDetail> orderDetailList = order.getOrderDetailList();
 			if(orderDetailList.size() > 0){
 				for(OrderDetail od : orderDetailList){
+					String dId = od.getDid();
+					dId = dId.substring(0, dId.indexOf("-"));
+					od.setDid(dId);
 					od.setOid(oid);
 					long createDetail = orderDetailService.insert(od);
 					if(createDetail <= 0){
