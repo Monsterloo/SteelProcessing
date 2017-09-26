@@ -392,8 +392,8 @@ public class BaseController extends HttpServlet{
 		Map map = getHttpRequest().getParameterMap();
 		Set keys = map.keySet();
 		for (Object key : keys) {
-			/*byte [] b= this.getString(key.toString()).getBytes("ISO-8859-1");
-			String value = new String(b,"utf-8");*/
+			//byte [] b= this.getString(key.toString()).getBytes("ISO-8859-1");
+			//String value = new String(b,"utf-8");
 			String value = URLDecoder.decode(this.getString(key.toString()),"utf-8");
 			//String value = this.getString(key.toString());
 			if (value == null) {

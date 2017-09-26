@@ -331,18 +331,14 @@ export default {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
                     this.dialogFormVisible = false;
-                    let id = this.selectTable.aid;
-                    let name = this.selectTable.aname;
-                    let contact = this.selectTable.acontact;
-                    let arole = this.selectTable.arole;
+                    // let id = this.selectTable.aid;
+                    // let name = this.selectTable.aname;
+                    // let contact = this.selectTable.acontact;
+                    // let arole = this.selectTable.arole;
                     // let aRoleName = this.selectTable.aRoleName;
-                    let aRoleName = '';
-                    if(arole == '0'){
-                        aRoleName='普通管理员';
-                    }else if(arole =='1'){
-                        aRoleName='超级管理员';
-                    }
-                    this.$http.post('/sp/admin/update?aid='+ id +'&aname='+ name +'&acontact='+ contact +'&arole='+ arole +'&aRoleName='+ aRoleName , {
+                    // letl
+                    // this.$http.post('/sp/admin/update?aid='+ id +'&aname='+ name +'&acontact='+ contact +'&arole='+ arole +'&aRoleName='+ aRoleName , {
+                    this.$http.post('/sp/admin/update', this.selectTable,{                        
                         headers: {},
                         emulateJSON: true
                     }).then(function(response) {
