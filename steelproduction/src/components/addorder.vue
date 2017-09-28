@@ -64,11 +64,11 @@
 
            <el-table-column label="钢筋种类">
             <template scope="scope">
-              <span v-if='scope.row.type==1'> 光 圆 钢 筋</span>
-              <span v-if='scope.row.type==2'> 带 肋 钢 筋</span>
-              <span v-if='scope.row.type==3'> 扭 转 钢 筋</span>
-              <span v-if='scope.row.type==4'> 变 形 钢 筋 (直)</span>
-              <span v-if='scope.row.type==5'> 变 形 钢 筋 (圆)</span>
+              <span v-if='scope.row.steelCategory=="1"'> 光 圆 钢 筋</span>
+              <span v-if='scope.row.steelCategory=="2"'> 带 肋 钢 筋</span>
+              <span v-if='scope.row.steelCategory=="3"'> 扭 转 钢 筋</span>
+              <span v-if='scope.row.steelCategory=="4"'> 变 形 钢 筋 (直)</span>
+              <span v-if='scope.row.steelCategory=="5"'> 变 形 钢 筋 (圆)</span>
             </template>
           </el-table-column>
           <el-table-column label="简图" width="180">
@@ -123,7 +123,7 @@
       </el-form-item> 
        <el-form-item label="钢 筋 种 类" class="fontcolor temipt " prop="price">
         <div class="forminput pricewidth">
-        <select v-model="productform.type" class="mySelect">
+        <select v-model="productform.steelCategory" class="mySelect">
                <option v-for="item in optiontype" v-bind:value="item.value" v-bind:key="item.value" placeholder="请选择" >{{item.label}}</option>
         </select>
         </div>
@@ -203,7 +203,7 @@ export default {
                 picsrc: '',
                 price: '',
                 spec: '',
-                type: 0,
+                steelCategory: '0',
                 dim: 0,
                 A: 0,
                 B: 0,
@@ -211,23 +211,23 @@ export default {
                 D: 0,
             },
             optiontype: [{
-                value: 1,
+                value: '1',
                 label: '光圆钢筋'
             },
             {
-                value: 2,
+                value: '2',
                 label: '带肋钢筋'
             },
             {
-                value: 3,
+                value: '3',
                 label: '扭转钢筋'
             },
             {
-                value: 4,
+                value: '4',
                 label: '变形钢筋(直)'
             },
             {
-                value: 5,
+                value: '5',
                 label:'变形钢筋(圆)'
             }],
             options4: [],
@@ -349,7 +349,7 @@ export default {
                     D: 0,
                     totallength:0,
                     weigth:0,
-                    type: 0
+                    steelCategory: '0'
                 }]
             },
             dialogFormVisible: false,
@@ -509,9 +509,9 @@ export default {
             objtemp.amount = this.productform.amount;
             objtemp.picsrc = this.productform.picsrc;
             objtemp.price = Number(this.productform.price);
-            objtemp.dim = Number(this.productform.dim);
+            objtemp.diametre = Number(this.productform.dim);
             objtemp.totallength=Number(this.productform.totalLength);
-            objtemp.type=Number(this.productform.type);
+            objtemp.steelCategory=Number(this.productform.steelCategory);
             objtemp.A = Number(this.productform.A);
             objtemp.B = Number(this.productform.B);
             objtemp.C = Number(this.productform.C);
@@ -536,7 +536,7 @@ export default {
             this.productform.price = 0;
             this.productform.dim= 0;
             this.productform.totalLength=0;
-            this.productform.type= 0;
+            this.productform.steelCategory= 0;
             this.productform.A=0;
             this.productform.B=0;
             this.productform.C=0;

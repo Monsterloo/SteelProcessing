@@ -98,12 +98,12 @@
             </el-table-column>
             <el-table-column label="公司名称">
                 <template scope="scope">
-                    <span> {{ scope.row.companyname}}</span>
+                    <span> {{ scope.row.client}}</span>
                 </template>
             </el-table-column>
             <el-table-column label="订单总价">
                 <template scope="scope">
-                    <span> {{ scope.row.companyname}}</span>
+                    <span> {{ scope.row.totalPrice}}</span>
                 </template>
             </el-table-column>
             <el-table-column label="到期日">
@@ -114,7 +114,7 @@
             <el-table-column label="操作">
                 <template scope="scope">
                     <!--确认订单生产完成-->
-                    <el-button @click="updatestatus(scope.$index, scope.row)" type="text" v-if="scope.row.orderState!='订单出库'&&scope.row.orderState!='生产完成'">更新进度</el-button>
+                    <el-button @click="updatestatus(scope.$index, scope.row)" type="text" v-if="scope.row.orderState!='2'&&scope.row.orderState!='3'">更新进度</el-button>
                     <span v-if="scope.row.orderState=='3'">订单已出库</span>
                     <span v-if="scope.row.orderState=='2'">订单待出库</span>
                     <el-button @click="printEdit(scope.$index, scope.row)" type="text">订单打印</el-button>
@@ -209,6 +209,21 @@
 </style>
 
 <script>
+function formatDateTime(inputTime) {
+    var date = new Date(inputTime);
+    var y = date.getFullYear();
+    var m = date.getMonth() + 1;
+    m = m < 10 ? ('0' + m) : m;
+    var d = date.getDate();
+    d = d < 10 ? ('0' + d) : d;
+    var h = date.getHours();
+    h = h < 10 ? ('0' + h) : h;
+    var minute = date.getMinutes();
+    var second = date.getSeconds();
+    minute = minute < 10 ? ('0' + minute) : minute;
+    second = second < 10 ? ('0' + second) : second;
+    return y + '-' + m + '-' + d + ' ' + h + ':' + minute + ':' + second;
+}
 export default {
     data() {
         return {
@@ -233,12 +248,15 @@ export default {
             this.loading = true;
             this.$http.get('/sp/order/listPage' + '/' + this.pageIndex + '/' + this.pageSize).then((response) => {
                 console.log(response.data);
+                console.log(typeof(response.data.recordList[0].dueDate));
                 this.totaldata=response.data.recordList;
                 for (var i = 0; i < this.totaldata.length; i++) {
                 // 拼接路径
                     if(this.totaldata[i].picid){
                         this.totaldata[i].pic=require('../assets/addimg/' + response.data[i].picid.split('-')[0] + '.jpg');
                     }
+                    this.totaldata[i].dueDate = formatDateTime(new Date(this.totaldata[i].dueDate));
+
                 }
                 this.total=response.data.total;
             }).then((response) => {
@@ -262,13 +280,8 @@ export default {
             console.log(this.selectedTable);
         },
         update: function() {
-            //更改订单状态
 
-            // if (this.selectedTable.status == '生产完成') {
-            //     this.selectedTable.status = '订单出库';
-            // }
-            // else { this.selectedTable.status = '生产完成';}
-            //    console.log(this.selectedTable)
+            this.selectedTable.orderState='2';
             this.$http.post('/sp/order/completeProducted' + '/' + this.selectedTable.id, this.selectedTable, {
                 headers: {},
                 emulateJSON: true
@@ -280,16 +293,6 @@ export default {
                     type: 'success'
                 });
                 this.fetchData();
-                // this.$http.get(this.servicerurl + '/order', {
-                //     pageIndex: this.pageIndex,
-                //     pageSize: this.pageSize
-                // }, {
-                //     headers: {},
-                //     emulateJSON: true
-                // }).then(function(response) {
-                //     console.log(response.data);
-                    
-                // });
                 console.log(response.data);
 
             }, function(response) {
