@@ -12,6 +12,7 @@
 		<result column="DIAMETRE" property="diametre" jdbcType="DOUBLE"/>
 		<result column="PRICE" property="price" jdbcType="DOUBLE"/>
 		<result column="STEEL_CATEGORY" property="steelCategory" jdbcType="VARCHAR"/>
+		<result column="PARTS_LENGTH" property="partsLength" jdbcType="VARCHAR"/>
 		<result column="LENGTH" property="length" jdbcType="DOUBLE"/>
 		<result column="COUNT" property="count" jdbcType="INTEGER"/>
 		<result column="WEIGHT" property="weight" jdbcType="DOUBLE"/>
@@ -27,6 +28,7 @@
 		DIAMETRE,
 		PRICE,
 		STEEL_CATEGORY,
+		PARTS_LENGTH,
 		LENGTH,
 		COUNT,
 		WEIGHT,
@@ -48,18 +50,20 @@
         	DIAMETRE ,
         	PRICE ,
         	STEEL_CATEGORY ,
+        	PARTS_LENGTH ,
         	LENGTH ,
         	COUNT ,
         	WEIGHT ,
         	TOTAL_PRICE ,
         	STATE 
         ) VALUES (
-        	#{did,jdbcType=VARCHAR},
+			#{did,jdbcType=VARCHAR},
 			#{oid,jdbcType=VARCHAR},
 			#{sid,jdbcType=VARCHAR},
 			#{diametre,jdbcType=DOUBLE},
 			#{price,jdbcType=DOUBLE},
 			#{steelCategory,jdbcType=VARCHAR},
+			#{partsLength,jdbcType=VARCHAR},
 			#{length,jdbcType=DOUBLE},
 			#{count,jdbcType=INTEGER},
 			#{weight,jdbcType=DOUBLE},
@@ -82,6 +86,7 @@
         	DIAMETRE ,
         	PRICE ,
         	STEEL_CATEGORY ,
+        	PARTS_LENGTH ,
         	LENGTH ,
         	COUNT ,
         	WEIGHT ,
@@ -96,6 +101,7 @@
 			#{item.diametre,jdbcType=DOUBLE},
 			#{item.price,jdbcType=DOUBLE},
 			#{item.steelCategory,jdbcType=VARCHAR},
+			#{item.partsLength,jdbcType=VARCHAR},
 			#{item.length,jdbcType=DOUBLE},
 			#{item.count,jdbcType=INTEGER},
 			#{item.weight,jdbcType=DOUBLE},
@@ -113,6 +119,7 @@
 			DIAMETRE = #{diametre,jdbcType=DOUBLE},
 			PRICE = #{price,jdbcType=DOUBLE},
 			STEEL_CATEGORY = #{steelCategory,jdbcType=VARCHAR},
+			PARTS_LENGTH = #{partsLength,jdbcType=VARCHAR},
 			LENGTH = #{length,jdbcType=DOUBLE},
 			COUNT = #{count,jdbcType=INTEGER},
 			WEIGHT = #{weight,jdbcType=DOUBLE},
@@ -139,6 +146,9 @@
 			</if>
 			<if test="steelCategory != null">
 				STEEL_CATEGORY =#{steelCategory,jdbcType=VARCHAR},
+			</if>
+			<if test="partsLength != null">
+				PARTS_LENGTH =#{partsLength,jdbcType=VARCHAR},
 			</if>
 			<if test="length != null">
 				LENGTH =#{length,jdbcType=DOUBLE},
@@ -225,6 +235,9 @@
 		</if>
 		<if test="steelCategory != null and steelCategory !=''">
 			and STEEL_CATEGORY = #{steelCategory,jdbcType=VARCHAR}
+		</if>
+		<if test="partsLength != null and partsLength !=''">
+			and PARTS_LENGTH = #{partsLength,jdbcType=VARCHAR}
 		</if>
 		<if test="length != null">
 			and LENGTH = #{length,jdbcType=DOUBLE}

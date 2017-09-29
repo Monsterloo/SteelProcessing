@@ -5,7 +5,9 @@
 
 package com.sp.net.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -58,6 +60,22 @@ public class OrderServiceImpl implements OrderService{
 	public PageBean listPage(PageParam pageParam, Map<String, Object> paramMap) {
 		// TODO Auto-generated method stub
 		PageBean listPage = orderDao.listPage(pageParam, paramMap);
+		List<Object> orderList = listPage.getRecordList();
+		List<Object> newOrderList = new ArrayList<Object>();
+		for(Object obj : orderList){
+			Order order = (Order)obj;
+			order.setClient(clientService.getById(order.getCid()));
+			order.setAdmin(adminService.getById(order.getAid()));
+			//根据订单id查处订单明细
+			String oid = order.getOid();
+			Map<String, Object> detailsParam = new HashMap<String, Object>();
+			detailsParam.put("oid", oid);
+			List<OrderDetail> detailList = orderDetailService.listBy(detailsParam);
+			order.setOrderDetailList(detailList);
+			
+			newOrderList.add(order);
+		}
+		listPage.setRecordList(newOrderList);
 		return listPage;
 	}
 
@@ -112,9 +130,11 @@ public class OrderServiceImpl implements OrderService{
 			List<OrderDetail> orderDetailList = order.getOrderDetailList();
 			if(orderDetailList.size() > 0){
 				for(OrderDetail od : orderDetailList){
-					String dId = od.getDid();
-					dId = dId.substring(0, dId.indexOf("-"));
-					od.setDid(dId);
+					//钢筋id处理
+					String sId = od.getSid();
+					sId = sId.substring(0, sId.indexOf("-"));
+					od.setSid(sId);
+					//存入订单id
 					od.setOid(oid);
 					long createDetail = orderDetailService.insert(od);
 					if(createDetail <= 0){

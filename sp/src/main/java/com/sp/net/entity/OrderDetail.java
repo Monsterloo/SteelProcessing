@@ -42,14 +42,19 @@ public class OrderDetail implements Serializable{
 	 * 钢筋种类
 	 */
 	private String steelCategory;
-
+	
 	/**
 	 * 部件长度
+	 */
+	private String partsLength;
+
+	/**
+	 * 长度
 	 */
 	private Double length;
 
 	/**
-	 * 长度
+	 * 数量
 	 */
 	private Integer count;
 
@@ -153,28 +158,41 @@ public class OrderDetail implements Serializable{
 	public String getSteelCategory() {
 		return this.steelCategory;
 	}
-
+	
 	/**
 	 * 部件长度
+	 */
+	public void setPartsLength(String partsLength) {
+		this.partsLength = partsLength;
+	}
+	/**
+	 * 部件长度
+	 */
+	public String getPartsLength() {
+		return this.partsLength;
+	}
+
+	/**
+	 * 长度
 	 */
 	public void setLength(Double length) {
 		this.length = length;
 	}
 	/**
-	 * 部件长度
+	 * 长度
 	 */
 	public Double getLength() {
 		return this.length;
 	}
 
 	/**
-	 * 长度
+	 * 数量
 	 */
 	public void setCount(Integer count) {
 		this.count = count;
 	}
 	/**
-	 * 长度
+	 * 数量
 	 */
 	public Integer getCount() {
 		return this.count;

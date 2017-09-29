@@ -54,6 +54,13 @@ public class OrderController extends BaseController {
 		}
 	}
 	
+	/**
+	 * 获取订单明细
+	 * @param request
+	 * @param response
+	 * @param oId
+	 * @throws IOException
+	 */
 	@RequestMapping(value="getInfo/{oId}",method=RequestMethod.GET,produces="application/json; charset=UTF-8")
 	@ResponseBody
 	public void getInfo(HttpServletRequest request, HttpServletResponse response, @PathVariable("oId")String oId) throws IOException{
@@ -66,6 +73,14 @@ public class OrderController extends BaseController {
 		}
 	}
 	
+	/**
+	 * 创建订单
+	 * @param request
+	 * @param response
+	 * @param details
+	 * @throws IOException
+	 * @throws ParseException
+	 */
 	@RequestMapping(value="create",method=RequestMethod.POST,produces="application/json; charset=UTF-8")
 	@ResponseBody
 	public void create(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "details[]") List<OrderDetail> details) throws IOException, ParseException{

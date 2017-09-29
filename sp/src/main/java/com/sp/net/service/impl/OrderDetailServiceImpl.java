@@ -5,6 +5,7 @@
 
 package com.sp.net.service.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sp.net.dao.OrderDetailDao;
+import com.sp.net.entity.Order;
 import com.sp.net.entity.OrderDetail;
 import com.sp.net.entity.page.PageBean;
 import com.sp.net.entity.page.PageParam;
@@ -59,5 +61,11 @@ public class OrderDetailServiceImpl implements OrderDetailService{
 		long deleteById = orderDetailDao.deleteById(id);
 		return deleteById;
 	}
-	
+
+	@Override
+	public List<OrderDetail> listBy(Map<String, Object> paramMap) {
+		// TODO Auto-generated method stub
+		List<OrderDetail> listBy = orderDetailDao.listBy(paramMap);
+		return listBy;
+	}
 }
