@@ -282,7 +282,7 @@ export default {
         update: function() {
 
             this.selectedTable.orderState='2';
-            this.$http.post('/sp/order/completeProducted' + '/' + this.selectedTable.id, this.selectedTable, {
+            this.$http.post('/sp/order/completeProducted' + '/' + this.selectedTable.oid, this.selectedTable, {
                 headers: {},
                 emulateJSON: true
             }).then(function(response) {
