@@ -23,15 +23,15 @@
       
       <el-button type="primary" @click="dialogFormVisible = true" style="margin-bottom: 10px;">添加产品</el-button>
 
-       <el-table :data="orderdetail.products" style="margin-bottom: 20px; width:800px">
+       <el-table :data="orderdetail.details" style="margin-bottom: 20px; width:800px">
           <el-table-column label="直径">
             <template scope="scope">
-              <span style="margin-left: 10px;">{{ scope.row.dim}}cm</span>
+              <span style="margin-left: 10px;">{{ scope.row.diametre}}cm</span>
             </template>
           </el-table-column>
           <el-table-column label="数量">
             <template scope="scope">
-              <span style="margin-left: 10px;">{{ scope.row.amount}}</span>
+              <span style="margin-left: 10px;">{{ scope.row.count}}</span>
             </template>
           </el-table-column>
           
@@ -58,7 +58,7 @@
         
           <el-table-column label="重量">
             <template scope="scope">
-              <span style="margin-left: 10px;">{{ scope.row.totalWeight}}cm/kg</span>
+              <span style="margin-left: 10px;">{{ scope.row.weight}}cm/kg</span>
             </template>
           </el-table-column>
 
@@ -103,7 +103,7 @@
     <el-dialog title="添加产品" v-model="dialogFormVisible">
       <el-form :model="productform">
          <el-form-item label="钢 筋 直 径" class="fontcolor temipt" required>
-        <el-select v-model="productform.dim" placeholder="请选择">
+        <el-select v-model="productform.diametre" placeholder="请选择">
           <el-option v-for="item in optionsDim" :key="item.value" :label="item.label" :value="item.value">
           </el-option>
         </el-select>
@@ -204,7 +204,7 @@ export default {
                 price: '',
                 spec: '',
                 steelCategory: '0',
-                dim: 0,
+                diametre: 0,
                 A: 0,
                 B: 0,
                 C: 0,
@@ -327,7 +327,6 @@ export default {
             },
             ],
 
-
             varNum: 0,
             value: '',
             companystring: '',
@@ -336,20 +335,19 @@ export default {
                 companyid: '',
                 companyname: '',
                 totalPrice: 0,
-                weight: 0,
-                products:[{
-                    amount: 0,
+                details:[{
+                    count: 0,
                     picid: '',
                     picsrc: '',
                     price: '',
-                    dim: 0,
+                    diametre: 0,
                     A: 0,
                     B: 0,
                     C: 0,
                     D: 0,
-                    totallength:0,
-                    weigth:0,
-                    steelCategory: '0'
+                    length:0,
+                    weight:0,
+                    steelCategory: '0',
                 }]
             },
             dialogFormVisible: false,
@@ -387,7 +385,7 @@ export default {
                     },
                     trigger: 'blur'
                 }],
-                dim: [{ required: true, message: '请选择直径', trigger: 'blur' }],
+                diametreim: [{ required: true, message: '请选择直径', trigger: 'blur' }],
                 picid: [{
                     required: true, message: '请选择图片', trigger: 'blur'
                 }],
@@ -424,9 +422,9 @@ export default {
         },
         totalWeight: function(){
             /*cm*/
-            let lenght = Number(this.productform.totalLength);
-            let dim = Number(this.productform.dim); 
-            let weightper = dim * lenght * 0.00617;
+            let lenght = Number(this.productform.length);
+            let diametre = Number(this.productform.diametre); 
+            let weightper = diametre * lenght * 0.00617;
             return this.productform.totalWeight = weightper * this.productform.amount;
            
         },
@@ -491,9 +489,9 @@ export default {
             for (var i = 0; i < formulaList.length; i++) {
                 if (id == formulaList[i].id) {
           
-                    this.productform.totalLength = Number(formulaList[i].formula);
+                    this.productform.length = Number(formulaList[i].formula);
          
-                    return this.productform.totalLength;
+                    return this.productform.length;
                 }
             }
         }
@@ -503,39 +501,35 @@ export default {
             this.orderdetail.products.splice(index, 1);
         },
         addspecs: function() {
-           
             let objtemp = {};
-            objtemp.picid =this.productform.picid;
-            objtemp.amount = this.productform.amount;
+            objtemp.sid =this.productform.picid;
+            objtemp.count = this.productform.amount;
             objtemp.picsrc = this.productform.picsrc;
             objtemp.price = Number(this.productform.price);
-            objtemp.diametre = Number(this.productform.dim);
-            objtemp.totallength=Number(this.productform.totalLength);
+            objtemp.diametre = Number(this.productform.diametre);
+            objtemp.length=Number(this.productform.length);
             objtemp.steelCategory=Number(this.productform.steelCategory);
             objtemp.A = Number(this.productform.A);
             objtemp.B = Number(this.productform.B);
             objtemp.C = Number(this.productform.C);
             objtemp.D = Number(this.productform.D);
-            objtemp.totalWeight = Number(this.productform.totalWeight).toFixed(2);
+            objtemp.partsLength = objtemp.A + ',' +objtemp.B + ',' + objtemp.C + ',' +objtemp.D;
+            objtemp.weight = Number(this.productform.totalWeight).toFixed(2);
             objtemp.totalPrice=Number(this.productform.totalPrice);
-            this.orderdetail.products.push(objtemp);
-            console.log(this.orderdetail.products);
-            console.log(this.orderdetail.products.picid);
+            this.orderdetail.details.push(objtemp);
             this.dialogFormVisible = false;
             this.orderdetail.totalPrice+=this.productform.totalPrice;
-            for(var i=0;i<this.orderdetail.products.length;i++){
-                if(this.orderdetail.products[i].amount == 0){
-                    this.orderdetail.products.splice(i,1);
+            for(var i=0;i<this.orderdetail.details.length;i++){
+                if(this.orderdetail.details[i].count == 0){
+                    this.orderdetail.details.splice(i,1);
                 }
-                // this.orderdetail.totalPrice=this.orderdetail.totalPrice+Number(this.orderdetail.products[i].totalPrice);
             }
-            console.log(this.orderdetail.totalPrice);
             this.productform.picid = '';
             this.productform.amount = 0;
             this.productform.picsrc = '';
             this.productform.price = 0;
-            this.productform.dim= 0;
-            this.productform.totalLength=0;
+            this.productform.diametre= 0;
+            this.productform.length=0;
             this.productform.steelCategory= 0;
             this.productform.A=0;
             this.productform.B=0;
@@ -560,9 +554,18 @@ export default {
         changeSelection: function() {
             this.productform.picsrc = require('../assets/addimg/' + this.productform.picid.split('-')[0] + '.jpg');
             this.varNum = this.productform.picid.split('-')[1];
-            console.log(this.productform.picid);
         },
-        onSubmit: function(formName) {            
+        onSubmit: function(formName) { 
+            delete this.orderdetail.companyname;
+            delete this.orderdetail.weight;
+            for(let i =0;i<this.orderdetail.details.length;i++){
+                delete this.orderdetail.details[i].picsrc;
+                delete this.orderdetail.details[i].A;
+                delete this.orderdetail.details[i].B;
+                delete this.orderdetail.details[i].C;
+                delete this.orderdetail.details[i].D;
+                
+            }  
             console.log(this.orderdetail);
             // this.$refs[formName].validate((valid) => {
             //     if (valid) {         

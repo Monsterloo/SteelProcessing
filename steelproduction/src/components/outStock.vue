@@ -132,7 +132,8 @@ export default {
             });
         },
         confirmoutorder: function(){
-            this.$http.post('/sp/order/stockOut' + '/' + this.selectTable.id, this.selectTable, {
+            this.selectedTable.orderState='3';
+            this.$http.post('/sp/order/stockOut' + '/' + this.selectTable.oid, this.selectTable, {
                 headers: {},
                 emulateJSON: true
             }).then(function (response) {
