@@ -546,38 +546,37 @@ export default {
             }  
             console.log(this.orderdetail);
             console.log(typeof(this.orderdetail.details));
-            let details = JSON.stringify(this.orderdetail.details);
-            console.log(JSON.parse(details));
-            // this.$refs[formName].validate((valid) => {
-            //     if (valid) {         
-            //         // this.$http.post('/sp/order/create', this.orderdetail, {
-            //         this.$http.post('/sp/order/create', {projectName:this.orderdetail.projectName,cid:this.orderdetail.companyid,dueDate:this.orderdetail.targettime,details:JSON.parse(details),totalPrice:this.orderdetail.totalPrice}, {
-            //             headers: {},
-            //             emulateJSON: true
-            //         }).then(function(response) {
+            // let details = JSON.stringify(this.orderdetail.details);
+            this.$refs[formName].validate((valid) => {
+                if (valid) {         
+                    // this.$http.post('/sp/order/create', this.orderdetail, {
+                    this.$http.post('/sp/order/create', {projectName:this.orderdetail.projectName,cid:this.orderdetail.companyid,dueDate:this.orderdetail.targettime,details:JSON.stringify(this.orderdetail.details),totalPrice:this.orderdetail.totalPrice}, {
+                        headers: {},
+                        emulateJSON: true
+                    }).then(function(response) {
        
-            //             this.$http.get('/sp/order/listPage/0/10', {}, {
-            //                 headers: {},
-            //                 emulateJSON: true
-            //             }).then(function(response) {
-            //                 localStorage.setItem('orderList', JSON.stringify(response.data));
+                        this.$http.get('/sp/order/listPage/0/10', {}, {
+                            headers: {},
+                            emulateJSON: true
+                        }).then(function(response) {
+                            localStorage.setItem('orderList', JSON.stringify(response.data));
 
-            //                 this.$router.push({ path: '/order/listMangerment' });
-            //             });
+                            this.$router.push({ path: '/order/listMangerment' });
+                        });
            
-            //         }, function(response) {
+                    }, function(response) {
           
-            //         });
-            //     } else {
-            //         this.$message({
-            //             showClose: true,
-            //             message: '添加失败',
-            //             type: 'warning'
-            //         });
+                    });
+                } else {
+                    this.$message({
+                        showClose: true,
+                        message: '添加失败',
+                        type: 'warning'
+                    });
           
-            //         return false;
-            //     }
-            // });
+                    return false;
+                }
+            });
         },
 
         cancelAdd: function() {
