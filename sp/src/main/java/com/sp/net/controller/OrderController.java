@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -83,7 +84,7 @@ public class OrderController extends BaseController {
 	 */
 	@RequestMapping(value="create",method=RequestMethod.POST,produces="application/json; charset=UTF-8")
 	@ResponseBody
-	public void create(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "details[]") List<OrderDetail> details) throws IOException, ParseException{
+	public void create(HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException{
 		Map<String, Object> paramMap = getParamMap_NullStr();
 		Order order = new Order();
 		order.setProjectName((String) paramMap.get("projectName"));
@@ -92,7 +93,7 @@ public class OrderController extends BaseController {
 		order.setAid((String) admin.getAid());
 		order.setDueDate(DateUtil.LONG_DATE_FORMAT.parse((String) paramMap.get("dueDate")));
 		order.setTotalPrice(Double.valueOf((String) paramMap.get("totalPrice")));
-		order.setOrderDetailList(details);
+		//order.setOrderDetailList(details);
 		long insert;
 		try {
 			insert = orderService.createOrder(order);

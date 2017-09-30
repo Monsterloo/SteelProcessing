@@ -6,39 +6,7 @@
         <el-table :data="totaldata" border style="width: 100%;" class="ordertable not-print">
              <el-table-column type="expand">
                  <template scope="scope">
-                    <!-- <el-form label-position="left" inline class="demo-table-expand">
-                        <el-form-item label="工程名称">
-                            <span>{{ scope.row.projectName}}</span>
-                        </el-form-item>
-                        <el-form-item label="直径规格">
-                            <span>{{ scope.row.dim}}</span>
-                        </el-form-item>
-                        <el-form-item label="总价">
-                            <span>{{ scope.row.amount*scope.row.price}}</span>
-                        </el-form-item>
-                        <el-form-item label="数量">
-                            <span>{{ scope.row.amount}}</span>
-                        </el-form-item>
-                        <el-form-item label="单价">
-                            <span>{{ scope.row.price}}</span>
-                        </el-form-item>
-                        <el-form-item label="总长度">
-                            <span>{{ scope.row.totalLength}}</span>
-                        </el-form-item>
-                        <el-form-item label="总重量">
-                            <span>{{ scope.row.weight}}</span>
-                        </el-form-item>
-                        <el-form-item label="简图">
-                            <span class="imgstyle">
-                                <lazy-component @show="handler">
-                                    <img v-bind:src="scope.row.pic" alt="" srcset="">
-                                </lazy-component>
-                            </span>
-                        </el-form-item>
-                        
-
-                    </el-form> -->
-                     <el-table :data="scope.row.products" stripe style="width: 100%">
+                     <el-table :data="scope.row.orderDetailList" stripe style="width: 100%">
                             <el-table-column  label="钢 筋 直 径">
                                 <template scope="scope">
                                     <span style="margin-left: 10px;">{{ scope.row.dim}}</span>
@@ -53,7 +21,13 @@
                             </el-table-column>
                             <el-table-column  label="钢 筋 种 类">
                                 <template scope="scope">
-                                    <span style="margin-left: 10px;">{{ scope.row.type}}</span>
+                                    <!-- <span style="margin-left: 10px;">{{ scope.row.type}}</span> -->
+                                        <span v-if="scope.row.steelCategory=='1'">光圆钢筋</span>
+                                        <span v-if="scope.row.steelCategory=='2'">带肋钢筋</span>
+                                        <span v-if="scope.row.steelCategory=='3'">扭转钢筋</span>
+                                        <span v-if="scope.row.steelCategory=='4'">变形钢筋(直)</span>
+                                        <span v-if="scope.row.steelCategory=='5'">变形钢筋(圆)</span>
+
                                 </template>
                             </el-table-column>
                              <el-table-column  label="部 件 长 度">
@@ -98,7 +72,7 @@
             </el-table-column>
             <el-table-column label="公司名称">
                 <template scope="scope">
-                    <span> {{ scope.row.client}}</span>
+                    <span> {{ scope.row.client.cname}}</span>
                 </template>
             </el-table-column>
             <el-table-column label="订单总价">
@@ -250,14 +224,25 @@ export default {
                 console.log(response.data);
                 console.log(typeof(response.data.recordList[0].dueDate));
                 this.totaldata=response.data.recordList;
-                for (var i = 0; i < this.totaldata.length; i++) {
+                console.log(this.totaldata.length);
+                for(let j=0;j<this.totaldata.length;j++){
+                    this.totaldata[j].dueDate = formatDateTime(new Date(this.totaldata[j].dueDate));
+                    if(this.totaldata[j].orderDetailList.length>0){
+                        for (var i = 0; i < this.totaldata[j].orderDetailList.length; i++) {
                 // 拼接路径
-                    if(this.totaldata[i].picid){
-                        this.totaldata[i].pic=require('../assets/addimg/' + response.data[i].picid.split('-')[0] + '.jpg');
+                            if(this.totaldata[j].orderDetailList[i].sid){
+                                this.totaldata[j].orderDetailList[i].pic=require('../assets/addimg/' + this.totaldata[j].orderDetailList[i].sid.split('-')[0] + '.jpg');
+                            }
+                            let partLength = this.totaldata[j].orderDetailList[i].partsLength.split(',');
+                            this.totaldata[j].orderDetailList[i].A = partLength[0];
+                            this.totaldata[j].orderDetailList[i].B = partLength[1];
+                            this.totaldata[j].orderDetailList[i].C = partLength[2];
+                            this.totaldata[j].orderDetailList[i].D = partLength[3]; 
+                        
+                        }
                     }
-                    this.totaldata[i].dueDate = formatDateTime(new Date(this.totaldata[i].dueDate));
-
                 }
+                
                 this.total=response.data.total;
             }).then((response) => {
                 console.log(response);

@@ -17,9 +17,7 @@
         </el-date-picker>
       </el-form-item>
    
-      <!-- <el-form-item label="总 重 量" class="fontcolor temipt">
-        <p>{{orderdetail.weight}}kg</p>
-      </el-form-item> -->
+   
       
       <el-button type="primary" @click="dialogFormVisible = true" style="margin-bottom: 10px;">添加产品</el-button>
 
@@ -35,26 +33,6 @@
             </template>
           </el-table-column>
           
-            <!-- <el-table-column  label="A" >
-            <template scope="scope">
-              <span>{{scope.row.A}}cm</span>
-            </template>
-            </el-table-column>
-            <el-table-column  label="B" >
-            <template scope="scope">
-              <span>{{scope.row.B}}cm</span>
-            </template>
-            </el-table-column>
-            <el-table-column  label="C" >
-            <template scope="scope">
-              <span>{{scope.row.C}}cm</span>
-            </template>
-            </el-table-column>
-            <el-table-column  label="D" >
-            <template scope="scope">
-              <span>{{scope.row.D}}cm</span>
-            </template>
-            </el-table-column> -->
         
           <el-table-column label="重量">
             <template scope="scope">
@@ -567,13 +545,17 @@ export default {
                 
             }  
             console.log(this.orderdetail);
+            console.log(typeof(this.orderdetail.details));
+            let details = JSON.stringify(this.orderdetail.details);
+            console.log(JSON.parse(details));
             // this.$refs[formName].validate((valid) => {
             //     if (valid) {         
-            //         this.$http.post('/sp/order/create', this.orderdetail, {
+            //         // this.$http.post('/sp/order/create', this.orderdetail, {
+            //         this.$http.post('/sp/order/create', {projectName:this.orderdetail.projectName,cid:this.orderdetail.companyid,dueDate:this.orderdetail.targettime,details:JSON.parse(details),totalPrice:this.orderdetail.totalPrice}, {
             //             headers: {},
             //             emulateJSON: true
             //         }).then(function(response) {
-            // // getagain,save in total_localstorage
+       
             //             this.$http.get('/sp/order/listPage/0/10', {}, {
             //                 headers: {},
             //                 emulateJSON: true
