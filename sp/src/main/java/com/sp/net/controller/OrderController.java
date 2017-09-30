@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.sp.net.common.AppConstants;
 import com.sp.net.entity.Admin;
@@ -87,13 +88,15 @@ public class OrderController extends BaseController {
 	public void create(HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException{
 		Map<String, Object> paramMap = getParamMap_NullStr();
 		Order order = new Order();
+		String detailsJsonStr = (String) paramMap.get("details");
+		List<OrderDetail> detailsList = JSONArray.parseArray(detailsJsonStr, OrderDetail.class);
 		order.setProjectName((String) paramMap.get("projectName"));
 		order.setCid((String) paramMap.get("cid"));
 		Admin admin = (Admin) getHttpSession().getAttribute(AppConstants.SESSION_ADMIN);
 		order.setAid((String) admin.getAid());
 		order.setDueDate(DateUtil.LONG_DATE_FORMAT.parse((String) paramMap.get("dueDate")));
 		order.setTotalPrice(Double.valueOf((String) paramMap.get("totalPrice")));
-		//order.setOrderDetailList(details);
+		order.setOrderDetailList(detailsList);
 		long insert;
 		try {
 			insert = orderService.createOrder(order);
