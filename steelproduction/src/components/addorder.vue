@@ -547,6 +547,7 @@ export default {
             console.log(this.orderdetail);
             console.log(typeof(this.orderdetail.details));
             // let details = JSON.stringify(this.orderdetail.details);
+            console.log(JSON.parse(details));
             this.$refs[formName].validate((valid) => {
                 if (valid) {         
                     // this.$http.post('/sp/order/create', this.orderdetail, {
