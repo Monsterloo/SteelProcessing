@@ -10,6 +10,7 @@ import mypage from '@/components/modifypwd.vue'
 import supply from '@/components/supplyList.vue'
 import outstock from '@/components/outStock.vue'
 import addorder from '@/components/addorder.vue'
+import print from '@/components/orderPrint.vue'
 
 Vue.use(Router)
 export default new Router({
@@ -19,6 +20,10 @@ export default new Router({
     {
       path: '/login',
       component: login
+    },
+    {
+      path: '/print',
+      component: print
     },
     {
       path: '/',

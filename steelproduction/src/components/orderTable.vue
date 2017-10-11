@@ -9,16 +9,21 @@
                      <el-table :data="scope.row.orderDetailList" stripe style="width: 100%">
                             <el-table-column  label="钢 筋 直 径">
                                 <template scope="scope">
-                                    <span style="margin-left: 10px;">{{ scope.row.dim}}</span>
+                                    <span style="margin-left: 10px;">{{ scope.row.diametre}}</span>
                                 </template>
                             </el-table-column>
-                            <el-table-column   label="钢 筋 简 图" >
+                            <!-- <el-table-column   label="钢 筋 简 图" >
                                 <span class="imgstyle">
-                                <lazy-component @show="handler">
-                                    <img v-bind:src="scope.row.pic" alt="" srcset="">
-                                </lazy-component>
+                                 
+                                       <img v-bind:src="scope.row.pic" alt="" srcset="">   -->
+                                      <!-- <img :src="reqiure('../assets/addimg/'+scope.row.sid+'.jpg')" alt="" srcset="">                                       -->
+                                     <!-- <img src='../assets/addimg/'+'000010'+'.jpg' alt="" srcset="">                                      
+                                    <template scope="scope">
+                                    <img class="avatar" :src='scope.row.pic' style="height:36px;">
+                                    </template>
+                                
                             </span>
-                            </el-table-column>
+                            </el-table-column> -->
                             <el-table-column  label="钢 筋 种 类">
                                 <template scope="scope">
                                     <!-- <span style="margin-left: 10px;">{{ scope.row.type}}</span> -->
@@ -54,7 +59,7 @@
                             </el-table-column>
                             <el-table-column  label="重量">
                                 <template scope="scope">
-                                    <span style="margin-left: 10px;">{{ scope.row.totalWeight}}</span>
+                                    <span style="margin-left: 10px;">{{ scope.row.weight}}</span>
                                 </template>
                             </el-table-column>
                     </el-table>
@@ -78,6 +83,11 @@
             <el-table-column label="订单总价">
                 <template scope="scope">
                     <span> {{ scope.row.totalPrice}}</span>
+                </template>
+            </el-table-column>
+             <el-table-column label="订单定金">
+                <template scope="scope">
+                    <span> {{ scope.row.deposit}}</span>
                 </template>
             </el-table-column>
             <el-table-column label="到期日">
@@ -230,9 +240,11 @@ export default {
                     if(this.totaldata[j].orderDetailList.length>0){
                         for (var i = 0; i < this.totaldata[j].orderDetailList.length; i++) {
                 // 拼接路径
-                            if(this.totaldata[j].orderDetailList[i].sid){
-                                this.totaldata[j].orderDetailList[i].pic=require('../assets/addimg/' + this.totaldata[j].orderDetailList[i].sid.split('-')[0] + '.jpg');
-                            }
+                            // if(this.totaldata[j].orderDetailList[i].sid){
+                            //     this.totaldata[j].orderDetailList[i].pic=require('../assets/addimg/' + this.totaldata[j].orderDetailList[i].sid + '.jpg');
+                            // }
+                            // this.totaldata[j].orderDetailList[i].pic=require('../assets/addimg/' + this.totaldata[j].orderDetailList[i].sid + '.jpg');
+                            
                             let partLength = this.totaldata[j].orderDetailList[i].partsLength.split(',');
                             this.totaldata[j].orderDetailList[i].A = partLength[0];
                             this.totaldata[j].orderDetailList[i].B = partLength[1];
@@ -266,7 +278,7 @@ export default {
         },
         update: function() {
 
-            this.selectedTable.orderState='2';
+            // this.selectedTable.orderState='2';
             this.$http.post('/sp/order/completeProducted' + '/' + this.selectedTable.oid, this.selectedTable, {
                 headers: {},
                 emulateJSON: true

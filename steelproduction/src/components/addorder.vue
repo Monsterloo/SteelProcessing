@@ -71,6 +71,11 @@
         <p>¥{{this.orderdetail.totalPrice}}</p>
        
       </el-form-item>
+      <el-form-item label="定金" class="fontcolor temipt">
+          
+        <p>¥{{ this.orderdetail.deposit}}</p>
+       
+      </el-form-item>
       <el-form-item label-width="80px" class="btnblock">
         <el-button type="primary" @click="onSubmit('ruleForm')">立即创建</el-button>
         <el-button @click="cancelAdd">取消</el-button>
@@ -148,6 +153,7 @@
       <el-form-item label="总价" class="fontcolor temipt">
         <p>{{totalPrice }}元</p>
       </el-form-item> 
+      
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
@@ -313,6 +319,7 @@ export default {
                 companyid: '',
                 companyname: '',
                 totalPrice: 0,
+                deposit: 0 ,
                 details:[{
                     count: 0,
                     picid: '',
@@ -398,6 +405,7 @@ export default {
             this.productform.totalPrice = Number(this.productform.amount) * Number(this.productform.price);
             return Number(this.productform.totalPrice);
         },
+       
         totalWeight: function(){
             /*cm*/
             let lenght = Number(this.productform.length);
@@ -497,6 +505,7 @@ export default {
             this.orderdetail.details.push(objtemp);
             this.dialogFormVisible = false;
             this.orderdetail.totalPrice+=this.productform.totalPrice;
+            this.orderdetail.deposit=this.orderdetail.totalPrice*0.2;
             for(var i=0;i<this.orderdetail.details.length;i++){
                 if(this.orderdetail.details[i].count == 0){
                     this.orderdetail.details.splice(i,1);
@@ -547,7 +556,7 @@ export default {
             console.log(this.orderdetail);
             console.log(typeof(this.orderdetail.details));
             // let details = JSON.stringify(this.orderdetail.details);
-            console.log(JSON.parse(details));
+            
             this.$refs[formName].validate((valid) => {
                 if (valid) {         
                     // this.$http.post('/sp/order/create', this.orderdetail, {
@@ -555,7 +564,6 @@ export default {
                         headers: {},
                         emulateJSON: true
                     }).then(function(response) {
-       
                         this.$http.get('/sp/order/listPage/0/10', {}, {
                             headers: {},
                             emulateJSON: true

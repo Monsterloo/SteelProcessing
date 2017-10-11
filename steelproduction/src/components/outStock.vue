@@ -33,7 +33,7 @@
              <el-dialog title="提示" v-model="disvisibity2" size="tiny">
                 <span>确认出库完成</span>
                 <span slot="footer" class="dialog-footer">
-                    <el-button @click="dialogVisible2 = false">取 消</el-button>
+                    <el-button @click="disvisibity2 = false">取 消</el-button>
                     <el-button type="primary" @click="confirmoutorder">确 定</el-button>
                 </span>
             </el-dialog> 
@@ -83,6 +83,21 @@
 }
 </style>
 <script>
+function formatDateTime(inputTime) {
+    var date = new Date(inputTime);
+    var y = date.getFullYear();
+    var m = date.getMonth() + 1;
+    m = m < 10 ? ('0' + m) : m;
+    var d = date.getDate();
+    d = d < 10 ? ('0' + d) : d;
+    var h = date.getHours();
+    h = h < 10 ? ('0' + h) : h;
+    var minute = date.getMinutes();
+    var second = date.getSeconds();
+    minute = minute < 10 ? ('0' + minute) : minute;
+    second = second < 10 ? ('0' + second) : second;
+    return y + '-' + m + '-' + d + ' ' + h + ':' + minute + ':' + second;
+}
 export default {
     data() {
         return {
@@ -108,18 +123,17 @@ export default {
         },
         fetchDataorder: function() {
             this.loading = true;
-            this.$http.get('/sp/order/listPage', {
-                pageIndex: this.pageIndex,
-                pageSize: this.pageSize
-            }, {
+            this.$http.get('/sp/order/listPage' + '/' + this.pageIndex + '/' + this.pageSize,  {
                 headers: {},
                 emulateJSON: true
             }).then(function(response) {
                 // this.orderData = response.data.recordList;
+                this.orderData=[];
                 let temp={};
                 for(let i=0;i<response.data.recordList.length;i++){
                     if(response.data.recordList[i].orderState=='2'||response.data.recordList[i].orderState=='3')
                     {
+                        response.data.recordList[i].dueDate=formatDateTime(new Date(response.data.recordList[i].dueDate));
                         temp=response.data.recordList[i];
                         this.orderData.push(temp);
                     }
@@ -131,8 +145,13 @@ export default {
                   
             });
         },
+        handleEditorder(index, row) {
+            this.selectTable = row;
+            this.disvisibity2 = true;
+            console.log(row);
+        },
         confirmoutorder: function(){
-            this.selectedTable.orderState='3';
+            // this.selectTable.orderState='3';
             this.$http.post('/sp/order/stockOut' + '/' + this.selectTable.oid, this.selectTable, {
                 headers: {},
                 emulateJSON: true
@@ -143,7 +162,7 @@ export default {
                     message: '确认成功',
                     type: 'success'
                 });
-                this.dialogFormVisible = false;
+                this.disvisibity2 = false;
                 console.log(response.data);
             }, function (response) {
                 console.log(response);
