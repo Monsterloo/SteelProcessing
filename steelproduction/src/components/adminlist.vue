@@ -1,6 +1,6 @@
 <template>
     <div class="clear">
-        <el-input placeholder="请选择关键字" icon="search" class="searchbox" v-model="seachbyId">
+        <el-input placeholder="请选择关键字" icon="search" class="searchbox" v-model="seachbyname" @change="searchByName">
         </el-input>
          <el-button type="primary" class="addbtn" @click="addAdmin">新 增 管 理 员</el-button> 
         <el-table :data="totaldata" border style="width: 100%;" class="ordertable">
@@ -148,7 +148,7 @@ export default {
             pageSizes: [10, 20, 50, 100],
             totaldata: [],
             tableData: [],
-            seachbyId: '',
+            seachbyname: '',
             matchdata: [],
             dialogFormVisible_add: false,
             dialogFormVisible_update:false,
@@ -313,6 +313,20 @@ export default {
             this.selectTable = row;
             this.dialogVisible_delete = true;
         },
+        searchByName: function(){
+            if(this.seachbyname==''){
+                this.fetchData();
+            }
+            else{
+                this.$http.get('/sp/admin/fuzzyListPage/'+this.pageIndex+'/'+this.pageSize+'/'+this.seachbyname).then((response) => {
+                    console.log(response.data);
+                    this.totaldata=response.data.recordList;
+                    this.total=response.data.total;
+                }).then((response) => {
+                    console.log(response);
+                });
+            }
+        },
         confirmdelete: function() {
             this.dialogVisible_delete = false;
             this.$http.delete('/sp/admin/delete/'+ this.selectTable.aid).then((response) => {
@@ -331,13 +345,6 @@ export default {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
                     this.dialogFormVisible = false;
-                    // let id = this.selectTable.aid;
-                    // let name = this.selectTable.aname;
-                    // let contact = this.selectTable.acontact;
-                    // let arole = this.selectTable.arole;
-                    // let aRoleName = this.selectTable.aRoleName;
-                    // letl
-                    // this.$http.post('/sp/admin/update?aid='+ id +'&aname='+ name +'&acontact='+ contact +'&arole='+ arole +'&aRoleName='+ aRoleName , {
                     this.$http.post('/sp/admin/update', this.selectTable,{                        
                         headers: {},
                         emulateJSON: true
