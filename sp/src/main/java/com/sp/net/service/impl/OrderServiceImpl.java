@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sp.net.dao.OrderDao;
+import com.sp.net.entity.Client;
 import com.sp.net.entity.Order;
 import com.sp.net.entity.OrderDetail;
 import com.sp.net.entity.page.PageBean;
@@ -44,7 +45,7 @@ public class OrderServiceImpl implements OrderService{
 	
 	@Autowired
 	private OrderDetailService orderDetailService;
-
+	
 	@Override
 	public Order getById(String id) {
 		// TODO Auto-generated method stub
@@ -148,6 +149,17 @@ public class OrderServiceImpl implements OrderService{
 			throw new Exception("创建订单失败!");
 		}
 		return insert;
+	}
+
+	@Override
+	public PageBean listPageBySaleReports(PageParam pageParam, Map<String, Object> paramMap) {
+		// TODO Auto-generated method stub
+		Client client = clientService.getBy(paramMap);
+		String cid = client.getCid();
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("cid", cid);
+		PageBean listPage = this.listPage(pageParam, parameters);
+		return listPage;
 	}
 	
 }

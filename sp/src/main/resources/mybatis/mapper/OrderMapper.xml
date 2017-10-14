@@ -169,7 +169,8 @@
 		<where>
 			<include refid="condition_sql" />
 		</where>
-		<include refid="limit_sql" />
+		ORDER BY CREATETIME DESC
+		<include refid="limit_sql" /> 
 	</select>
 	
 	<!-- 分页查询时计算总记录数 -->

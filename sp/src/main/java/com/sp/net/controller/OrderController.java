@@ -27,6 +27,7 @@ import com.sp.net.entity.Order;
 import com.sp.net.entity.OrderDetail;
 import com.sp.net.entity.page.PageBean;
 import com.sp.net.entity.page.PageParam;
+import com.sp.net.service.ClientService;
 import com.sp.net.service.OrderService;
 import com.sp.net.utils.DateUtil;
 
@@ -41,6 +42,9 @@ public class OrderController extends BaseController {
 
 	@Autowired
 	private OrderService orderService;
+	
+	@Autowired
+	private ClientService clientService;
 	
 	@RequestMapping(value="listPage/{pageIndex}/{pageSize}",method=RequestMethod.GET,produces="application/json; charset=UTF-8")
 	@ResponseBody
@@ -72,6 +76,7 @@ public class OrderController extends BaseController {
 			outWrite(response, result);
 		}else{
 			outWrite(response, null);
+			
 		}
 	}
 	
@@ -87,6 +92,7 @@ public class OrderController extends BaseController {
 	@ResponseBody
 	public void create(HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException{
 		Map<String, Object> paramMap = getParamMap_NullStr();
+		System.out.println(getString("details[0][count]"));
 		Order order = new Order();
 		String detailsJsonStr = (String) paramMap.get("details");
 		List<OrderDetail> detailsList = JSONArray.parseArray(detailsJsonStr, OrderDetail.class);
@@ -145,6 +151,27 @@ public class OrderController extends BaseController {
 		long orderStockOut = orderService.orderStockOut(oId);
 		if(orderStockOut > 0){
 			String result = toJsonString(orderStockOut);
+			outWrite(response, result);
+		}else{
+			outWrite(response, null);
+		}
+	}
+	
+	/**
+	 * 客户销售报表
+	 * @param request
+	 * @param response
+	 * @param pageIndex
+	 * @param pageSize
+	 * @throws IOException
+	 */
+	@RequestMapping(value="listPageBySaleReports",method=RequestMethod.POST,produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public void listPageBySaleReports(HttpServletRequest request, HttpServletResponse response, @PathVariable("pageIndex")Integer pageIndex, @PathVariable("pageSize")Integer pageSize) throws IOException{
+		Map<String, Object> paramMap = getParamMap_NullStr();
+		PageBean listPageBySaleReports = orderService.listPageBySaleReports(new PageParam(pageIndex, pageSize), paramMap);
+		if(listPageBySaleReports != null){
+			String result = toJsonString(listPageBySaleReports);
 			outWrite(response, result);
 		}else{
 			outWrite(response, null);

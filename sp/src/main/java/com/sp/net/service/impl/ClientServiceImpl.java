@@ -76,4 +76,11 @@ public class ClientServiceImpl implements ClientService{
 		PageBean fuzzyListPage = clientDao.fuzzyListPage(pageParam, paramMap);
 		return fuzzyListPage;
 	}
+
+	@Override
+	public Client getBy(Map<String, Object> paramMap) {
+		// TODO Auto-generated method stub
+		Client by = clientDao.getBy(paramMap);
+		return by;
+	}
 }
