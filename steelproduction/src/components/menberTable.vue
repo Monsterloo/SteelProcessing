@@ -1,6 +1,7 @@
 
 <template>
     <div class="clear">
+        <!-- 根据名字 -->
         <el-input placeholder="请选择会员编号" icon="search" class="searchbox" v-model="seachbyId">
         </el-input>
         <el-button type="primary" class="addbtn" @click="addOrder">新 增 会 员</el-button>
